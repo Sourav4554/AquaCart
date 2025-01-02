@@ -1,0 +1,107 @@
+.parent-navbar{
+display: flex;
+justify-content: space-between;
+background-color: black;
+align-items: center;
+}
+.for-icons{
+display: flex;
+align-items: center;
+}
+.for-icons img{
+width: clamp(24px,5vw,34px);
+margin: 0 clamp(20px,8vw, 40px);
+height: clamp(24px, 5vw, 34px);
+}
+.for-icons .active{
+border :3px solid #178ca4;
+}
+.login-button{
+outline: none;
+margin: 0 clamp(40px,8vw,64px); 
+border: 2px solid white;
+font-size: 14px;
+padding: 4px 10px;
+background: transparent;
+cursor: pointer;
+color: white;
+font-weight: 600;
+transition: 0.5s ease;
+}
+.login-button:hover{
+border: 2px solid #178ca4;
+color: #178ca4;
+}
+.for-logo img{
+height: 80px;
+margin-left: 10px;
+}
+.for-list{
+background-color: black;
+position: absolute;
+right: 13%;
+top: 10%;
+}
+.for-list ul li{
+margin: 10px;
+font-size: clamp(12px,1.3vw,18px);
+font-weight: bold;
+}
+.for-list ul li a{
+color: #fff;
+padding: 3px;
+}
+
+@media(max-width:1034px){
+.for-icons img{
+margin: 15px;
+}
+.for-list{
+top: 5%;
+}
+.login-button{
+margin: 30px;
+}
+.for-logo img{
+height: 50px;
+margin-left: 5px;
+}
+}
+
+@media(max-width:764px){
+    .for-icons{
+    margin-right: 85px;
+    }
+    .for-icons img{
+    margin: 5px;
+    }
+    .login-button{
+    margin: 8px;
+    }
+    .for-list{
+        top: 7%;
+        }
+    .for-logo img{
+    height: 50px;
+    margin-left: 0px;
+    }
+    }
+    @media(max-width:564px){
+        .for-icons{
+        margin-right: 90px;
+        }
+        .for-icons img{
+        margin: 5px;
+        }
+        .for-list{
+            top: 5.9%;
+            right: 20%;
+            }
+        .login-button{
+        margin: 8px;
+        }
+        .for-logo img{
+        height: 40px;
+        margin-left: 0px;
+        }
+        }

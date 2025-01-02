@@ -88,7 +88,8 @@ import wishlist from './wishlist.png';
 import login from './login.png';
 import list from './list.png';
 import cross from './cross.png';
-import downarrow from './downarrow.png'
+import downarrow from './downarrow.png';
+import logo from './logo1.png'
 const Requirements={
 Homepage2,
 Homepage1,
@@ -100,6 +101,7 @@ login,
 list,
 cross,
 downarrow,
+logo,
 }
 
 
