@@ -79,17 +79,25 @@ import TUXEDO_PLATY from './TUXEDO-PLATY.jpg';
 import REDWAGTAIL_PLATY from './RED-WAGTAIL-PLATY.jpg';
 
 //Requirements
-import Homepage1 from './Homepage1.png';
-import Homepage2 from './homepage2.jpg';
-import Homepage3 from './homepage3.avif';
+import Homepage1 from './homepage1.avif';
+import Homepage2 from './homepage2.jpeg';
+import Homepage3 from './homepage3.jpg';
 import searchicon from './searchicon.png';
 import carticon from './carticon.jpg';
 import wishlist from './wishlist.png';
 import login from './login.png';
+import aboutimage1 from './aboutimage1.jpeg';
+import aboutimage2 from './aboutimage2.jpeg';
+import promotionimage1 from './promotionimage1.jpg';
+import promotionimage2 from './promotionimage2.jpg';
+import aipic1 from './aipic1.jpeg';
+import aipic2 from './aipic2.jpeg';
+import aipic3 from './aipic3.jpeg';
+import backgroundaipick from './backgroundaipick.jpg';
 import list from './list.png';
 import cross from './cross.png';
 import downarrow from './downarrow.png';
-import logo from './logo1.png'
+import logo from './logo.png'
 const Requirements={
 Homepage2,
 Homepage1,
@@ -102,6 +110,14 @@ list,
 cross,
 downarrow,
 logo,
+aboutimage1,
+aboutimage2,
+promotionimage1,
+promotionimage2,
+aipic1,
+aipic2,
+aipic3,
+backgroundaipick,
 }
 
 
