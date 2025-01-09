@@ -1,11 +1,12 @@
 import React from 'react'
-import './About.css'
-import { Requirements } from '../../assets/Assets'
-import ScrollAnimation from 'react-animate-on-scroll';
+import './About.css' // Import CSS styling for this component
+import { Requirements } from '../../assets/Assets' // Import assets (images)
+import ScrollAnimation from 'react-animate-on-scroll';// Import animation library for scroll animations
 const About = () => {
   return (
     <div className='main-container'>
       <div className="container-for-content">
+        {/*scroll animation with fade up */}
         <ScrollAnimation animateIn='animate__fadeInUp' animateOnce>
         <h3>ABOUT US</h3>
         <p>

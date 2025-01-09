@@ -1,21 +1,49 @@
+/* Parent navbar with dynamic background color change */
 .parent-navbar{
 display: flex;
 justify-content: space-between;
-background-color: black;
 align-items: center;
+z-index: 9999;
+width: 100%;
+position: fixed;
+height: 10vh;
+top: 0;
+left: 0;
 }
+/* Navbar style when the color changes on scroll */
+.changecolor{
+ background-color: #000C26;
+ display: flex;
+ justify-content: space-between;
+ z-index: 9999; 
+ align-items: center;
+ width: 100%;
+ position: fixed;
+ height: 10vh;
+ top: 0;
+ left: 0;
+    }
+/* Styling for icons in the navbar */
 .for-icons{
 display: flex;
 align-items: center;
+position: relative;
 }
 .for-icons img{
 width: clamp(24px,5vw,34px);
 margin: 0 clamp(20px,8vw, 40px);
 height: clamp(24px, 5vw, 34px);
+cursor: pointer;
+transition:all 0.3s ease;
 }
+.for-icons img:hover{
+    transform: scale(1.2);
+    }
+/* Active icon state */
 .for-icons .active{
 border :3px solid #178ca4;
 }
+/* Styling for the login button */
 .login-button{
 outline: none;
 margin: 0 clamp(40px,8vw,64px); 
@@ -29,18 +57,26 @@ font-weight: 600;
 transition: 0.5s ease;
 }
 .login-button:hover{
-border: 2px solid #178ca4;
-color: #178ca4;
+border: 2px solid white;
+transform: scale(1.1);
 }
+/* Logo styling */
 .for-logo img{
 height: 80px;
+cursor: pointer;
 margin-left: 10px;
 }
+/* Navbar list for links */
 .for-list{
-background-color: black;
 position: absolute;
-right: 13%;
-top: 10%;
+right: 27%;
+top: 105%;
+}
+.for-list-colorchange{
+    position: absolute;
+    right: 27%;
+    top: 105%;
+    background-color: #000C26;
 }
 .for-list ul li{
 margin: 10px;
@@ -51,13 +87,32 @@ font-weight: bold;
 color: #fff;
 padding: 3px;
 }
-
+/* Navbar link styling */
+.navbar-content-li{
+ margin: 10px;
+ font-size: clamp(12px,1.3vw,18px);
+ transition: all 0.3s ease;
+ font-weight: bold;
+ }
+ .navbar-content-li:hover.navbar-content-li a{
+ color: #178ca4;
+ }
+ .navbar-content-li a{
+color: #fff;
+padding: 3px;
+}
+/* Media query for tablet and large screens */
 @media(max-width:1034px){
 .for-icons img{
 margin: 15px;
 }
 .for-list{
-top: 5%;
+top: 95%;
+right: 24%;
+}
+.for-list-colorchange{
+top: 95%;
+right: 24%;
 }
 .login-button{
 margin: 30px;
@@ -68,6 +123,7 @@ margin-left: 5px;
 }
 }
 
+/* Media query for smaller screens */
 @media(max-width:764px){
     .for-icons{
     margin-right: 85px;
@@ -79,13 +135,17 @@ margin-left: 5px;
     margin: 8px;
     }
     .for-list{
-        top: 7%;
+        top: 105%;
         }
+        .for-list-colorchange{
+            top: 105%;
+            }
     .for-logo img{
     height: 50px;
     margin-left: 0px;
     }
     }
+    /* Media query for very small screens */
     @media(max-width:564px){
         .for-icons{
         margin-right: 90px;
@@ -94,9 +154,13 @@ margin-left: 5px;
         margin: 5px;
         }
         .for-list{
-            top: 5.9%;
+            top: 102%;
             right: 20%;
             }
+            .for-list-colorchange{
+                top: 102%;
+                right: 20%;
+                }
         .login-button{
         margin: 8px;
         }
