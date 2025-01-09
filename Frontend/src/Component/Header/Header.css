@@ -8,7 +8,7 @@ height: 100vh;
 transform: translate3d(0, 0, 0);
 }
 .main-header-division {
-background-color:#178CA4; 
+background: linear-gradient(to right, #00081B, #003C4F, #022630);; 
 display: flex;
 align-items: center;
 justify-content: center;
