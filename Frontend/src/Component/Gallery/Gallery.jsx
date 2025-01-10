@@ -18,7 +18,7 @@ const [allProducts,setAllProducts]=useState(ProductLists);
         <div className="heading-div">
           <h2 className="head-1">AQATIC BEAUTY</h2>
           <p className="para-1">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio architecto in quis?
+          Dive into the enchanting world of vibrant marine life. Explore a stunning array of aquatic wonders and colorful underwater beauty.
           </p>
         </div>
         </ScrollAnimation>
