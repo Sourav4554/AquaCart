@@ -121,7 +121,7 @@ backgroundaipick,
 }
 
 
-const Products = [
+const ProductLists = [
     //Angel
      {
          _id: 1,
@@ -897,4 +897,4 @@ const Products = [
         }
 ];
 
-export {Products,Requirements};
+export {ProductLists,Requirements};

@@ -1,0 +1,167 @@
+.maindiv-for-gallery {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 3%;
+  position: relative;
+}
+.heading-div .head-1 {
+  text-align: center;
+  font-weight: 500;
+  font-size: clamp(20px, 3.5vw, 50px);
+  letter-spacing: 5px;
+  color: #178ca4;
+}
+.heading-div .para-1 {
+  font-weight: 400;
+  font-size: clamp(13px, 1.5vw, 18px);
+  margin-top: 6px;
+  margin-bottom: 3%;
+  text-align: center;
+}
+/* default class for the slider */
+.slick-slide {
+  padding: 0 10px;
+}
+.slick-dots {
+  margin-top: 10%;
+  position: absolute;
+  text-align: center;
+  margin-bottom: -65%;
+  width: 100%;
+}
+
+/* Style individual dots */
+.slick-dots li button {
+  background-color: black;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin: 20 5px;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.slick-dots li.slick-active button {
+  background-color: #178ca4;
+  transform: scale(1.2);
+}
+
+/* Optional: Hover effect on dots */
+.slick-dots li button:hover {
+  background-color: #178ca4;
+  transition: background-color 0.3s ease;
+}
+
+.card-div {
+  width: 100%;
+  height: auto;
+}
+.card {
+  width: 100%;
+  background-color: aqua;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  height: 60vh;
+  margin: clamp(1%, 2%, 3%) clamp(1%, 2%, 3%);
+  overflow: hidden;
+  position: relative;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.card img {
+  width: 100%;
+  height: 60vh;
+}
+.for-fishdetails {
+  position: absolute;
+  height: 20vh;
+  width: 100%;
+  overflow: hidden;
+  bottom: 0;
+  background-color: #178ca4;
+  border-radius: 39% 42% 27% 0% / 23% 26% 1% 25%;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.for-fishname {
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  font-size: clamp(18px, 2.5vw, 25px);
+  margin-top: 20px;
+}
+.for-fishdescription {
+  color: black;
+  font-weight: 300;
+  font-size: calc(10px, 1.5vw, 16px);
+  text-align: center;
+  margin-top: 3px;
+}
+.card:hover .for-fishdetails {
+  opacity: 1;
+}
+.p-carousel-prev,
+.p-carousel-next {
+  width: 30px;
+  height: 50px;
+}
+/*Tablets*/
+@media (max-width: 1024px) {
+  .card {
+    height: 30vh;
+  }
+  .card-div {
+    width: 94%;
+    margin-left: 3%;
+  }
+  .card img {
+    overflow: hidden;
+    height: 30vh;
+  }
+  .for-fishdetails {
+    height: 10vh;
+  }
+  .slick-slide {
+    padding: 0 0;
+  }
+}
+/*medium mobile screens*/
+@media (max-width: 764px) {
+  .card {
+    height: 50vh;
+  }
+  .card img {
+    overflow: hidden;
+    height: 50vh;
+  }
+  .card-div {
+    width: 90%;
+    margin-left: 4%;
+  }
+  .for-fishdetails {
+    height: 15vh;
+  }
+  .for-fishdescription {
+    font-size: 12px;
+  }
+  .slick-slide {
+    padding: 0 0px;
+  }
+}
+/*small screens*/
+@media (max-width: 564px) {
+  .card {
+    height: 40vh;
+  }
+  .card img {
+    height: 40vh;
+  }
+  .card-div {
+    width: 90%;
+    margin-left: 3%;
+  }
+  .slick-slide {
+    padding: 0 0px;
+  }
+}
