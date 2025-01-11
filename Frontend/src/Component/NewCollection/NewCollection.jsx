@@ -3,12 +3,14 @@ import './NewCollection.css'//css for styling the newcollection
 import Card from '../Card/Card'//card component
 import { settings1 } from '../../Utilities/Carousel'
 import Slider from 'react-slick'// this is the library for carousel slider effect
-import { ProductContext } from '../../Context/ProductContext'
-import ScrollAnimation from 'react-animate-on-scroll'
-import'animate.css'
+import { ProductContext } from '../../Context/ProductContext'//products from context api
+import ScrollAnimation from 'react-animate-on-scroll'//library for scroll animation
+import'animate.css' //animation file
 const NewCollection = () => {
 const {ProductLists}=useContext(ProductContext);
+//state variable for store new collection
 const[newcollection,setNewCollection]=useState([]);
+//slice new 8 card and store in new cllecctions
  useEffect(()=>{
  const sliceCards=ProductLists.slice(0,8);
  setNewCollection(sliceCards)

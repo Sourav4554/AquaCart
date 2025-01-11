@@ -2,11 +2,13 @@ import React from 'react'
 import Navbar from './Component/Navbar/Navbar'
 import Home from './Pages/Home/Home'
 import {Routes,Route, BrowserRouter}from 'react-router-dom'
+import Search from './Component/Search/Search'
 const App = () => {
   return (
     <div>
       <BrowserRouter>
       <Navbar/>
+      <Search/>
       <Routes>
         <Route path='/'element={<Home/>}/>
       </Routes>

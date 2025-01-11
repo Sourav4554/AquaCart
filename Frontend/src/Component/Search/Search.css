@@ -1,0 +1,71 @@
+.main-div-for-search {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    padding: 5px;
+    align-items: center;
+    background-color: #f4f4f4; /* Background color for the whole page */
+}
+.search-icon{
+font-size: 30px;
+}
+.search-icon{
+font-size:30px;
+}
+.for-search {
+    display: flex;
+    margin-right: 12px;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    border: 1px solid #ccc; /* Border around the input field */
+    padding: 8px;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.for-search input {
+    width: 100%; /* Takes the full width of its parent div */
+    padding: 5px;
+    border: none;
+    border-radius: 15px;
+    outline: none; /* Removes the default outline */
+    font-size: 16px;
+    box-sizing: border-box;
+}
+@media (max-width: 1025px) {
+    .main-div-for-search {
+        margin-top: 16%; /* Adjust margin-top for screens under 1025px */
+    }
+    .for-search{
+        width: 80%;
+        }
+}
+
+@media (max-width: 964px) {
+    .main-div-for-search {
+        margin-top: 15%; 
+    }
+    .for-search{
+        width: 80%;
+        }
+}
+
+@media (max-width: 768px) {
+    .main-div-for-search {
+        margin-top: 16%; 
+    }
+    .for-search{
+    width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-div-for-search {
+        margin-top: 23%; 
+    }
+    .for-search{
+    width: 100%;
+    }
+}
