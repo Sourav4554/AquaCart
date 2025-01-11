@@ -1,0 +1,44 @@
+.main-container-newcollection{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    }
+    .container-1-for-heaing{
+    margin-top: 5%;
+    height: auto;
+    }
+    .container-1-for-heaing h2{
+    text-align: center;
+    font-weight: 500;
+    font-size: clamp(20px, 3.5vw, 50px);
+    letter-spacing: 5px;
+    color: #178ca4;
+    }
+    .container-1-for-heaing p{
+    font-weight: 400;
+    font-size: clamp(13px, 1.5vw, 18px);
+    margin-top: 6px;
+    margin-bottom: 3%;
+    text-align: center;
+    }
+    .card-div-for-newcollection{
+    height: auto;
+    width: 100%;
+    }
+    
+    @media(max-width:764px){
+        .slick-slide {
+            padding: 0 0px;
+            margin: 0  0px;
+            width: 100%;
+          }
+    }
+    @media(max-width:564px){
+        .slick-slide {
+            padding: 0 0px;
+            margin: 0 0px;
+            width: 100%;
+          }
+          
+    }

@@ -38,3 +38,40 @@ export const settings = {
     },
   ],
 };
+
+ //setting for new collection
+ export const settings1 = {
+  className: "center",
+  centerMode: false, // Disable center mode for equal spacing
+  infinite: true,
+  speed:500,
+  slidesToShow: 4,
+  slidesToScroll: 2, // Scroll one slide at a time
+  dots: true, // Disable dots
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        spaceBetween: 30,
+        slidesToScroll: 2,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        dots:false,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        dots:false,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
