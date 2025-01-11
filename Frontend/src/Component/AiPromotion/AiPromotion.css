@@ -1,0 +1,173 @@
+.main-container-for-ai {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    margin-top: 5%;
+    background-color: aquamarine;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 139, 0) 10%,
+        rgba(1, 0, 7, 0.521) 100%
+      ),
+      url("../../assets/backgroundaipick.jpg") no-repeat center/cover;
+  }
+  .sub-container-1 {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .empty-div {
+    position: absolute;
+    width: 58%;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    height: 83vh;
+    left: 29%;
+    top: 10%;
+  }
+  .first-img-div {
+    position: absolute;
+    width: 30%;
+    height: 18vh;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    top: 15%;
+    left: 53%;
+  }
+  .first-img-div img {
+    width: 100%;
+    height: 39.5vh;
+    border-radius: 25px;
+    overflow: hidden;
+  }
+  .second-img-div {
+    position: absolute;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    width: 30%;
+    height: 1vh;
+    top: 15%;
+    left: 20%;
+  }
+  .second-img-div img {
+    width: 100%;
+    height: 39.5vh;
+    border-radius: 25px;
+    overflow: hidden;
+  }
+  .third-img-div {
+    position: absolute;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    width: 63%;
+    height: 30%;
+    top: 59%;
+    left: 20%;
+  }
+  .third-img-div img {
+    height: 29.3vh;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 25px;
+  }
+  .sub-container-2-contents {
+    margin-top: 10%;
+  }
+  .for-headings h2 {
+    color: #fff;
+    font-size:clamp(19px,3.5vw,35px);
+    font-weight: bold;
+  }
+  .description-box {
+    margin-top: 15px;
+    width: 70%;
+  }
+  .description-box h3 {
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size:clamp(15px,2.3vw,25px);
+  }
+  .description-box p {
+    margin-bottom: 5%;
+    color: #fff;
+    font-size:clamp(10,2.3vw,18px);
+    font-weight: 500;
+  }
+  .button-container-4 {
+    position: relative;
+    display: inline-block;
+    margin-left: 10%;
+  }
+  .get-started-button-4 {
+    cursor: pointer;
+    transition: all 0.3 ease;
+    background: transparent;
+    color: white;
+    border: 2px solid #fff;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 30px;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+  .get-started-button-4::before,
+  .get-started-button-4::after {
+    content: "";
+    height: 2px;
+    width: 50%;
+    position: absolute;
+    background-color: #000c26;
+    transition: all 0.3s ease;
+  }
+  .get-started-button-4::before {
+    top: 0%;
+    left: 0;
+  }
+  .get-started-button-4::after {
+    bottom: 0%;
+    right: 0;
+  }
+  .get-started-button-4:hover::before {
+    top: 0;
+    left: 50%;
+  }
+  .get-started-button-4:hover::after {
+    bottom: 0;
+    right: 50%;
+  }
+  .get-started-button-4:hover {
+    background-color: #000c26;
+  }
+  @media(max-width:1024px){
+      .main-container-for-ai{
+      height: auto;
+      }
+      .sub-container-1{
+      display: none;
+      }
+      .sub-container-2-contents{
+      display: flex;
+      flex-direction: column;
+      margin-left: 10%;
+      }
+      .description-box{
+      width: 90%;
+      }
+      .for-headings{
+      display: flex;
+      margin-top: 0;
+      }
+      .for-headings h2{
+      margin-left: 5px;
+      }
+      .button-container-4{
+      margin-bottom: 3%;
+      }
+  }
+  @media(max-width:564px){
+  .for-headings{
+  display: flex;
+  flex-direction: column;
+  }
+  }
