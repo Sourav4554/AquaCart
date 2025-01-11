@@ -4,7 +4,8 @@ import Card from '../Card/Card'//card component
 import { settings1 } from '../../Utilities/Carousel'
 import Slider from 'react-slick'// this is the library for carousel slider effect
 import { ProductContext } from '../../Context/ProductContext'
-
+import ScrollAnimation from 'react-animate-on-scroll'
+import'animate.css'
 const NewCollection = () => {
 const {ProductLists}=useContext(ProductContext);
 const[newcollection,setNewCollection]=useState([]);
@@ -19,19 +20,21 @@ const[newcollection,setNewCollection]=useState([]);
           <p>Discover the latest arrivals of vibrant ornamental fish, Find your perfect aquatic addition today!</p>
         </div>
         <div className="container-2-for-items">
-             <div className="card-div-for-newcollection">
+            <ScrollAnimation animateIn='animate__backInRight'>
+            <div className="card-div-for-newcollection">
                
-                 <Slider {...settings1}>
-                   {
+               <Slider {...settings1}>
+                 {
 
-                 newcollection.map((item,index)=>{
-                 return(
-                     <Card key={index} image={item.image} name={item.name} description1={item.description1} price={item.price} stock={item.stock}/>
-                     )
-                 })
-                }   
-                </Slider> 
-             </div>
+               newcollection.map((item,index)=>{
+               return(
+                   <Card key={index} image={item.image} name={item.name} description1={item.description1} price={item.price} stock={item.stock}/>
+                   )
+               })
+              }   
+              </Slider> 
+           </div>
+            </ScrollAnimation>
         </div>
     </div>
   )
