@@ -1,0 +1,184 @@
+.main-div-for-collections {
+    /* Ensures the main container has a top margin and uses flexbox for layout */
+    margin-top: 5%;
+    display: flex;
+  }
+  
+  .main-div-for-category {
+    /* Defines the left sidebar for categories with fixed width and vertical layout */
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(0, 0, 0, 0.342);
+  }
+  
+  .sub-div-for-category h4 {
+    /* Styles the 'Category' heading inside the sidebar */
+    color: #178ca4;
+    margin-right: 20%;
+    margin-bottom: 4%;
+    font-size: clamp(16px, 3.5vw, 20px);
+  }
+  
+  .sub-div-for-category {
+    /* Wrapper for category filter items */
+    height: auto;
+    padding-left: 20%;
+    margin-top: 35%;
+    border: 1px solid rgba(0, 0, 0, 0.342);
+    margin-left: 1%;
+    border-radius: 5px;
+  }
+  
+  .div-for-header {
+    /* Header section containing the heading and sorting dropdown */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1;
+  }
+  
+  .category-header {
+    /* Wrapper for 'Category' heading and toggle arrow */
+    display: flex;
+  }
+  
+  .down-arrow {
+    /* Styles for the dropdown arrow icon */
+    margin-top: 4%;
+    margin-left: -15%;
+  
+  }
+  
+  .for-heading h1 {
+    /* Styles the main heading 'AQUATIC COLLECTIONS' */
+    text-align: center;
+    font-weight: 500;
+    font-size: clamp(20px, 3.5vw, 50px);
+    letter-spacing: 5px;
+    color: #178ca4;
+  }
+  
+  .for-category-list {
+    /* Wrapper for each category filter option */
+    display: flex;
+    margin-bottom: 5px;
+    align-items: center;
+  }
+  
+  .for-category-list input {
+    /* Styles the checkbox */
+    margin-right: 10px;
+  }
+  
+  .label {
+    /* Styles the category label text */
+    font-size: 16px;
+    font-weight: 500;
+    color: #178ca4;
+  }
+  
+  .label-div {
+    /* Wrapper for the label to control alignment */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  select {
+    /* Styles the sorting dropdown */
+    width: 150px;
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #178ca4;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    outline: none;
+    cursor: pointer;
+  }
+  
+  select option {
+    /* Styles for dropdown options */
+    font-size: 16px;
+    color: #333;
+    background-color: #ccc;
+  }
+  
+  select:focus {
+    /* Styles when the dropdown is focused */
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .main-div-for-items {
+    /* Container for product items */
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .for-product-items {
+    /* Grid container for product cards */
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+  }
+  
+  @media (max-width: 1045px) {
+    /* Responsive styles for smaller screens */
+    .for-product-items {
+      grid-template-columns: repeat(2, minmax(200px, 1fr));
+    }
+    .main-div-for-category{
+      width: 20%;
+    }
+    
+    .main-div-for-collections {
+      margin-top: 15%;
+    }}
+    @media (max-width:965px){
+   .main-div-for-category{
+   width: 16%;
+  }
+    }
+    @media (max-width: 764px) {
+      /* Further responsive styles for very small screens */
+      .for-product-items {
+        grid-template-columns: repeat(1, minmax(200px, 1fr));
+      }
+      .main-div-for-collections {
+        flex-direction: column;
+      }
+      .main-div-for-category {
+        width: 100%;
+        margin-bottom: 20px;
+        border-right: none;
+      }
+      .sub-div-for-category {
+        margin-top: 10%;
+      }
+      .div-for-header {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+      }
+      .for-heading h1 {
+        font-size: 24px;
+        letter-spacing: 2px;
+      }
+      .for-category-list {
+        justify-content: flex-start;
+      }
+      select {
+        width: 100%;
+        margin-bottom: 18%;
+      }
+      .for-heading h1 {
+        margin-bottom: 8%;
+      }
+      .down-arrow {
+        margin-top: 3%;
+      }
+    }
+  
+  
