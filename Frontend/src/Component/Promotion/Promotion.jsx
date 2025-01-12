@@ -2,7 +2,9 @@ import React from "react";
 import "./Promotion.css"; //css file of promotion component
 import "animate.css"; //for animations
 import ScrollAnimatiion from "react-animate-on-scroll"; // used for animation at the time of scroll
+import { useNavigate } from "react-router-dom";
 const Promotion = () => {
+const Navigate=useNavigate();
   return (
     <div class="division">
       {/*container 1 */}
@@ -17,7 +19,7 @@ const Promotion = () => {
               inspires.
             </p>
             <div class="button-container-2">
-              <button class="get-started-button-2">Explore</button>
+              <button class="get-started-button-2" onClick={()=>Navigate('/collections')}>Explore</button>
             </div>
           </ScrollAnimatiion>
         </div>
@@ -34,7 +36,7 @@ const Promotion = () => {
               inspires.
             </p>
             <div class="button-container-3">
-              <button class="get-started-button-2">Explore</button>
+              <button class="get-started-button-2" onClick={()=>Navigate('/collections')}>Explore</button>
             </div>
           </ScrollAnimatiion>
         </div>

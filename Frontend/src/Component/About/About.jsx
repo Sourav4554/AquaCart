@@ -3,7 +3,9 @@ import "./About.css"; // Import CSS styling for this component
 import { Requirements } from "../../assets/Assets"; // Import assets (images)
 import "animate.css";
 import ScrollAnimation from "react-animate-on-scroll"; // Import animation library for scroll animations
+import { useNavigate } from "react-router-dom";
 const About = () => {
+const Navigate=useNavigate();
   return (
     <div className="main-container">
       <div className="container-for-content">
@@ -20,7 +22,7 @@ const About = () => {
             vibrant, and ready for your aquarium.
           </p>
           <div class="button-container-1">
-            <button class="get-started-button-1">Explore</button>
+            <button class="get-started-button-1" onClick={()=>Navigate('/collections')}>Explore</button>
           </div>
         </ScrollAnimation>
       </div>

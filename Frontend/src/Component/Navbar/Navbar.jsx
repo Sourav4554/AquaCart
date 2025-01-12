@@ -47,7 +47,7 @@ setColor(false);
          {/* Navbar container with dynamic color change based on scroll position */}
         <div className={color?"parent-navbar":"changecolor"}>
             <div className='for-logo'>
-             <img src={Requirements.logo} alt="" />
+             <Link to='/'><img src={Requirements.logo} alt="" /></Link>
             </div>
              {/* Navbar icons section */}
             <div className='for-icons'>
@@ -64,9 +64,9 @@ setColor(false);
             {/*for list navbar details */}
              <div className={color?"for-list":"for-list-colorchange"}>
             <ul>
-                <li className='navbar-content-li'><a href="#" onClick={(e)=>{preventRefreshig(e);setStyle('home')}}className={style==='home'?"active":""}>Home</a></li>
+            <li  className={`navbar-content-li ${style === 'home' ? 'active' : ''}`} onClick={(e)=>{preventRefreshig(e);setStyle('home')}} ><Link to='/' >Home</Link></li>
                 <li className='navbar-content-li'><a href="#" onClick={(e)=>{preventRefreshig(e);setStyle('about')} }className={style==='about'?"active":""}>About</a></li>
-                <li className='navbar-content-li'><a href="#" onClick={(e)=>{preventRefreshig(e);setStyle('product')}} className={style==='product'?"active":""}>Product</a></li>
+                <li  className={`navbar-content-li ${style === 'product' ? 'active' : ''}`} onClick={(e)=>{preventRefreshig(e);setStyle('product')}} ><Link to='/collections' >Product</Link></li>
                 <li className='navbar-content-li'><a href="#" onClick={(e)=>{preventRefreshig(e);setStyle('ai')} }className={style==='ai'?"active":""}>Aqua Ai</a></li>
                 <li className='navbar-content-li'><a href="#" onClick={(e)=>{preventRefreshig(e);setStyle('contact')}} className={style==='contact'?"active":""}>Contact</a></li>
             </ul>

@@ -11,7 +11,9 @@ import 'swiper/css'; // Essential Swiper styles
 import 'swiper/css/effect-cube'; // For cube effect
 import 'swiper/css/autoplay'; // For autoplay effect
 import './Header.css';// Custom styles for Header component css file
+import { useNavigate } from 'react-router-dom';
 const Header = () => {
+const Navigate=useNavigate();//navigation 
   return (
     <div className='main-header-division'>
       <Swiper {...swiperConfig} className='mySwiper'>
@@ -34,7 +36,7 @@ const Header = () => {
            <Fade delay={1500}   triggerOnce>
            <div className="for-button">
             <div class="button-container">
-          <button class="get-started-button">Explore</button>
+          <button class="get-started-button"  onClick={()=>Navigate('/collections')}>Explore</button>
            </div>
             </div>
              {/* Social media icons */}
@@ -61,7 +63,7 @@ const Header = () => {
            <Fade delay={1000} triggerOnce >
            <div className="for-button">
             <div class="button-container">
-          <button class="get-started-button">Explore</button>
+          <button class="get-started-button" onClick={()=>Navigate('/collections')}>Explore</button>
            </div>
             </div>
             <div className="for-socialmedia-icons">
@@ -87,7 +89,7 @@ const Header = () => {
            <Fade delay={1500}  triggerOnce>
            <div className="for-button">
             <div class="button-container">
-          <button class="get-started-button">Explore</button>
+          <button class="get-started-button" onClick={()=>Navigate('/collections')}>Explore</button>
            </div>
             </div>
             <div className="for-socialmedia-icons">
