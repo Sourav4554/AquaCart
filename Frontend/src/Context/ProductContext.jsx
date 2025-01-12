@@ -1,9 +1,13 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import {ProductLists} from '../assets/Assets'
 export const ProductContext=createContext(null)
 const ProductContextProvider = ({children}) => {
+  //state for managing search bar visibility
+const[showSearch,setShowSearch]=useState(false);
 const Element={
 ProductLists,
+showSearch,
+setShowSearch
 }
   return (
     <div>

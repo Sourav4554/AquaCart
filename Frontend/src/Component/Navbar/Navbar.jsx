@@ -1,7 +1,9 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect,useContext} from 'react';
+import { Link } from 'react-router-dom';
 import {useLocation} from 'react-router-dom'
 import { Requirements } from '../../assets/Assets';
 import './Navbar.css';
+import { ProductContext } from '../../Context/ProductContext';
 const Navbar = () => {
  // State to manage the active navbar state (for listing nav details)
 const [active,setActive]=useState(true);
@@ -11,6 +13,8 @@ const [style,setStyle]=useState('')
 const[color,setColor]=useState(true)
 // Get the current location from react-router to handle navigation-based changes
 const location=useLocation();
+//take the usestate function used for search visibility
+const{setShowSearch}=useContext(ProductContext)
 // Prevent page refresh when a navigation link is clicked
 const preventRefreshig=(e)=>{
 e.preventDefault();
@@ -47,7 +51,7 @@ setColor(false);
             </div>
              {/* Navbar icons section */}
             <div className='for-icons'>
-             <img src={Requirements.searchicon} alt="" onClick={()=>setStyle('search')} className={style==='search'?"active":""}/>
+            <Link to='/collections'> <img  src={Requirements.searchicon} alt="" onClick={()=>{setStyle('search');setShowSearch(true)}} className={style==='search'?"active":""} /></Link>
              <img src={Requirements.carticon} alt="" onClick={()=>setStyle('cart')} className={style==='cart'?"active":""}/>
              <img src={Requirements.wishlist} alt="" onClick={()=>setStyle('wishlist')}className={style==='wishlist'?"active":""}/>
              {/* Toggle the navigation list based on active state */}
