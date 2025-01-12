@@ -98,4 +98,11 @@ height: 150px;
     .product-image img{
     height: 150px;
     }
+    .star-and-price{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        }
     }
