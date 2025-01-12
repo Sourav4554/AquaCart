@@ -28,7 +28,7 @@
   .first-img-div {
     position: absolute;
     width: 30%;
-    height: 18vh;
+    height: 40vh;
     border: 2px solid #fff;
     border-radius: 25px;
     top: 15%;
@@ -45,7 +45,7 @@
     border: 2px solid #fff;
     border-radius: 25px;
     width: 30%;
-    height: 1vh;
+    height: 40vh;
     top: 15%;
     left: 20%;
   }
