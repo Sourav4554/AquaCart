@@ -4,6 +4,7 @@ import Home from './Pages/Home/Home'
 import {Routes,Route, BrowserRouter}from 'react-router-dom'
 import Search from './Component/Search/Search'
 import Collections from './Pages/Collections/Collections'
+import Footer from './Component/Footer/Footer'
 const App = () => {
   return (
     <div>
@@ -14,8 +15,8 @@ const App = () => {
         <Route path='/'element={<Home/>}/>
         <Route path='/collections' element={<Collections/>}/>
       </Routes>
-      </BrowserRouter>
- 
+      <Footer/>
+      </BrowserRouter>    
     </div>
   )
 }
