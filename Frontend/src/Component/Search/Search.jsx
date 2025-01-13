@@ -11,7 +11,7 @@ const location=useLocation();
 
 useEffect(()=>{
 location.pathname==='/collections'?setVisible(true):setVisible(false)
-},[location])
+},[location,setShowSearch])
 
   return (
     showSearch && visible?(
@@ -20,7 +20,7 @@ location.pathname==='/collections'?setVisible(true):setVisible(false)
             <input type="text" placeholder='search'/>
             <IoIosSearch className='search-icon'/>
         </div>
-        <RxCross1 className='cross-icon' onClick={()=>{setVisible(false)}}/>
+        <RxCross1 className='cross-icon' onClick={()=>{setVisible(false);setShowSearch(false)}}/>
     </div>
     ):(null)
   )
