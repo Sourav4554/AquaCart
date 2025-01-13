@@ -21,8 +21,8 @@ const Navigate=useNavigate();
             local breeders and suppliers, ensuring that each fish is healthy,
             vibrant, and ready for your aquarium.
           </p>
-          <div class="button-container-1">
-            <button class="get-started-button-1" onClick={()=>Navigate('/collections')}>Explore</button>
+          <div className="button-container-1">
+            <button className="get-started-button-1" onClick={()=>Navigate('/collections')}>Explore</button>
           </div>
         </ScrollAnimation>
       </div>

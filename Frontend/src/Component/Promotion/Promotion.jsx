@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 const Promotion = () => {
 const Navigate=useNavigate();
   return (
-    <div class="division">
+    <div className="division">
       {/*container 1 */}
-      <div class="container">
+      <div className="container">
         <div className="div-for-details">
           <ScrollAnimatiion animateIn="animate__fadeInBottomRight" animateOnce>
             <h3 className="head1">TRANSFORM YOUR HOME WITH</h3>
@@ -18,14 +18,14 @@ const Navigate=useNavigate();
               exotic collections. Experience a unique charm that captivates and
               inspires.
             </p>
-            <div class="button-container-2">
-              <button class="get-started-button-2" onClick={()=>Navigate('/collections')}>Explore</button>
+            <div className="button-container-2">
+              <button className="get-started-button-2" onClick={()=>Navigate('/collections')}>Explore</button>
             </div>
           </ScrollAnimatiion>
         </div>
       </div>
       {/*container 2*/}
-      <div class="container-1">
+      <div className="container-1">
         <div className="div-for-details-1">
           <ScrollAnimatiion animateIn="animate__fadeInBottomRight" animateOnce>
             <h3 className="head1-1">TRANSFORM YOUR HOME WITH</h3>
@@ -35,8 +35,8 @@ const Navigate=useNavigate();
               exotic collections. Experience a unique charm that captivates and
               inspires.
             </p>
-            <div class="button-container-3">
-              <button class="get-started-button-2" onClick={()=>Navigate('/collections')}>Explore</button>
+            <div className="button-container-3">
+              <button className="get-started-button-2" onClick={()=>Navigate('/collections')}>Explore</button>
             </div>
           </ScrollAnimatiion>
         </div>

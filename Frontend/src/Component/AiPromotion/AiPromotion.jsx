@@ -48,8 +48,8 @@ const AiPromotion = () => {
 </ScrollAnimatiion>
 </div>
 
-<div class="button-container-4">
-          <button class="get-started-button-4">AQUA AI</button>
+<div className="button-container-4">
+          <button className="get-started-button-4">AQUA AI</button>
            </div>
 
 

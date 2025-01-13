@@ -33,7 +33,7 @@ const uniqueCategories=[...new Set(ProductLists.map((item)=>item.category))]
                 <>
                 
                {
-               display&&<div className='for-category-list'>
+               display&&<div className='for-category-list' key={index}>
                <input type="checkbox" value={item} key={index}/> <div className='label-div'> <label className='label'>{item}</label></div>
                  </div>
                }

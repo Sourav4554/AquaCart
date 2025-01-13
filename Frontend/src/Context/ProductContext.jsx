@@ -7,7 +7,7 @@ const[showSearch,setShowSearch]=useState(false);
 const Element={
 ProductLists,
 showSearch,
-setShowSearch
+setShowSearch,
 }
   return (
     <div>

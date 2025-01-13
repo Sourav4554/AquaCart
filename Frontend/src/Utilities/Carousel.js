@@ -14,9 +14,9 @@ export const settings = {
   dots: true, // Disable dots
   responsive: [
     {
-      breakpoint: 1024,
+      breakpoint: 1025,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 3,
         slidesToScroll: 2,
       },
     },
@@ -50,10 +50,9 @@ export const settings = {
   dots: true, // Disable dots
   responsive: [
     {
-      breakpoint: 1024,
+      breakpoint: 1025,
       settings: {
-        slidesToShow: 3,
-        spaceBetween: 30,
+        slidesToShow: 2,
         slidesToScroll: 2,
       },
     },

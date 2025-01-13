@@ -35,8 +35,8 @@ const Navigate=useNavigate();//navigation
             {/* Fade-in effect for button and social media icons */}
            <Fade delay={1500}   triggerOnce>
            <div className="for-button">
-            <div class="button-container">
-          <button class="get-started-button"  onClick={()=>Navigate('/collections')}>Explore</button>
+            <div className="button-container">
+          <button className="get-started-button"  onClick={()=>Navigate('/collections')}>Explore</button>
            </div>
             </div>
              {/* Social media icons */}
@@ -62,8 +62,8 @@ const Navigate=useNavigate();//navigation
             </div>
            <Fade delay={1000} triggerOnce >
            <div className="for-button">
-            <div class="button-container">
-          <button class="get-started-button" onClick={()=>Navigate('/collections')}>Explore</button>
+            <div className="button-container">
+          <button className="get-started-button" onClick={()=>Navigate('/collections')}>Explore</button>
            </div>
             </div>
             <div className="for-socialmedia-icons">
@@ -88,8 +88,8 @@ const Navigate=useNavigate();//navigation
             </div>
            <Fade delay={1500}  triggerOnce>
            <div className="for-button">
-            <div class="button-container">
-          <button class="get-started-button" onClick={()=>Navigate('/collections')}>Explore</button>
+            <div className="button-container">
+          <button className="get-started-button" onClick={()=>Navigate('/collections')}>Explore</button>
            </div>
             </div>
             <div className="for-socialmedia-icons">
