@@ -52,7 +52,7 @@ setColor(false);
              {/* Navbar icons section */}
             <div className='for-icons'>
             <Link to='/collections'> <img  src={Requirements.searchicon} alt="" onClick={()=>{setStyle('search');setShowSearch(true)}} className={style==='search'?"active":""} /></Link>
-             <img src={Requirements.carticon} alt="" onClick={()=>setStyle('cart')} className={style==='cart'?"active":""}/>
+            <Link to='/cart'><img src={Requirements.carticon} alt="" onClick={()=>setStyle('cart')} className={style==='cart'?"active":""}/></Link>
              <img src={Requirements.wishlist} alt="" onClick={()=>setStyle('wishlist')}className={style==='wishlist'?"active":""}/>
              {/* Toggle the navigation list based on active state */}
              {
