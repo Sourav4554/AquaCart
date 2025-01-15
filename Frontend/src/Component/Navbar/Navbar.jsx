@@ -2,9 +2,11 @@ import React, { useState, useEffect,useContext} from 'react';
 import { Link } from 'react-router-dom';
 import {useLocation} from 'react-router-dom'
 import { Requirements } from '../../assets/Assets';
+import { motion, useScroll } from "framer-motion";
 import './Navbar.css';
 import { ProductContext } from '../../Context/ProductContext';
 const Navbar = () => {
+  const { scrollYProgress } = useScroll();//used for animation on scroll navbar
  // State to manage the active navbar state (for listing nav details)
 const [active,setActive]=useState(true);
 // State to manage the style for active state in the navbar
@@ -78,6 +80,10 @@ setColor(false);
              <button className='login-button'>Login</button> 
             </div>
         </div>
+        <motion.div
+        className="progress-bar"
+        style={{ scaleX: scrollYProgress }}
+      />
     </div>
   )
 }
