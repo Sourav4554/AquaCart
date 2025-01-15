@@ -125,7 +125,15 @@
     gap: 10px;
     grid-template-columns: repeat(3, minmax(200px, 1fr));
   }
-  
+  .availabilty{
+    border: 1px solid grey;
+    padding: 20px 20px;
+    font-size: 40px;
+    text-align: center;
+    font-weight: 500;
+    color: #ccc;
+    width: 100%;
+    }
   @media (max-width: 1045px) {
     /* Responsive styles for smaller screens */
     .for-product-items {
