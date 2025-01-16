@@ -7,12 +7,14 @@ import Collections from './Pages/Collections/Collections'
 import Footer from './Component/Footer/Footer'
 import Cart from './Pages/Cart/Cart'
 import Product from './Pages/Product/Product'
+import ScrollToTop from './Component/ScrollToTop/ScrollToTop'
 const App = () => {
   return (
     <div>
       <BrowserRouter>
       <Navbar/>
       <Search/>
+      <ScrollToTop/>
       <Routes>
         <Route path='/'element={<Home/>}/>
         <Route path='/collections' element={<Collections/>}/>
