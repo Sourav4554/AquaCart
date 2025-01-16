@@ -30,7 +30,7 @@ const[newcollection,setNewCollection]=useState([]);
 
                newcollection.map((item,index)=>{
                return(
-                   <Card key={index} image={item.image} name={item.name} description1={item.description1} price={item.price} stock={item.stock}/>
+                   <Card key={index} image={item.image} name={item.name} description1={item.description1} price={item.price} stock={item.stock} _id={item._id}/>
                    )
                })
               }   

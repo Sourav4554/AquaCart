@@ -6,6 +6,7 @@ import Search from './Component/Search/Search'
 import Collections from './Pages/Collections/Collections'
 import Footer from './Component/Footer/Footer'
 import Cart from './Pages/Cart/Cart'
+import Product from './Pages/Product/Product'
 const App = () => {
   return (
     <div>
@@ -16,6 +17,7 @@ const App = () => {
         <Route path='/'element={<Home/>}/>
         <Route path='/collections' element={<Collections/>}/>
         <Route path='/cart' element={<Cart/>}/>
+        <Route path='/product/:productid' element={<Product/>}/>
       </Routes>
       <Footer/>
       </BrowserRouter>    

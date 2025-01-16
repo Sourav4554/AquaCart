@@ -1,9 +1,11 @@
 import React from 'react'
 import './Card.css'
 import { Rating } from 'react-custom-rating-component'//react star rating 
-const Card = ({image,name,description1,price,stock,rating=4.5}) => {
+import { Link } from 'react-router-dom'//used for routing
+const Card = ({image,name,description1,price,stock,_id}) => {
   return (
     // logic for stock and out of stock 
+    <Link to={`/product/${_id}`}>
     <div className={`product-card ${!stock ? 'out-of-stock' : ''}`} >
         <div className="product-image">
           <img src={image} alt="Product Image"/>
@@ -28,7 +30,7 @@ const Card = ({image,name,description1,price,stock,rating=4.5}) => {
          </div>
         </div>
       </div>
-    
+    </Link>
   )
 }
 
