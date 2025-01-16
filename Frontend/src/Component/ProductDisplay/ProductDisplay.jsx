@@ -4,11 +4,17 @@ import { Rating } from 'react-custom-rating-component'//react star rating
 import { FaHeartCirclePlus } from "react-icons/fa6";
 import { ProductContext } from '../../Context/ProductContext';
 import Review from '../Review/Review';
-
+import Card from '../Card/Card';
 const ProductDisplay = ({product}) => {
-const {showReviewContainer,setShowReviewContainer,allReview}=useContext(ProductContext);
+const {showReviewContainer,setShowReviewContainer,allReview,ProductLists}=useContext(ProductContext);
 //state for managing styles and googlle description and review
     const[changeDes,setChangeDes]=useState('Description')
+  //state for store the current category of the product
+    const[relatedProductCategory,setRelatedProductCategory]=useState(product.category)
+  //filter the product based on the category
+const RelatedProducts=ProductLists.filter((item)=>item.category===relatedProductCategory);
+//take only 4 products
+const sliceRelatedProducts=RelatedProducts.slice(0,4);
   return (
     <div className='product-display-main'>
           {showReviewContainer&& <Review/>}
@@ -80,8 +86,20 @@ const {showReviewContainer,setShowReviewContainer,allReview}=useContext(ProductC
 </div>
 </div>
 
-
-
+<div className="for-realated-products">
+  <div className="for-heading">
+    <h3>Related Products</h3>
+  </div>
+  <div className="for-products">
+    {
+    sliceRelatedProducts.map((item,index)=>{
+    return(
+      <Card key={index} image={item.image} name={item.name} description1={item.description1} price={item.price} stock={item.stock} _id={item._id}/>
+      )
+    })
+    }
+  </div>
+ </div>
 
 
     </div>

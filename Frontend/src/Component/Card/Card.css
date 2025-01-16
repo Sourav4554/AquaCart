@@ -1,26 +1,27 @@
 .product-card {
-    width: 300px; /* Reduced the width */
-    margin-left: 20px;
+    width: 250px; /* Reduced the width further */
+    margin-left: 16px; /* Adjusted margin */
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
 }
-.stock{
-background-color: #777;
-text-align: center;
-color: white;
+
+.stock {
+    background-color: #777;
+    text-align: center;
+    color: white;
 }
-.out-of-stock{
+
+.out-of-stock {
     filter: grayscale(100%);
     pointer-events: none; 
 }
+
 .product-image {
     overflow: hidden;
     width: auto;
-   
 }
 
 .product-card:hover {
@@ -30,79 +31,64 @@ color: white;
 .product-image img {
     width: 100%;
     height: auto;
-   
     transition: all 0.5s ease;
     animation-name: move;
     display: block;
 }
 
 .product-card:hover .product-image img {
-    transform: scale(1.2);
+    transform: scale(1.1); /* Adjusted scale for hover effect */
 }
 
 .product-info {
-    padding: 12px; /* Reduced padding for a smaller card */
+    padding: 10px; /* Reduced padding */
     text-align: center;
 }
 
 .product-info h3 {
-    font-size: 16px; /* Reduced font size */
-    margin: 0 0 6px;
+    font-size: 14px; /* Reduced font size */
+    margin: 0 0 4px;
     color: #333;
 }
 
 .product-description {
-    font-size: 12px; /* Reduced font size */
+    font-size: 11px; /* Reduced font size */
     color: #777;
-    margin: 0 0 12px;
+    margin: 0 0 10px;
 }
 
 .product-price {
-    font-size: 18px; /* Slightly reduced font size */
+    font-size: 16px; /* Further reduced font size */
     font-weight: bold;
     color: #2c3e50;
-   
-}
-.star-and-price{
-display: flex;
-gap: 20px;
-justify-content: space-evenly;
+    margin: 3px 0 10px;
 }
 
-@media(max-width:564px){
-.product-card{
-display: flex;
-width: 350px;
-max-height: 400px;
-}
-.product-image{
-width: 400px;
-height: 150px;
-background-color: red;
-}
-.product-image img{
-height: 150px;
-}
-}
-@media(max-width:764px){
-    .product-card{
+.star-and-price {
     display: flex;
-    width: 350px;
-    max-height: 400px;
+    gap: 16px; /* Adjusted gap */
+    justify-content: space-evenly;
+}
+
+@media(max-width: 564px) {
+    .product-card {
+        display: flex;
+        width: 280px; /* Adjusted width */
+        max-height: 360px; /* Adjusted max height */
     }
-    .product-image{
-    width: 400px;
-    height: 150px;
-    background-color: red;
+    .product-image {
+        width: 300px; /* Adjusted dimensions */
+        height: 120px; /* Adjusted height */
+        background-color: red;
     }
-    .product-image img{
-    height: 150px;
+    .product-image img {
+        height: 120px; /* Adjusted image height */
     }
-    .star-and-price{
+    .star-and-price {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 20px;
-        }
+        gap: 16px; /* Adjusted gap */
     }
+}
