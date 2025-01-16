@@ -155,6 +155,7 @@
       /* Further responsive styles for very small screens */
       .for-product-items {
         grid-template-columns: repeat(1, minmax(200px, 1fr));
+        margin-left: 8%;
       }
       .main-div-for-collections {
         flex-direction: column;

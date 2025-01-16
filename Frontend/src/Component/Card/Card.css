@@ -73,7 +73,7 @@
 @media(max-width: 564px) {
     .product-card {
         display: flex;
-        width: 280px; /* Adjusted width */
+        width: 300px; /* Adjusted width */
         max-height: 360px; /* Adjusted max height */
     }
     .product-image {
