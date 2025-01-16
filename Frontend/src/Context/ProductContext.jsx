@@ -6,12 +6,20 @@ const ProductContextProvider = ({children}) => {
 const[showSearch,setShowSearch]=useState(false);
 //state for managing values in a search bar
 const[searchValue,setSearchValue]=useState('')
+//state for managing the visibility of review adding popup
+const[showReviewContainer,setShowReviewContainer]=useState(false)
+//state for store the all reviews
+const[allReview,setAllReview]=useState([]);
 const Element={
 ProductLists,
 showSearch,
 setShowSearch,
 searchValue,
 setSearchValue,
+showReviewContainer,
+setShowReviewContainer,
+allReview,
+setAllReview
 }
   return (
     <div>

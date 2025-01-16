@@ -1,0 +1,91 @@
+.review-main-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  z-index: 9999;
+  position: fixed;
+  justify-content: center;
+}
+.review-child-container {
+  width: 40%;
+  height: 70vh;
+  padding: 20px;
+}
+
+/* Overall Container Styling */
+.review-form {
+  width: 400px;
+  margin: 10px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.review-form input,
+.review-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.review-form input:focus,
+.review-form textarea:focus {
+  border-color: #007bff;
+}
+
+.review-1 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Button/Submit Action */
+.review-form .add-review-button {
+  list-style: none;
+  text-align: center;
+  background-color: #007bff;
+  width: 90%;
+  color: white;
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.review-form .add-review-button:hover {
+  background-color: rgb(252, 73, 73);
+}
+
+.cross-icon {
+  margin-left: 90%;
+  font-weight: 400;
+  margin-top: -5%;
+}
+@media (max-width: 965) {
+  .review-main-container {
+    justify-content: start;
+  }
+}
+@media (max-width: 764px) {
+  .review-main-container {
+    left: -10%;
+  }
+  .review-child-container {
+    height: auto;
+    width: 300px;
+    padding: 10px;
+  }
+  .review-form {
+    width: 350px;
+  }
+  .review-form input,
+  .review-form textarea {
+    width: 100%;
+  }
+}

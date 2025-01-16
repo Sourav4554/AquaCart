@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useContext,useState } from 'react'
 import './ProductDisplay.css'
 import { Rating } from 'react-custom-rating-component'//react star rating 
 import { FaHeartCirclePlus } from "react-icons/fa6";
+import { ProductContext } from '../../Context/ProductContext';
+import Review from '../Review/Review';
 
-  // Import default styles for zoom
 const ProductDisplay = ({product}) => {
+const {showReviewContainer,setShowReviewContainer,allReview}=useContext(ProductContext);
+//state for managing styles and googlle description and review
+    const[changeDes,setChangeDes]=useState('Description')
   return (
     <div className='product-display-main'>
+          {showReviewContainer&& <Review/>}
     <div className="for-product-display">
 <div className="for-small-image">
   <img src={product.image} alt="" />
@@ -41,6 +46,39 @@ const ProductDisplay = ({product}) => {
 </div>
     </div>
 
+    <div className="for-description-and-review">
+<div className="for-review-and-description-button">
+  <li className={changeDes==='Description'?'desc-button-active':"desc-button"} onClick={()=>setChangeDes('Description')}>Description</li>
+  <li className={changeDes==='Reviews'?'review-button-active':'review-button'} onClick={()=>setChangeDes('Reviews')}>Reviews</li>
+  <li className='add-review' onClick={()=>setShowReviewContainer(true)}>Add-Review</li>
+</div>
+<div className="fordescription-and-review">
+  {changeDes==='Description'?(
+  <p>{product.description3}</p>
+  ):(
+  allReview.reverse().map((item,index)=>{
+  return(
+    <>
+    <div className="rating-div">
+    <p className='name'>{item.name}</p>
+ 
+        <Rating 
+          defaultValue={item.rating}
+          count={5}
+          shape='star'
+          readOnly={true}
+          size='24px'
+          classNames='rating'
+          />
+      <p className='comment'>{item.comment}</p>
+    </div>
+    </>
+    )
+  })
+  )
+}
+</div>
+</div>
 
 
 

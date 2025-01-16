@@ -1,6 +1,8 @@
 .product-display-main {
     margin-top: 8%;
     margin-left: 8%;
+    display: flex;
+    flex-direction: column;
   }
   .for-product-display {
     display: flex;
@@ -96,9 +98,79 @@
     color: rgb(252, 73, 73);
     transform: scale(1.1);
   }
+  .for-description-and-review{
+  margin-top: 10%;
+  }
+  .for-review-and-description-button{
+    display: flex;
+  }
+  .for-description-and-review li{
+    cursor: pointer;
+    padding: 8px 8px;
+    font-size: clamp(15px, 3.3vw, 20px);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+    border: 1px solid #2e2e2e;
+  }
+  .desc-button,.review-button{
+  color: #2e2e2e;
+  transition: all 0.3s ease;
+  font-weight: 300;
+  }
+  .add-review{
+    background-color: #007bff; 
+    font-weight: bold;
+    margin-left: 8px;
+    color: #fff;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+  }
+  .fordescription-and-review{
+  border: 1px solid #2e2e2e;
+  padding: 15px;
+  width: 70%;
+  height: 30vh;
+  overflow-y: scroll;
+  }
+  .rating-div{
+  margin-bottom: 5px;
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.329);
+  }
+  .rating-div .name{
+  font-size: 15px;
+  color: black;
+  font-weight: bold;
+  }
+  .add-review:hover{
+    background-color: rgb(252, 73, 73);
+  }
+  .desc-button-active{
+    background-color: rgba(252, 73, 73, 0.377);
+  }
+  .review-button-active{
+    background-color: rgba(252, 73, 73, 0.377);
+  }
+  .desc-button:hover{
+  background-color: rgba(252, 73, 73, 0.377);
+  }
+  .review-button:hover{
+  background-color: rgba(252, 73, 73, 0.377);
+  }
+  .for-description-and-review p{
+  font-size: 16px;
+  word-spacing: 5px;
+  line-height: 1.3;
+  }
   @media(max-width:1025px){
   .product-display-main{
   margin-top: 15%;
+  }
+  .fordescription-and-review{
+  height: 20vh;
   }
   }
   @media(max-width:964px){
@@ -118,10 +190,16 @@
   width: 100%;
   padding: 10px 5px;
   }
+  .fordescription-and-review{
+    height: 20vh;
+    }
   }
   
   @media(max-width:564px){
     .product-display-main{
       margin-top: 25%;
+      }
+      .fordescription-and-review{
+      width: 95%;
       }
   }
