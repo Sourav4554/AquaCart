@@ -8,11 +8,13 @@ import Footer from './Component/Footer/Footer'
 import Cart from './Pages/Cart/Cart'
 import Product from './Pages/Product/Product'
 import ScrollToTop from './Component/ScrollToTop/ScrollToTop'
+import { ToastContainer } from 'react-toastify'
 const App = () => {
   return (
     <div>
       <BrowserRouter>
       <Navbar/>
+      <ToastContainer/>
       <Search/>
       <ScrollToTop/>
       <Routes>

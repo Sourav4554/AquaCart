@@ -3,10 +3,11 @@ import './ProductDisplay.css'
 import { Rating } from 'react-custom-rating-component'//react star rating 
 import { FaHeartCirclePlus } from "react-icons/fa6";
 import { ProductContext } from '../../Context/ProductContext';
+import { toast } from 'react-toastify';//used for toastify messages
 import Review from '../Review/Review';
 import Card from '../Card/Card';
 const ProductDisplay = ({product}) => {
-const {showReviewContainer,setShowReviewContainer,allReview,ProductLists}=useContext(ProductContext);
+const {showReviewContainer,setShowReviewContainer,allReview,ProductLists,addToCart,cartData}=useContext(ProductContext);
 //state for managing styles and googlle description and review
     const[changeDes,setChangeDes]=useState('Description')
   //state for store the current category of the product
@@ -15,6 +16,18 @@ const {showReviewContainer,setShowReviewContainer,allReview,ProductLists}=useCon
 const RelatedProducts=ProductLists.filter((item)=>item.category===relatedProductCategory);
 //take only 4 products
 const sliceRelatedProducts=RelatedProducts.slice(0,4);
+
+//function for check cartdata already in cart
+const handleAddToCart=(_id)=>{
+  if(_id in cartData){
+  toast.info("Item Already in the Cart")
+  }
+  else{
+  addToCart(_id)
+  toast.success("Added to Cart")
+  }
+  }
+
   return (
     <div className='product-display-main'>
           {showReviewContainer&& <Review/>}
@@ -42,7 +55,7 @@ const sliceRelatedProducts=RelatedProducts.slice(0,4);
   <p className='product-price'>₹{product.price}</p>
   <p className='description-2'>{product.description2}</p>
   <div className="cart-and-wish">
-  <span className='add-to-cart'>Add to Cart</span>
+  <span className='add-to-cart' onClick={()=>{handleAddToCart(product._id)}}>Add to Cart</span>
  <FaHeartCirclePlus className='wish-icon'/>
   </div>
   <hr className='hr'/>

@@ -3,7 +3,7 @@ import './Cart.css'
 import { ProductContext } from '../../Context/ProductContext'
 
 const Cart = () => {
-  const {ProductLists}=useContext(ProductContext)
+  const {ProductLists,cartData,addToCart,removeFromCart,deleteCartData,calculateTotalAmout}=useContext(ProductContext)
 
   return (
     <div className='cart'>
@@ -21,21 +21,23 @@ const Cart = () => {
  
      {
      ProductLists.map((item,index)=>{
+      if(cartData[item._id]>0){
     return(
       <div className="cart-items-list-1 " key={index}>
        <img src={item.image} alt="" />
       <p>{item.name}</p>
       <p>{item.category}</p>
-      <p>{item.price}</p>
+      <p>₹{item.price}</p>
       <div className="quantity-container">
-  <span>-</span>
-  <span>5</span>
-  <span>+</span>
+  <span onClick={()=>{removeFromCart(item._id)}}>-</span>
+  <span>{cartData[item._id]}</span>
+  <span onClick={()=>{addToCart(item._id)}}>+</span>
 </div>
-      <p>56576</p>
-      <p className='button'>remove</p>
+      <p>₹{cartData[item._id]*item.price}</p>
+      <p className='button' onClick={()=>{deleteCartData(item._id)}}>remove</p>
       </div>
       )
+    }
     })
      
      }
@@ -47,17 +49,17 @@ const Cart = () => {
       <div>
         <div className="cart-total-details">
           <p>Subtotals</p>
-          <p>9</p>
+          <p>₹{calculateTotalAmout()}</p>
         </div>
         <hr />
         <div className="cart-total-details">
         <p>Delivery Fee</p>
-          <p>8</p>
+          <p>₹{calculateTotalAmout()===0?0:50}</p>
         </div>
         <hr />
         <div className="cart-total-details">
           <p>Total</p>
-          <p>8</p>
+          <p>₹{calculateTotalAmout()===0?0:calculateTotalAmout()+50}</p>
         </div>
       </div>
  
