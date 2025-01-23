@@ -3,6 +3,7 @@ import'./Review.css'
 import { Rating } from 'react-custom-rating-component'//react star rating 
 import { FaTimes } from "react-icons/fa";
 import { ProductContext } from '../../Context/ProductContext';
+import {toast} from 'react-toastify'
 const Review = () => {
 const{setAllReview,setShowReviewContainer}=useContext(ProductContext);
 //default rating values
@@ -21,6 +22,8 @@ setReview({...review,rating:newRating})
 const handleSubmit=(e)=>{
 e.preventDefault();
 setAllReview((prev)=>([...prev,review]))
+setReview({...review,name:"",rating:0,comment:""})
+toast.success("Your review is added to the product")
 }
   return (
     <div className='review-main-container'>
@@ -28,17 +31,8 @@ setAllReview((prev)=>([...prev,review]))
       <div className="review-child-container">
      <div className="review-form">
      <FaTimes size={30} color="black" className='cross-icon' onClick={()=>setShowReviewContainer(false)}/>
-     <form action="" onSubmit={handleSubmit}>
-     <input type="text" placeholder='Enter Your Name' value={review.name} name="name" onChange={handleChange}required/>
-      {/* <ReactStars
-         count={5}
-         size={24}
-         activeColor="#ffd700"
-          value={review.rating}
-          edit={true}
-          onChange={handleRatingChange}
-          classNames='review-1'
-          /> */}
+     <form  onSubmit={handleSubmit}>
+     <input type="text" placeholder='Enter Your Name' value={review.name} name="name" onChange={handleChange}required autoComplete='name'/>
            <Rating 
           defaultValue={review.rating}
           count={5}
@@ -48,7 +42,7 @@ setAllReview((prev)=>([...prev,review]))
           size='24px'
           classNames='rating'
           />
-          <textarea name="comment" id="" cols="20" rows="10" placeholder='Enter your Valuable Comments' value={review.comment} onChange={handleChange} required></textarea>
+          <textarea name="comment"  cols="20" rows="10" placeholder='Enter your Valuable Comments' value={review.comment} onChange={handleChange} required autoComplete='off'></textarea>
           <button type="submit" className="add-review-button"> Add Review</button>
      </form>
      </div>

@@ -130,13 +130,16 @@
   .fordescription-and-review{
   border: 1px solid #2e2e2e;
   padding: 15px;
-  width: 70%;
+  max-width: 70%;
   height: 30vh;
   overflow-y: scroll;
+  overflow-x: hidden;
   }
   .rating-div{
   margin-bottom: 5px;
-  width: 100%;
+  max-width: 90%;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
   padding: 10px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.329);
   }

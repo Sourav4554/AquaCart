@@ -66,8 +66,6 @@ switch(priceType){
 //only working at the time of changing category
 useEffect(()=>{
 filterProducts();
-console.log(products)
-console.log(category)
 },[category,priceType,searchValue])
 
   return (

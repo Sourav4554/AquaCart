@@ -12,7 +12,8 @@ const[showReviewContainer,setShowReviewContainer]=useState(false)
 const[allReview,setAllReview]=useState([]);
 //manage cartdata
 const[cartData,setCartData]=useState({})
-
+//manage wishlist data
+const[wishListData,setWishListData]=useState({})
 //add to cart
 const addToCart=(itemId)=>{
 if(!cartData[itemId]){
@@ -45,7 +46,15 @@ TotalAmount+=itemInformation.price*cartData[item]
 return TotalAmount;
 }
 
-
+//add to wishlist
+const addToWish=(itemId)=>{
+  setWishListData((prev)=>({...prev,[itemId]:1}))
+  }
+  
+//delete from wishlist
+  const deleteFromWish=(itemId)=>{
+    setWishListData((prev)=>({...prev,[itemId]:0}))
+  }
 const Element={
 ProductLists,
 showSearch,
@@ -61,7 +70,11 @@ setCartData,
 addToCart,
 removeFromCart,
 deleteCartData,
-calculateTotalAmout
+calculateTotalAmout,
+wishListData,
+setWishListData,
+addToWish,
+deleteFromWish,
 }
   return (
     <div>
