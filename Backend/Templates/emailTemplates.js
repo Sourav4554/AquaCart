@@ -200,7 +200,7 @@ const EMAIL_VERIFY_TEMPLATE_2 = `
                       </tr>
                       <tr>
                         <td style="padding: 0 0 10px; font-size: 14px; line-height: 150%;">
-                          This OTP is valid for 2 minutes.
+                          This OTP is valid for 20 minutes.
                         </td>
                       </tr>
                     </tbody>

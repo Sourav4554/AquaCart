@@ -1,6 +1,6 @@
 import userModel from "../Models/userModel.js";
 import otpModel from "../Models/otpModel.js";
-import { otpEmail,loginEmail } from "../Utilities/email.js";
+import { otpEmail,loginEmail,otpEmailPassword } from "../Utilities/email.js";
 import bcrypt from 'bcrypt'
 import { generateOtp } from "../Utilities/otp.js";
 import { generatejwt } from "../Utilities/jsontoken.js";
@@ -84,6 +84,7 @@ const verifyEmail=async(req,res)=>{
         return res.status(500).json({ message: 'Server error, please try again later.',error:error.message });
     }
     }
+
 //Controller for user login
 const Login=async(req,res)=>{
     const{email,password}=req.body;
@@ -102,4 +103,82 @@ const Login=async(req,res)=>{
     return res.status(200).json({success:true,token,message:"Login sucessfull"})
     }
 
-export{Register,verifyEmail,Login}
+
+   //Controller for sending  forgotten-password otp
+   const forgottPassword=async(req,res)=>{
+       const{email}=req.body;
+       try {
+           const user=await userModel.findOne({email});
+           if(!user){
+           return res.status(400).json({success:false,message:"user not found"})
+           }
+           const resetOtp=generateOtp();
+           const resetOtpExpireAt=new Date(Date.now()+20*60*1000);
+           user.resetOtp=resetOtp;
+           user.resetOtpExpireAt=resetOtpExpireAt;
+           await user.save();
+           otpEmailPassword(email,resetOtp)
+         return  res.status(200).json({success:true, message: 'An otp is send to your email' });
+       } catch (error) {
+           console.log(error)
+        return res.status(500).json({ message: 'Server error, please try again later.' });
+       }
+            }
+            
+//controller for verify otp for reset password
+    const verifyResetPasswordOtp=async(req,res)=>{
+        const{email,resetOtp}=req.body;
+        if(!email || !resetOtp){
+            return res.status(400).json({success:false,message:"All fields required"})
+            }
+            try {
+                const user=await userModel.findOne({email})           
+            if(user.resetOtp!==resetOtp){
+                return res.status(400).json({success:false,message: 'Invalid otp.'});
+            }
+            if(new Date()>user.resetOtpExpireAt){
+                user.resetOtp='';
+                user.resetOtpExpireAt=0;
+                await user.save();
+                return res.status(400).json({success:false, message: 'otp has expired restart the process again'});
+            }
+            return res.status(200).json({ success: true, message: 'OTP verified successfully!' });
+        }catch (error) {
+                console.log(error)
+                res.status(500).json({ message: 'Server error, please try again later.' });
+                }
+                
+        }
+        
+    
+    
+//Controller for reset password
+const resetPassword=async(req,res)=>{
+    const{password,email}=req.body;
+    if(!password || !email){
+    return res.status(400).json({success:false,message:"Enter new Password"})
+    }
+    try {
+        const user=await userModel.findOne({email})
+        if(!user){
+       return res.status(400).json({success:false,message: 'user not found' });
+        }
+    
+    const passwordRequirements = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+    if(!passwordRequirements.test(password)){
+        return res.status(422).json({success:false,message:"password contain 1 uppercase 1 lowercase 1digit and atleast 6 characters"})
+    }
+    const gensalt=await bcrypt.genSalt(10)
+    const passwordHash=await bcrypt.hash(password,gensalt);
+    user.password=passwordHash;
+    user.resetPassword='';
+    user.resetOtpExpireAt=0;
+    await user.save();
+    res.status(200).json({success:true,message:"Reset password Now you can Login"})
+    } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Server error, please try again later.' });
+    }
+    }
+
+export{Register,verifyEmail,Login,verifyResetPasswordOtp,forgottPassword,resetPassword}
