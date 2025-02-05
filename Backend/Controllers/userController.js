@@ -16,7 +16,7 @@ return res.status(400).json({success:false,message:"All fields required"})
 try {
     const userinOtpModel=await otpModel.findOne({email})
     if(userinOtpModel){
-    return res.status(409).json({success:false,message:"user Registration pending. enter details after 5 minutes for signup"})
+    return res.status(409).json({success:false,message:"user Registration pending. enter details after 10 minutes for signup"})
     }
     const existUser=await userModel.findOne({email});
     if(existUser){
@@ -174,11 +174,55 @@ const resetPassword=async(req,res)=>{
     user.resetPassword='';
     user.resetOtpExpireAt=0;
     await user.save();
-    res.status(200).json({success:true,message:"Reset password Now you can Login"})
+    return res.status(200).json({success:true,message:"Reset password Now you can Login"})
     } catch (error) {
     console.log(error)
-    res.status(500).json({ message: 'Server error, please try again later.' });
+    return res.status(500).json({ message: 'Server error, please try again later.' });
     }
     }
 
-export{Register,verifyEmail,Login,verifyResetPasswordOtp,forgottPassword,resetPassword}
+//controller for fetch userdata
+const getUserData=async(req,res)=>{
+    const userId=req.body.userId;
+    try {
+        const user=await userModel.findById(userId).select('name');
+        if(!user){
+        return res.status(400).json({success:false,message:'no user Exist'})
+        }
+        else{
+       return res.status(200).json({success:true,message:user})
+        }
+    } catch (error) {
+        console.log(error.message)
+        console.log("Error caught in catch block:", error);
+   return res.status(500).json({success:false, message: 'Server error, please try again later.' });
+    }
+    }
+    
+//Controller for resend otp 
+const resendOtp=async(req,res)=>{
+    const {email}=req.body;
+    if (!email) {
+        return res.status(400).json({ success: false, message: "Email is required" });
+      }
+    
+    try {
+        const user=await otpModel.findOne({email});
+        if(!user){
+        return res.status(400).json({success:false,message: 'user not found' });
+        }
+       const verifyOtp=generateOtp();
+       const verifyOtpExpireAt=new Date(Date.now()+2*60*1000);
+       user.verifyOtp=verifyOtp;
+       user.verifyOtpExpireAt=verifyOtpExpireAt;
+       await user.save();
+       otpEmail(email,verifyOtp)
+    return res.status(200).json({success:true, message: 'An otp is send to your email' });
+    } catch (error) {
+    console.log(error)
+    return res.status(500).json({ message: 'Server error, please try again later....' });
+    }
+    }
+    
+
+export{Register,verifyEmail,Login,verifyResetPasswordOtp,forgottPassword,resetPassword,getUserData,resendOtp}
