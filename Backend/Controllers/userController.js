@@ -49,7 +49,7 @@ try {
 }
 
 
-//emailverification through otp
+//Controller for emailverification through otp
 const verifyEmail=async(req,res)=>{
     const{email,verifyOtp}=req.body;
     if(!verifyOtp){
@@ -84,5 +84,22 @@ const verifyEmail=async(req,res)=>{
         return res.status(500).json({ message: 'Server error, please try again later.',error:error.message });
     }
     }
-    
-export{Register,verifyEmail}
+//Controller for user login
+const Login=async(req,res)=>{
+    const{email,password}=req.body;
+    if(!email || !password){
+    return res.status(400).json({success:false,message:"All fields required"})
+    }
+    const userExist=await userModel.findOne({email});
+    if(!userExist){
+    return res.status(404).json({success:false,message:"user didn't exist"})
+    }
+    const checkPassword=await bcrypt.compare(password,userExist.password)
+    if(!checkPassword){
+    return res.status(401).json({success:false,message:"Invalid Credentials"})
+    }
+    const token=generatejwt(userExist._id)
+    return res.status(200).json({success:true,token,message:"Login sucessfull"})
+    }
+
+export{Register,verifyEmail,Login}
