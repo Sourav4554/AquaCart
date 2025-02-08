@@ -223,84 +223,45 @@ const LOGIN_EMAIL_TEMPLATE=`
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
       background-color: #f9f9f9;
       color: #333;
     }
     .email-container {
-      max-width: 600px;
+      max-width: 500px;
       margin: 20px auto;
-      background: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-    }
-    .header {
-      background-color: #0077b6;
+      background: #fff;
       padding: 20px;
       text-align: center;
-      color: white;
+      border-radius: 8px;
+      border: 1px solid #ddd;
     }
-    .header h1 {
-      margin: 0;
-      font-size: 24px;
+    .header {
+      font-size: 22px;
+      font-weight: bold;
+      color: #0077b6;
     }
     .content {
-      padding: 20px;
-    }
-    .content h2 {
-      color: #0077b6;
+      font-size: 16px;
+      margin: 20px 0;
     }
     .button {
       display: inline-block;
-      margin: 20px 0;
       padding: 10px 20px;
       font-size: 16px;
-      color: #ffffff;
-      background-color: #0077b6;
+     
+      border:1px solid  #0077b6;
       text-decoration: none;
       border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-    .button:hover {
-      background-color: #005f87;
-    }
-    .footer {
-      background-color: #f1f1f1;
-      padding: 15px;
-      text-align: center;
-      font-size: 14px;
-      color: #555;
     }
   </style>
 </head>
 <body>
   <div class="email-container">
-    <div class="header">
-      <h1>Welcome  to AquaCart! 🐠</h1>
-    </div>
-    <div class="content">
-      <h2>Hello [User's Name],</h2>
-      <p>AquaCart is your go-to destination for all your ornamental fish and aquarium needs. Dive into our exclusive collections and find the perfect addition to your aquarium.</p>
-      
-      <p><strong>What’s new at AquaCart?</strong></p>
-      <ul>
-        <li>🌟 Fresh stock of rare and exotic fish.</li>
-     
-      </ul>
-      
-      <p>Click the button below to explore and continue your AquaCart journey:</p>
-      <a href="[Website_Link]" class="button">Explore Now</a>
-
-      <p>If you need any assistance, feel free to reply to this email or visit our support page.</p>
-      <p>Happy Shopping! 🐟</p>
-      <p>Best regards, <br>The AquaCart Team</p>
-    </div>
-    <div class="footer">
-      <p>&copy; 2025 AquaCart. All rights reserved.</p>
-     
-    </div>
+    <p class="header">Welcome to AquaCart! 🐠</p>
+    <p class="content">Hello [User's Name],</p>
+    <p class="content">Thank you for joining AquaCart! Dive into our latest collection of ornamental fish and aquarium essentials.</p>
+    <a href="[Website_Link]" class="button">Explore Now</a>
+    <p class="content">Best Regards, <br> The AquaCart Team</p>
   </div>
 </body>
 </html>
