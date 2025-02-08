@@ -15,7 +15,6 @@ const result=await cloudinary.uploader.upload(fileBase64,{
     public_id:`image-${Date.now()}`,
     resource_type:"image",
 })
-console.log(result.secure_url)
 const addFish= new fishModel({
 name,
 category,
@@ -34,4 +33,13 @@ return res.status(200).json({succes:true,message:'fish added'})
 }
 }
 
-export{addFish}
+//controller for list food item 
+const listFish=async(req,res)=>{
+try {
+    const fishList=await fishModel.find({})
+    return res.status(200).json({succes:true,message:fishList})
+} catch (error) {
+    return res.status(400).json({succes:false,message:"Internal server error"})
+}
+}
+export{addFish,listFish}
