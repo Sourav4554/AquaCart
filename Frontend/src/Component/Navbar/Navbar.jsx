@@ -1,37 +1,39 @@
-import React, { useState, useEffect,useContext} from 'react';
-import { Link } from 'react-router-dom';
-import {useLocation} from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react';
 import { Requirements } from '../../assets/Assets';
-import { motion, useScroll } from "framer-motion";
 import './Navbar.css';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ProductContext } from '../../Context/ProductContext';
+import { motion, useScroll } from "framer-motion";
+
 const Navbar = () => {
-  const { scrollYProgress } = useScroll();//used for animation on scroll navbar
- // State to manage the active navbar state (for listing nav details)
-const [active,setActive]=useState(true);
-// State to manage the style for active state in the navbar
-const [style,setStyle]=useState('')
-// State to change navbar color based on scroll position
-const[color,setColor]=useState(true)
-// Get the current location from react-router to handle navigation-based changes
-const location=useLocation();
-//take the usestate function used for search visibility
-const{setShowSearch}=useContext(ProductContext)
-// Prevent page refresh when a navigation link is clicked
+const { scrollYProgress } = useScroll();//used for animation on scroll navbar
+const [active,setActive]=useState(true);//state for listing nav details
+const{setShowSearch,token,createToken,userData}=useContext(ProductContext)
+const [style,setStyle]=useState('')//state for active state
+const[color,setColor]=useState(true)//state for color in scrolling time
+const location=useLocation();//taking the location
+const navigate=useNavigate()
+//function for prevent page refreshing
 const preventRefreshig=(e)=>{
 e.preventDefault();
 }
- // Function to handle color change based on scrolling
+//function for changing the color change on scrolling
 const colorChange=()=>{
 const scroll=window.scrollY;
-  // Set the color state based on the scroll position
 if(scroll===0){
 setColor(true)
 }else{
 setColor(false)
 }
 }
- // useEffect to handle scroll event listener on the homepage
+
+//function for logout
+const logOut=()=>{
+sessionStorage.removeItem("token")
+createToken('');
+navigate('/')
+window.location.reload()
+}
 useEffect(()=>{
 if(location.pathname==='/'){
 window.addEventListener('scroll',colorChange)
@@ -44,19 +46,21 @@ setColor(false);
 }
 },[location.pathname])
 
+
+
+
   return (
     <div>
-         {/* Navbar container with dynamic color change based on scroll position */}
-        <div className={color?"parent-navbar":"changecolor"}>
+        <div className={color?"parent-navbar":"changecolor"} >
+          {/* for logo left section*/}
             <div className='for-logo'>
-             <Link to='/'><img src={Requirements.logo} alt="" /></Link>
+             <img src={Requirements.logo} alt="" />
             </div>
-             {/* Navbar icons section */}
+            {/*for icons mid section*/}
             <div className='for-icons'>
             <Link to='/collections'> <img  src={Requirements.searchicon} alt="" onClick={()=>{setStyle('search');setShowSearch(true)}} className={style==='search'?"active":""} /></Link>
-            <Link to='/cart'><img src={Requirements.carticon} alt="" onClick={()=>setStyle('cart')} className={style==='cart'?"active":""}/></Link>
-           <Link to='wishlist'><img src={Requirements.wishlist} alt="" onClick={()=>setStyle('wishlist')}className={style==='wishlist'?"active":""}/></Link>
-             {/* Toggle the navigation list based on active state */}
+            <Link to='/cart'> <img src={Requirements.carticon} alt="" onClick={()=>setStyle('cart')} className={style==='cart'?"active":""}/></Link>
+            <Link to='/wishlist'> <img src={Requirements.wishlist} alt="" onClick={()=>setStyle('wishlist')}className={style==='wishlist'?"active":""}/></Link>
              {
              active?(
             <img src={Requirements.list} alt="" onClick={()=>{setActive(false)}}/>
@@ -66,8 +70,9 @@ setColor(false);
             {/*for list navbar details */}
              <div className={color?"for-list":"for-list-colorchange"}>
             <ul>
-            <li  className={`navbar-content-li ${style === 'home' ? 'active' : ''}`} onClick={(e)=>{preventRefreshig(e);setStyle('home')}} ><Link to='/' >Home</Link></li>
+           <li  className={`navbar-content-li ${style === 'home' ? 'active' : ''}`} onClick={(e)=>{preventRefreshig(e);setStyle('home')}} ><Link to='/' >Home</Link></li>
                 <li className='navbar-content-li'><a href="#" onClick={(e)=>{preventRefreshig(e);setStyle('about')} }className={style==='about'?"active":""}>About</a></li>
+                {/* <li className='navbar-content-li'><a href="#" onClick={(e)=>{preventRefreshig(e);setStyle('product')}} className={style==='product'?"active":""}>Product</a></li> */}
                 <li  className={`navbar-content-li ${style === 'product' ? 'active' : ''}`} onClick={(e)=>{preventRefreshig(e);setStyle('product')}} ><Link to='/collections' >Product</Link></li>
                 <li className='navbar-content-li'><a href="#" onClick={(e)=>{preventRefreshig(e);setStyle('ai')} }className={style==='ai'?"active":""}>Aqua Ai</a></li>
                 <li className='navbar-content-li'><a href="#" onClick={(e)=>{preventRefreshig(e);setStyle('contact')}} className={style==='contact'?"active":""}>Contact</a></li>
@@ -77,7 +82,23 @@ setColor(false);
             )
              }
              {/*Login button */}
-             <button className='login-button'>Login</button> 
+             {
+             !token?(
+           <Link to='/login'> <button className='login-button'>Login</button> </Link>
+           ):(
+           <>
+             <div className='after-login-div'>
+              <p>{userData && userData.name ? userData.name.charAt(0).toUpperCase():""}</p>
+              <div  className={color?"sub":"for-list-sub"}>
+              <li onClick={logOut}>logout</li>
+              <li>Orders</li>
+             </div>
+             </div>
+           
+           </>
+             
+            )
+             }
             </div>
         </div>
         <motion.div

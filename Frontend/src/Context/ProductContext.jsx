@@ -1,8 +1,11 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState,useEffect } from 'react';
+import axios from 'axios';
 import {ProductLists} from '../assets/Assets'
 export const ProductContext=createContext(null)
 const ProductContextProvider = ({children}) => {
-  //state for managing search bar visibility
+//backend url
+const backendUrl='http://localhost:4000'
+//state for managing search bar visibility
 const[showSearch,setShowSearch]=useState(false);
 //state for managing values in a search bar
 const[searchValue,setSearchValue]=useState('')
@@ -14,6 +17,13 @@ const[allReview,setAllReview]=useState([]);
 const[cartData,setCartData]=useState({})
 //manage wishlist data
 const[wishListData,setWishListData]=useState({})
+//manage jwttoken
+const[token,createToken]=useState('');
+//manage visibility of otp container
+const [showOtpContainer, setShowOtpContainer] = useState(false);
+//manage userdata
+const[userData,setUserData]=useState({})
+
 //add to cart
 const addToCart=(itemId)=>{
 if(!cartData[itemId]){
@@ -55,6 +65,34 @@ const addToWish=(itemId)=>{
   const deleteFromWish=(itemId)=>{
     setWishListData((prev)=>({...prev,[itemId]:0}))
   }
+
+//fetch the name of user
+  const fetchUserData=async(token)=>{
+    console.log(token)
+    try {
+      const {data}=await axios.post(`${backendUrl}/api/user/userdata`,{},{headers:{Authorization: `Bearer ${token}`,}})
+      if(data.success){
+     setUserData(data.message)
+      }
+    } catch (error) {
+     
+       console.log(error)
+    }
+    }
+    useEffect(()=>{
+    console.log(userData)
+    },[userData])
+    useEffect(()=>{
+    async function loadData(){
+    if(sessionStorage.getItem("token")){
+    createToken(sessionStorage.getItem('token'))
+    await fetchUserData(sessionStorage.getItem('token'))
+    }
+    }
+    loadData();
+    },[])
+
+
 const Element={
 ProductLists,
 showSearch,
@@ -75,6 +113,12 @@ wishListData,
 setWishListData,
 addToWish,
 deleteFromWish,
+backendUrl,
+token,
+createToken,
+userData,
+showOtpContainer,
+setShowOtpContainer
 }
   return (
     <div>

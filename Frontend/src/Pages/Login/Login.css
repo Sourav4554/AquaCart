@@ -1,0 +1,150 @@
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+   background-color:   #b1bac4;
+    height: 100vh;
+    width: 100%;
+  
+  }
+  .login-popup {
+    z-index: 1;
+    width: 100%;
+    left: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .login-popup-container {
+    place-self: center;
+    width: max(23vw, 330px);
+    color: #333333;
+    background-color:#FFFFFF;
+    border: 2px solid #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 25px 30px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .login-popup-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333333;
+    font-weight: 700;
+  }
+  .login-popup-title img {
+    width: 16px;
+    cursor: pointer;
+  }
+  .login-popup-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .login-popup-inputs input {
+    outline: none;
+    border: 1px solid #c9c9c9;
+    padding: 10px;
+    border-radius: 4px;
+     background-color:#EEEEEE; 
+  }
+  .login-popup-container button {
+    border: 1px solid #fff;
+    padding: 10px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background-color: #0B74C9;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  
+  .forgot-password {
+    font-size: 14px;
+    color: #333333;
+    margin-top: 10px;
+    cursor: pointer;
+    text-align: center;
+  }
+  .login-popup-condition input {
+    margin-top: 5px;
+  }
+  .login-popup p span {
+    color: #333333;
+    text-decoration: underline 1px solid #fff;
+    font-weight: 800;
+    margin-left: 2px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .login-popup-container button:hover {
+    background-color: #008cff;
+  
+  }
+  .login-popup p span:hover {
+    color: orangered;
+  }
+  
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+    color: orangered;
+  }
+  
+  @media (max-width: 1050px) {
+    .navbar h1 {
+      width: 120px;
+    }
+    .navbar-menu {
+      gap: 20px;
+      font-size: 17px;
+    }
+    .navbar-right {
+      gap: 30px;
+    }
+    .navbar-right img {
+      width: 22px;
+    }
+    .navbar-right button {
+      padding: 8px 25px;
+    }
+  }
+  @media (max-width: 900px) {
+    .navbar-menu {
+      gap: 17px;
+      font-size: 15px;
+    }
+    .navbar-right {
+      gap: 20px;
+    }
+    .navbar-right img {
+      width: 20px;
+    }
+    .navbar-right button {
+      padding: 7px 30px;
+      font-size: 15px;
+    }
+  }
+  @media (max-width: 750px) {
+    .navbar h1 {
+      font-size: 30px;
+    }
+    .navbar-menu {
+      display: none;
+    }
+    .navbar-right {
+      gap: 30px;
+    }
+    .navbar-right img {
+      width: 22px;
+    }
+    .navbar-right button {
+      padding: 8px 25px;
+    }
+  }
+  

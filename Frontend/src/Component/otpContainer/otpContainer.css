@@ -1,0 +1,104 @@
+.otp-container {
+    display: flex;
+    background-color: #FFFFFF; /* White */
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+    border: 2px solid #FFFFFF; /* White border */
+    text-align: center;
+    width: 30%;
+    height: 35vh;
+    margin-top: 20px;
+   
+  }
+  
+  .otp-container h3 {
+    color: #333333; /* Dark Gray Text */
+    padding-top: 10px;
+  }
+  
+  .otp-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .otp-input input {
+    text-align: center;
+    border: 1px solid #C9C9C9; /* Soft Gray */
+    border-radius: 4px;
+    font-size: 25px;
+    color: #007BFF; /* Bright Blue */
+  }
+  
+  .p-inputotp-input {
+    width: 40px;
+    height: 40px;
+    gap: 20px;
+    color: #007BFF; /* Bright Blue */
+    border: 2px solid #007BFF; /* Blue Border */
+    font-size: 28px;
+  }
+  
+  .p-inputotp {
+    margin-left: 10px;
+  }
+  
+  .otp-submit-btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: #FFFFFF; /* White Text */
+    font-weight: 600;
+    background-color: #178CA4; /* Teal Button */
+    font-size: 15px;
+    cursor: pointer;
+  }
+  
+  .resend-link {
+    color: #007BFF; /* Bright Blue */
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+  .timer{
+  color: red;
+  padding-bottom: 15px;
+  }
+  .resend-link.disabled {
+    pointer-events: none;
+    color: gray;
+  }
+  
+  @media(max-width:1025px){
+    .otp-container {
+      display: flex;
+      background-color: #FFFFFF; /* White */
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      border: 2px solid #FFFFFF; /* White border */
+      text-align: center;
+      width: 50%;
+      margin-top: 20px;
+     height: 20vh;
+    }
+   
+  }
+  
+  @media(max-width:764px){
+    .otp-container {
+      display: flex;
+      background-color: #FFFFFF; 
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      border: 2px solid #FFFFFF; 
+      text-align: center;
+      width: 90%;
+      margin-top: 20px;
+     height: auto;
+    }
+  }
