@@ -33,13 +33,34 @@ return res.status(200).json({succes:true,message:'fish added'})
 }
 }
 
-//controller for list food item 
+//controller for list fish
 const listFish=async(req,res)=>{
 try {
     const fishList=await fishModel.find({})
     return res.status(200).json({succes:true,message:fishList})
 } catch (error) {
-    return res.status(400).json({succes:false,message:"Internal server error"})
+    return res.status(500).json({succes:false,message:"Internal server error"})
 }
 }
-export{addFish,listFish}
+
+//controller for delete fish
+const deleteFish=async(req,res)=>{
+const {productId}=req.body;
+try {
+   const product=await fishModel.findById(productId)
+   if(!product){
+    return res.status(400).json({succes:false,message:"product not found"})
+    }else{
+    const imageUrl=product.image;
+    const publicId = imageUrl.replace(/^.*\/upload\/v\d+\//, "").replace(/\.[^.]+$/, "");
+    await cloudinary.uploader.destroy(publicId)
+    await fishModel.findByIdAndDelete(productId);
+    return res.status(200).json({succes:true,message:"product removed"})
+    }
+} catch (error) {
+    console.log(error)
+    return res.status(500).json({succes:false,message:"Internal server error"})
+   
+}
+}
+export{addFish,listFish,deleteFish}
