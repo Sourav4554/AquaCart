@@ -11,6 +11,7 @@ import ScrollToTop from './Component/ScrollToTop/ScrollToTop'
 import { ToastContainer } from 'react-toastify'
 import WishList from './Pages/Wishlist/WishList'
 import Login from './Pages/Login/Login'
+import Email from './Pages/Email/Email'
 const App = () => {
   return (
     <div>
@@ -26,6 +27,7 @@ const App = () => {
          <Route path='/product/:productid' element={<Product/>}/> 
          <Route path='/wishlist' element={<WishList/>}/>
          <Route path='/login' element={<Login />}/>
+         <Route path='/email' element={<Email/>}/>
       </Routes>
       <Footer/>
       </BrowserRouter>    

@@ -1,0 +1,119 @@
+
+.main-container-for-email {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh;
+    width: 100%;
+    background-color: #b1bac4; /* Very Light Gray */
+  }
+  
+  
+  .email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 30%;
+    padding: 20px;
+    background-color: #FFFFFF; /* White */
+    border: 1px solid #DDDDDD; /* Light Gray Border */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  .email-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333333; /* Dark Gray */
+  }
+  
+  
+  .email-input {
+    padding: 10px;
+    border: 1px solid #CCCCCC; /* Soft Gray */
+    background-color: #EEEEEE; /* Light Gray */
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .email-submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFFFFF; /* White */
+    background-color: #0B74C9; /* Bright Blue */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .email-submit-button:hover {
+    background-color: #0056B3; 
+  }
+  
+  .otp-container-for-reset-password{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+    border: 2px solid #FFFFFF;
+    text-align: center;
+    background-color: #FFFFFF; 
+    width: 30%;
+    height: auto;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* OTP Heading */
+  .otp-container h3 {
+    color: #333333; /* Dark Gray */
+  }
+  
+  /* OTP Input */
+  .otp-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .otp-input input {
+    text-align: center;
+    border: 1px solid #C9C9C9; 
+    background-color: #EEEEEE; 
+    border-radius: 4px;
+    font-size: 25px;
+    color: #007BFF; 
+  }
+  @media(max-width:1025px){
+    .main-container-for-email{
+    width: 100%;
+    }
+    .email-form{
+    width: 90%;
+    }
+    .otp-container-for-reset-password{
+    width: 50%;
+    height: auto;
+    padding: 15px;
+    }
+    }
+  @media(max-width:764px){
+  .main-container-for-email{
+  width: 100%;
+  }
+  .email-form{
+  width: 90%;
+  }
+  .otp-container-for-reset-password{
+  width: 90%;
+  height: auto;
+  padding: 15px;
+  }
+  }
+  
