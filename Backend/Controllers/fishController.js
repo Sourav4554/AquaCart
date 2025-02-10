@@ -63,4 +63,33 @@ try {
    
 }
 }
-export{addFish,listFish,deleteFish}
+
+//controller for update fish
+const updateFish=async(req,res)=>{
+const{productId,name,category,description1,description2,description3,price,stock}=req.body;
+const file=req.file;
+try {
+    const fishExist=await fishModel.findById(productId);
+    if(!fishExist){
+    return res.status(400).json({succes:false,message:"product not found"})
+    }
+    let imageUrl=fishExist.image;
+    if(file){
+        const publicId = imageUrl.replace(/^.*\/upload\/v\d+\//, "").replace(/\.[^.]+$/, "");
+        await cloudinary.uploader.destroy(publicId);
+        const fileBase64 = `data:${file.mimetype};base64,${file.buffer.toString("base64")}`;
+        const result=await cloudinary.uploader.upload(fileBase64,{
+        folder:'fishHub',
+        public_id:`image-${Date.now()}`,
+        resource_type:"image",
+        })
+        imageUrl=result.secure_url;
+    }
+   await fishModel.findByIdAndUpdate(productId,{ name, category, description1, description2, description3, price, stock, image: imageUrl });
+   return res.status(200).json({ success: true, message: "Fish updated successfully", });
+} catch (error) {
+    console.log(error)
+    return res.status(500).json({ success: false, message: "Internal server error" });
+}
+}
+export{addFish,listFish,deleteFish,updateFish}
