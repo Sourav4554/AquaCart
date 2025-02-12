@@ -24,11 +24,11 @@ const otpSchema = new mongoose.Schema({
         },
     createdAt:{
          type: Date,
-         default: Date.now()
+         default: Date.now
         },
 })
 
 otpSchema.index({createdAt: 1 },{expireAfterSeconds: 600 });
-const otpModel=mongoose.models.otp || mongoose.model('otp',otpSchema);
+const otpModel= mongoose.model('otp',otpSchema);
 
 export default otpModel;
