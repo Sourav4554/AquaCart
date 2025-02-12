@@ -3,21 +3,20 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
 import { Button } from '@mui/material';
+import { Materials } from '../../Context/Context';
 
 const Navbar=()=> {
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+const {setShowLogin}=React.useContext(Materials)
+const [auth, setAuth] = React.useState(true);
+//function for logout
+const logOut=()=>{
+sessionStorage.removeItem('token');
+setShowLogin(false)
+}
 
-
+  
 
 
 
@@ -47,7 +46,7 @@ const Navbar=()=> {
             borderRadius:'5px',
             color:'black'
             }}
-              >LOGOUT</Button>
+               onClick={logOut}>LOGOUT</Button>
               
             </div>
           )}

@@ -1,16 +1,33 @@
-import React from 'react'
-import Navbar from './Components/Navbar/Navbar'
-import Sidebar from './Components/Sidebar/Sidebar'
+import React, { useContext, useState } from 'react';
+import Navbar from './Components/Navbar/Navbar';
+import { ToastContainer } from 'react-toastify';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import Sidebar from './Components/Sidebar/Sidebar';
+import Login from './Pages/Login/Login';
+import { Materials } from './Context/Context';
 
 const App = () => {
-  return (
-    <div>
-      <Navbar/>
-      <div className="sidebar">
-        <Sidebar/>
-      </div>
-    </div>
-  )
-}
+  const {showLogin}=useContext(Materials)
 
-export default App
+  return (
+    <BrowserRouter>
+      <div>
+        <ToastContainer/>
+        {showLogin ? (
+        <>
+         
+          <Navbar />
+          <Sidebar />
+          </>
+        ) : (
+          
+          <Routes>
+            <Route path="/" element={<Login  />} />
+          </Routes>
+        )}
+      </div>
+    </BrowserRouter>
+  );
+};
+
+export default App;
