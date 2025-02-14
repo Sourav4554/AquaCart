@@ -3,17 +3,24 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import FormGroup from '@mui/material/FormGroup';
+import { useTheme } from '@emotion/react';
 import { Button } from '@mui/material';
 import { Materials } from '../../Context/Context';
+import DarkModeToggle from '../DarkMode/DarkModeToogle';
+import { useNavigate } from 'react-router-dom';
+
 
 const Navbar=()=> {
+const navigate=useNavigate()
+const theme=useTheme(); 
 const {setShowLogin}=React.useContext(Materials)
 const [auth, setAuth] = React.useState(true);
+
 //function for logout
 const logOut=()=>{
 sessionStorage.removeItem('token');
 setShowLogin(false)
+navigate('/');
 }
 
   
@@ -23,35 +30,35 @@ setShowLogin(false)
   return (
     <Box sx={{ flexGrow: 1 }}>
         
-      <FormGroup>
-      </FormGroup>
-      <AppBar position="static"
-      sx={{ 
-        backgroundColor: 'white', 
+    
+      <Box position="static"
+      sx={{  
         borderBottom: '2px solid #f5f5f5', 
-        boxShadow: 'none' 
+        boxShadow: 'none' ,
+        backgroundColor:theme.palette.text.seconary
       }}
       >
         <Toolbar>
         
-          <Typography variant="h5" fontWeight='bold' component="div" sx={{ flexGrow: 1,color:'black',}}>
+          <Typography variant="h5" fontWeight='bold' component="div" sx={{ flexGrow: 1}}>
             AQUACART
           </Typography>
           {auth && (
-            <div>
-             
+            <Box>
+            <DarkModeToggle/>
               <Button variant="outlined"
               sx={{
-            border:'1px solid black',
+             
+          
             borderRadius:'5px',
-            color:'black'
+          
             }}
                onClick={logOut}>LOGOUT</Button>
               
-            </div>
+              </Box>
           )}
         </Toolbar>
-      </AppBar>
+      </Box>
     </Box>
   );
 }

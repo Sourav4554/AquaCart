@@ -1,143 +1,89 @@
-import * as React from 'react';
-import './Sidebar.css'
-import { extendTheme, styled } from '@mui/material/styles';
+import React, { useState } from 'react'
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import InventoryIcon from '@mui/icons-material/Inventory';
-import { AppProvider } from '@toolpad/core/AppProvider';
-import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-import { PageContainer } from '@toolpad/core/PageContainer';
-import BarChartIcon from "@mui/icons-material/BarChart";
 import PeopleIcon from '@mui/icons-material/People';
-import { Typography } from "@mui/material";
-import Grid from '@mui/material/Grid2';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import BarChartIcon from "@mui/icons-material/BarChart";
+import './Sidebar.css'
+import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 
-const NAVIGATION = [
-
-  {
-    segment: 'dashboard',
-    title: 'Dashboard',
-    icon: <DashboardIcon />,
-  },
-  {
-    segment: 'products',
-    title: 'Products',
-    icon: <InventoryIcon />,
-  },
-  {
-    segment: 'customers',
-    title: 'Customers',
-    icon:<PeopleIcon/>,
-  },
-  {
-    segment: 'orders',
-    title: 'Orders',
-    icon: <ShoppingCartIcon />,
-  },
-  {
-    segment:'analytics',
-    title:'Analytics',
-    icon:<BarChartIcon/>,
-    },
-];
-
-const demoTheme = extendTheme({
-  colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: 'class',
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 600,
-      lg: 1200,
-      xl: 1536,
-    },
-  },
-});
-
-const useDemoRouter=(initialPath)=>{
-  const [pathname, setPathname] = React.useState(initialPath);
-  const router = React.useMemo(() => {
-    return {
-      pathname,
-      searchParams: new URLSearchParams(),
-      navigate: (path) => setPathname(String(path)),
-    };
-  }, [pathname]);
-
-  return router;
-}
-
-const Skeleton = styled('div')(({ theme, height }) => ({
-  backgroundColor: theme.palette.action.hover,
-  borderRadius: theme.shape.borderRadius,
-  height,
-  content: '" "',
-}));
-
-const Sidebar=(props)=> {
-  const { window } = props;
-
-  const router = useDemoRouter('/dashboard');
-
-  // Remove this const when copying and pasting into your project.
-  const demoWindow = window ? window() : undefined;
-
+const Sidebar = () => {
   return (
-    <AppProvider
-      navigation={NAVIGATION}
-      router={router}
-      theme={demoTheme}
-      window={demoWindow}
-      branding={{
-        title: (
-          <Typography variant="h5" className="!font-bold font-sans">
-            AquaCart
-          </Typography>
-        ),
-      }}
-    >
-      <DashboardLayout>
-        <PageContainer>
-          <Grid container spacing={1}>
-            <Grid size={5} />
-            <Grid size={12}>
-              <Skeleton height={14} />
-            </Grid>
-            <Grid size={12}>
-              <Skeleton height={14} />
-            </Grid>
-            <Grid size={4}>
-              <Skeleton height={100} />
-            </Grid>
-            <Grid size={8}>
-              <Skeleton height={100} />
-            </Grid>
+  <Box sx={{
+    width: { xs: "20%", sm: "20%", md: "16%", lg: "14%" },
+    borderRight:'1px solid grey',
+    height:'90vh'}}>
+<List>
+  {/*first item */}
+  <NavLink to='/dashboard' style={{ textDecoration: "none", color: "inherit" }}>
+  <ListItem disablePadding >
+   <ListItemButton >
+   <ListItemIcon>
+    <DashboardIcon/>
+   </ListItemIcon>
+    <ListItemText  
+    sx={{ display: { xs: "none",md:'block',sm:'block',lg:'block'} }}
+    >Dashboard</ListItemText>
+   </ListItemButton>
+  </ListItem>
+  </NavLink>
+ 
 
-            <Grid size={12}>
-              <Skeleton height={150} />
-            </Grid>
-            <Grid size={12}>
-              <Skeleton height={14} />
-            </Grid>
+  {/*second item */}
+  <NavLink to='/products' style={{ textDecoration: "none", color: "inherit" }}>
+  <ListItem disablePadding>
 
-            <Grid size={3}>
-              <Skeleton height={100} />
-            </Grid>
-            <Grid size={3}>
-              <Skeleton height={100} />
-            </Grid>
-            <Grid size={3}>
-              <Skeleton height={100} />
-            </Grid>
-            <Grid size={3}>
-              <Skeleton height={100} />
-           
-            </Grid>
-          </Grid>
-        </PageContainer>
-      </DashboardLayout>
-    </AppProvider>
-  );
+   <ListItemButton>
+   <ListItemIcon>
+    <InventoryIcon/>
+   </ListItemIcon>
+    <ListItemText  sx={{ display: { xs: "none",md:'block',sm:'block',lg:'block'} }}>Products</ListItemText>
+   </ListItemButton>
+  </ListItem>
+  </NavLink>
+
+
+   {/*third item */}
+   <NavLink to='/customers' style={{ textDecoration: "none", color: "inherit" }}>
+   <ListItem disablePadding>
+   <ListItemButton>
+   <ListItemIcon>
+    <PeopleIcon/>
+   </ListItemIcon>
+    <ListItemText  sx={{ display: { xs: "none",md:'block',sm:'block',lg:'block'} }}>Customers</ListItemText>
+   </ListItemButton>
+  </ListItem>
+</NavLink>
+
+     {/*fourth item */}
+     <NavLink to='/orders' style={{ textDecoration: "none", color: "inherit" }}>
+     <ListItem disablePadding>
+   <ListItemButton>
+   <ListItemIcon>
+  <ShoppingCartIcon/>
+   </ListItemIcon>
+    <ListItemText sx={{ display: { xs: "none",md:'block',sm:'block',lg:'block'} }}>Orders</ListItemText>
+   </ListItemButton>
+  </ListItem>
+</NavLink>
+
+
+     {/*fifth item */}
+     <NavLink to='/analytics' style={{ textDecoration: "none", color: "inherit" }}>
+     <ListItem disablePadding>
+   <ListItemButton>
+   <ListItemIcon>
+  <BarChartIcon/>
+   </ListItemIcon>
+    <ListItemText sx={{ display: { xs: "none",md:'block',sm:'block',lg:'block'} }}>Analytics</ListItemText>
+   </ListItemButton>
+  </ListItem>
+  </NavLink>
+</List>
+  </Box>
+
+  )
 }
-export default Sidebar;
+
+export default Sidebar
