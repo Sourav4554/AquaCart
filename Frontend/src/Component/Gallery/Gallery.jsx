@@ -10,6 +10,9 @@ import { settings } from '../../Utilities/Carousel';//setting for the slider
 const Gallery = () => {
 //The products from the context page
 const {fishList}=useContext(ProductContext)
+if (fishList.length === 0) {
+  return <p>Loading product...</p>; // ✅ Show a loading message
+}
 //Store the products in a usestate variable
 const [allProducts,setAllProducts]=useState(fishList);
   return (

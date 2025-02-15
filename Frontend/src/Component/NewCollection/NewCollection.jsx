@@ -11,10 +11,13 @@ const {fishList}=useContext(ProductContext);
 //state variable for store new collection
 const[newcollection,setNewCollection]=useState([]);
 //slice new 8 card and store in new cllecctions
+
  useEffect(()=>{
+if(fishList.length>0){
  const sliceCards=fishList.slice(0,8);
  setNewCollection(sliceCards)
- },[])
+}
+ },[fishList])
   return (
     <div className='main-container-newcollection'>
         <div className="container-1-for-heaing">

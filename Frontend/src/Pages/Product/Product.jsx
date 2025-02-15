@@ -7,6 +7,9 @@ const Product = () => {
 const {fishList}=useContext(ProductContext)
 //extract the product id from url
 const {productid}=useParams();
+if (fishList.length === 0) {
+  return <p>Loading product...</p>; // ✅ Show a loading message
+}
 //find the product with productid equal to the id in the url
 const product=fishList.find((item)=>item._id=== productid)
 
