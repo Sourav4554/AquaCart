@@ -22,7 +22,7 @@ const columns = [
 ];
 
 const ProductList=()=> {
-  const {fishList}=React.useContext(Materials)
+  const {fishList,deleteFish,token}=React.useContext(Materials)
   const fishes = Array.isArray(fishList) ? fishList : [];
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -80,7 +80,7 @@ const ProductList=()=> {
                     <IconButton color="primary" onClick={() => handleEdit(row)}>
                       <EditIcon />
                     </IconButton>
-                    <IconButton color="error" onClick={() => handleDelete(row)}>
+                    <IconButton color="error" onClick={() =>{ deleteFish(row._id,token)}}>
                       <DeleteIcon />
                     </IconButton>
                   </div>):(

@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
 import axios from 'axios'
+import {toast} from 'react-toastify'
 export const Materials=createContext(null)
 const Context = ({children}) => {
     //backend url
@@ -26,7 +27,22 @@ const Context = ({children}) => {
    }
     }
 
-
+ //function for delete fish item
+ const deleteFish=async(productId,token)=>{
+try {
+const {data}=await axios.delete(`${BackendUrl}/api/fish/remove-fish`,{headers:{Authorization:`Bearer ${token}`}, data:{ productId }})
+if(data.succes){
+toast.success(data.message)
+await listFish();
+}
+else{
+toast.error(data.message)
+}
+} catch (error) {
+  console.log(error)
+  toast.error(error.response.data.message)
+}
+}
     const requirements={
     BackendUrl,
     token,
@@ -35,7 +51,8 @@ const Context = ({children}) => {
     setShowLogin,
     fishList,
     setFishList,
-    listFish
+    listFish,
+    deleteFish
     }
 
     useEffect(()=>{

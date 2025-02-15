@@ -65,6 +65,8 @@ setData({
   description3:""
 }
   )
+  setPreview(null)
+  setImage(null)
   toast.success(data.message)
 }
 else{
