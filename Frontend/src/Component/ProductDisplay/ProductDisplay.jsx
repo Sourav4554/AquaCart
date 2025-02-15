@@ -7,13 +7,13 @@ import { toast } from 'react-toastify';//used for toastify messages
 import Review from '../Review/Review';
 import Card from '../Card/Card';
 const ProductDisplay = ({product}) => {
-const {showReviewContainer,setShowReviewContainer,allReview,ProductLists,addToCart,cartData,addToWish,wishListData}=useContext(ProductContext);
+const {showReviewContainer,setShowReviewContainer,allReview,fishList,addToCart,cartData,addToWish,wishListData}=useContext(ProductContext);
 //state for managing styles and googlle description and review
     const[changeDes,setChangeDes]=useState('Description')
   //state for store the current category of the product
     const[relatedProductCategory,setRelatedProductCategory]=useState(product.category)
   //filter the product based on the category
-const RelatedProducts=ProductLists.filter((item)=>item.category===relatedProductCategory);
+const RelatedProducts=fishList.filter((item)=>item.category===relatedProductCategory);
 //take only 4 products
 const sliceRelatedProducts=RelatedProducts.slice(0,4);
 

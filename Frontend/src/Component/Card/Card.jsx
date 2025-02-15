@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'//used for routing
 const Card = ({image,name,description1,price,stock,_id}) => {
   return (
     // logic for stock and out of stock 
-    <Link to={`/product/${_id}`}>
+    <Link to={stock&&`/product/${_id}`}>
     <div className={`product-card ${!stock ? 'out-of-stock' : ''}`} >
         <div className="product-image">
           <img src={image} alt="Product Image"/>

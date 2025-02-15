@@ -9,9 +9,9 @@ import {ProductContext} from '../../Context/ProductContext';//context
 import { settings } from '../../Utilities/Carousel';//setting for the slider
 const Gallery = () => {
 //The products from the context page
-const {ProductLists}=useContext(ProductContext)
+const {fishList}=useContext(ProductContext)
 //Store the products in a usestate variable
-const [allProducts,setAllProducts]=useState(ProductLists);
+const [allProducts,setAllProducts]=useState(fishList);
   return (
     <div className="maindiv-for-gallery">
       <ScrollAnimation animateIn='animate__fadeInUp' animateOnce>

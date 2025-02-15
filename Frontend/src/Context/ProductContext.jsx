@@ -23,7 +23,8 @@ const[token,createToken]=useState('');
 const [showOtpContainer, setShowOtpContainer] = useState(false);
 //manage userdata
 const[userData,setUserData]=useState({})
-
+//storing fish list
+const[fishList,setFishList]=useState([])
 //add to cart
 const addToCart=(itemId)=>{
 if(!cartData[itemId]){
@@ -49,7 +50,7 @@ const calculateTotalAmout=()=>{
 let TotalAmount=0;
 for(const item in cartData){
 if(cartData[item]>0){
-let itemInformation=ProductLists.find(product=>product._id===Number(item))
+let itemInformation=fishList.find(product=>product._id===item)
 TotalAmount+=itemInformation.price*cartData[item]
 }
 }
@@ -79,22 +80,39 @@ const addToWish=(itemId)=>{
        console.log(error)
     }
     }
-    useEffect(()=>{
-    console.log(userData)
-    },[userData])
+
+    //fetch fish list from backend
+    const FetchFishList=async()=>{
+      const {data}=await axios.get(`${backendUrl}/api/fish/list-fish`,{})
+     try {
+      if(data.succes){
+        setFishList(data.message)
+        }
+        else{
+        console.log('error'+data.message)
+        }
+     } catch (error) {
+      console.error("Fetch Error:", error.message || error);
+     }
+      }
+
+  
+
+
     useEffect(()=>{
     async function loadData(){
     if(sessionStorage.getItem("token")){
     createToken(sessionStorage.getItem('token'))
     await fetchUserData(sessionStorage.getItem('token'))
     }
-    }
+    await  FetchFishList();
+  }
     loadData();
     },[])
 
 
 const Element={
-ProductLists,
+fishList,
 showSearch,
 setShowSearch,
 searchValue,

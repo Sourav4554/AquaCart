@@ -4,7 +4,7 @@ import { RxCross1 } from "react-icons/rx";
 import { ProductContext } from '../../Context/ProductContext'
 import { toast } from 'react-toastify';
 const WishList = () => {
-const{ProductLists,addToCart,cartData, wishListData,deleteFromWish}=useContext(ProductContext)
+const{fishList,addToCart,cartData, wishListData,deleteFromWish}=useContext(ProductContext)
 
 //check data already in cart and stock update
 const HandleAddToCart=(_id,stock)=>{
@@ -28,7 +28,7 @@ toast.success("Added to Cart")
    
      <div className="for-wish-items">
         {
-        ProductLists.map((item,index)=>{
+        fishList.map((item,index)=>{
             if(wishListData[item._id]){
         return(
             <div className='wish-items' key={index}>

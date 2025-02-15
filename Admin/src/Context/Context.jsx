@@ -12,8 +12,8 @@ const Context = ({children}) => {
     const[fishList,setFishList]=useState({});
 
     //function for fetching fish
-    const listFish=async(token)=>{
-    const {data}=await axios.get(`${BackendUrl}/api/fish/list-fish`,{headers:{Authorization: `Bearer ${token}`,}})
+    const listFish=async()=>{
+    const {data}=await axios.get(`${BackendUrl}/api/fish/list-fish`,{})
    try {
     if(data.succes){
       setFishList(data.message)
@@ -43,7 +43,7 @@ const Context = ({children}) => {
         if(sessionStorage.getItem('token')){
             setShowLogin(true)
             createToken(sessionStorage.getItem('token'))
-            await listFish(sessionStorage.getItem('token'))
+            await listFish()
             }
     }
     loadData();

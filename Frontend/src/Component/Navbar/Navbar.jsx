@@ -54,7 +54,7 @@ setColor(false);
         <div className={color?"parent-navbar":"changecolor"} >
           {/* for logo left section*/}
             <div className='for-logo'>
-             <img src={Requirements.logo} alt="" />
+            <Link to='/'> <img src={Requirements.logo} alt="" /></Link>
             </div>
             {/*for icons mid section*/}
             <div className='for-icons'>

@@ -7,12 +7,12 @@ import { ProductContext } from '../../Context/ProductContext'//products from con
 import ScrollAnimation from 'react-animate-on-scroll'//library for scroll animation
 import'animate.css' //animation file
 const NewCollection = () => {
-const {ProductLists}=useContext(ProductContext);
+const {fishList}=useContext(ProductContext);
 //state variable for store new collection
 const[newcollection,setNewCollection]=useState([]);
 //slice new 8 card and store in new cllecctions
  useEffect(()=>{
- const sliceCards=ProductLists.slice(0,8);
+ const sliceCards=fishList.slice(0,8);
  setNewCollection(sliceCards)
  },[])
   return (

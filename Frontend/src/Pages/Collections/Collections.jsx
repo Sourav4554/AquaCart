@@ -6,7 +6,7 @@ import { ProductContext } from '../../Context/ProductContext'//importing context
 
 const Collections = () => {
 //take product list from context
-const {ProductLists,searchValue}=useContext(ProductContext);
+const {fishList,searchValue}=useContext(ProductContext);
 //state for storing productList
 const[products,setProducts]=useState([])
 //state for storing category
@@ -17,11 +17,10 @@ const[display,setDisplay]=useState(false);
 const[priceType,setPricetype]=useState('');
 
 //removing the repeated categories and collect to the unique categories variable
-const uniqueCategories=[...new Set(ProductLists.map((item)=>item.category))]
+const uniqueCategories=[...new Set(fishList.map((item)=>item.category))]
 
 //function for storing category
 const categorySort=(e)=>{
-  
 //check category from the input exist in the category variable
 if(category.includes(e.target.value)){
 //remove the category
@@ -36,7 +35,7 @@ setCategory((prev)=>[...prev,e.target.value])
 //used for filtering products based on category
 const filterProducts=()=>{
 //make a copy and stored in the vairable
-let ProductsCopy=[...ProductLists];
+let ProductsCopy=[...fishList];
 
  if(searchValue){
  ProductsCopy=ProductsCopy.filter(item=>item.name.toLowerCase().replace(/\s+/g, "").includes(searchValue.toLowerCase()))
@@ -44,10 +43,9 @@ let ProductsCopy=[...ProductLists];
 //check any values existing in the category array
  if(category.length>0){
 //filter the items 
- ProductsCopy=ProductsCopy.filter((item)=>category.includes(item.category))
+ProductsCopy = ProductsCopy.filter((item) =>category.map(cat => cat.toLowerCase()).includes(item.category.toLowerCase()));
  }
 setProducts(ProductsCopy)
-
 
 //filtering products with price
 switch(priceType){
@@ -63,10 +61,13 @@ switch(priceType){
 
 }
 
+
 //only working at the time of changing category
 useEffect(()=>{
-filterProducts();
-},[category,priceType,searchValue])
+  if (fishList.length > 0) {
+    filterProducts();
+  }
+},[category,priceType,searchValue,fishList])
 
   return (
     <div className='main-div-for-collections'>

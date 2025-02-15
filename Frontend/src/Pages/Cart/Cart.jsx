@@ -3,7 +3,7 @@ import './Cart.css'
 import { ProductContext } from '../../Context/ProductContext'
 
 const Cart = () => {
-  const {ProductLists,cartData,addToCart,removeFromCart,deleteCartData,calculateTotalAmout}=useContext(ProductContext)
+  const {fishList,cartData,addToCart,removeFromCart,deleteCartData,calculateTotalAmout}=useContext(ProductContext)
 
   return (
     <div className='cart'>
@@ -20,7 +20,7 @@ const Cart = () => {
      </div>
  
      {
-     ProductLists.map((item,index)=>{
+     fishList.map((item,index)=>{
       if(cartData[item._id]>0){
     return(
       <div className="cart-items-list-1 " key={index}>

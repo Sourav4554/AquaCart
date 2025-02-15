@@ -5,7 +5,7 @@ import { adminAuthMiddleware } from '../Middlewares/adminAuth.js';
 const fishRouter=epress.Router();
 
 fishRouter.post('/upload',adminAuthMiddleware,upload.single('image'),addFish);
-fishRouter.get('/list-fish',adminAuthMiddleware,listFish);
+fishRouter.get('/list-fish',listFish);
 fishRouter.delete('/remove-fish',adminAuthMiddleware,deleteFish);
 fishRouter.put('/update-fish',adminAuthMiddleware,upload.single('image'),updateFish);
 export default fishRouter;
