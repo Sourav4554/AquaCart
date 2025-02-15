@@ -5,6 +5,7 @@ import cors from "cors"
 import userRouter from "./Routers/userRouter.js";
 import fishRouter from "./Routers/fishRouter.js";
 import adminRouter from "./Routers/adminRoute.js";
+import cartRouter from "./Routers/cartRouter.js";
 
 const app=express();
 //port
@@ -18,7 +19,8 @@ connectDatabase();
 app.use('/api/fish',fishRouter)
 //end point for admin
 app.use('/api/admin',adminRouter)
-
+//end point for cart
+app.use('/api/cart',cartRouter)
 app.get('/',(req,res)=>{
     res.send("API WORKING")
     })
