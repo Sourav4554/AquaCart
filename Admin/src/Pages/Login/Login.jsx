@@ -13,7 +13,7 @@ const Login = () => {
     password: "",
   });
 
-  const { BackendUrl, createToken, setShowLogin } = useContext(Materials);
+  const { BackendUrl, createToken, setShowLogin,listFish } = useContext(Materials);
 
   // Function for storing values from frontend
   const takeInput = (e) => {
@@ -30,8 +30,10 @@ const Login = () => {
         console.log("true");
         sessionStorage.setItem("token", data.token);
         createToken(data.token);
+        await listFish(data.token);
         setShowLogin(true);
         navigate('/dashboard')
+       
       } else {
         toast.error(data.message);
       }

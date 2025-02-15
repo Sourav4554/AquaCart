@@ -37,7 +37,7 @@ return res.status(200).json({succes:true,message:'fish added'})
 const listFish=async(req,res)=>{
 try {
     const fishList=await fishModel.find({})
-    return res.status(200).json({succes:true,message:fishList})
+    return res.status(200).json({succes:true,message:fishList.reverse()})
 } catch (error) {
     return res.status(500).json({succes:false,message:"Internal server error"})
 }

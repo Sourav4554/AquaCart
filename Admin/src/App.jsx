@@ -11,6 +11,7 @@ import { Box } from '@mui/material';
 import Customer from './Pages/Customer/Customer';
 import Order from './Pages/Order/Order';
 import Analytic from './Pages/Analytics/Analytic';
+import AddProduct from './Pages/AddProduct/AddProduct';
 
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
               <Route path="/customers" element={<Customer />} />
               <Route path="/orders" element={<Order />} />
               <Route path="/analytics" element={<Analytic />} />
+              <Route path="/productadd" element={<AddProduct />} />
             </Routes>
             </Box>
           </Box>
