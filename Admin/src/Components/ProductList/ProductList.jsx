@@ -11,6 +11,7 @@ import { IconButton, } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Materials } from '../../Context/Context';
+import { NavLink } from 'react-router-dom';
 
 const columns = [
   { id: 'image', label: 'Image', minWidth: 50 },
@@ -77,9 +78,11 @@ const ProductList=()=> {
                                 {value === true ? 'In Stock' : 'Out of Stock'}
                               </span>):column.id === 'actions' ? (
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <IconButton color="primary" onClick={() => handleEdit(row)}>
+                   <NavLink to={`/updateproduct/${row._id}`}>
+                   <IconButton color="primary" >
                       <EditIcon />
                     </IconButton>
+                   </NavLink>
                     <IconButton color="error" onClick={() =>{ deleteFish(row._id,token)}}>
                       <DeleteIcon />
                     </IconButton>

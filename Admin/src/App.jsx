@@ -12,6 +12,7 @@ import Customer from './Pages/Customer/Customer';
 import Order from './Pages/Order/Order';
 import Analytic from './Pages/Analytics/Analytic';
 import AddProduct from './Pages/AddProduct/AddProduct';
+import UpdateProduct from './Pages/UpdateProduct/UpdateProduct';
 
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
               <Route path="/orders" element={<Order />} />
               <Route path="/analytics" element={<Analytic />} />
               <Route path="/productadd" element={<AddProduct />} />
+              <Route path='/updateproduct/:id' element={<UpdateProduct/>}/>
             </Routes>
             </Box>
           </Box>
