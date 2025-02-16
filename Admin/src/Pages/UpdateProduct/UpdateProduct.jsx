@@ -63,10 +63,11 @@ const handleImageChange = (e) => {
   const updateProduct=async(event)=>{
   event.preventDefault();
   const validFileTypes = ["image/jpeg", "image/png", "image/webp","image/jpg","image/avif"];
-  if (image && !validFileTypes.includes(image.type)) {
-    toast.error('Please select a valid image file.');
-    return;
-  }
+  // Validate only if image is a newly uploaded file
+if (image instanceof File && !validFileTypes.includes(image.type)) {
+  toast.error('Please select a valid image file.');
+  return;
+}
   const formData=new FormData();
   formData.append("productId", id);
   formData.append("name", data.name);
@@ -118,7 +119,7 @@ const handleImageChange = (e) => {
                 borderRadius: "8px",
               }}
             >
-              {preview ? (
+              {image ? (
                 <img
                   src={preview}
                   alt="Uploaded Preview"
