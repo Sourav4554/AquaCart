@@ -1,5 +1,6 @@
 import React, { createContext, useState,useEffect } from 'react';
 import axios from 'axios';
+import { data } from 'react-router-dom';
 export const ProductContext=createContext(null)
 const ProductContextProvider = ({children}) => {
 //backend url
@@ -77,13 +78,27 @@ try {
 }
 
 //add to wishlist
-const addToWish=(itemId)=>{
+const addToWish=async(itemId)=>{
   setWishListData((prev)=>({...prev,[itemId]:1}))
+  await axios.post(`${backendUrl}/api/wish/add`,{productId:itemId},{headers:{Authorization: `Bearer ${token}`,}})
   }
   
 //delete from wishlist
-  const deleteFromWish=(itemId)=>{
+  const deleteFromWish=async(itemId)=>{
     setWishListData((prev)=>({...prev,[itemId]:0}))
+    await axios.delete(`${backendUrl}/api/wish/remove`,{data:{productId:itemId},headers:{Authorization: `Bearer ${token}`,}})
+  }
+
+  //fetch wishList data
+  const fetchWishList=async(token)=>{
+  try {
+    const {data}= await axios.get(`${backendUrl}/api/wish/fetch`,{headers:{Authorization:`Bearer ${token}`}})
+    if(data.success){
+    setWishListData(data.message)
+    }
+  } catch (error) {
+    console.log(error)
+  }
   }
 
 //fetch the name of user
@@ -124,6 +139,7 @@ const addToWish=(itemId)=>{
     createToken(sessionStorage.getItem('token'))
     await fetchUserData(sessionStorage.getItem('token'))
     await fetchCartData(sessionStorage.getItem('token'))
+    await fetchWishList(sessionStorage.getItem('token'))
     }
     await  FetchFishList();
   }
