@@ -1,6 +1,6 @@
 import fishModel from "../Models/fishModel.js";
 import { cloudinary } from "../Configuration/cloudinaryConfig.js";
-
+import sharp from "sharp";
 //controller for add fish to cloudinary and database
 const addFish=async(req,res)=>{
 const{name,category,description1,description2,description3,price,stock}=req.body;
@@ -9,7 +9,34 @@ const file=req.file;
  return res.status(400).json({succes:false,message:"all fields required"})
  }
 try {
-const fileBase64 = `data:${file.mimetype};base64,${file.buffer.toString("base64")}`;
+    let compressedBuffer;
+    let outputFormat = "jpeg"; 
+
+   
+    switch (file.mimetype) {
+        case "image/png":
+            outputFormat = "png";
+            compressedBuffer = await sharp(file.buffer).resize(800).png({ quality: 70 }).toBuffer();
+            break;
+        case "image/webp":
+            outputFormat = "webp";
+            compressedBuffer = await sharp(file.buffer).resize(800).webp({ quality: 70 }).toBuffer();
+            break;
+        case "image/avif":
+            outputFormat = "avif";
+            compressedBuffer = await sharp(file.buffer).resize(800).avif({ quality: 50 }).toBuffer();
+            break;
+        default:
+            
+            outputFormat = "jpeg";
+            compressedBuffer = await sharp(file.buffer).resize(800).jpeg({ quality: 70 }).toBuffer();
+            break;
+    }
+
+    // Convert compressed buffer to Base64 format
+    const fileBase64 = `data:image/${outputFormat};base64,${compressedBuffer.toString("base64")}`;
+
+
 const result=await cloudinary.uploader.upload(fileBase64,{
     folder:'fishHub',
     public_id:`image-${Date.now()}`,
