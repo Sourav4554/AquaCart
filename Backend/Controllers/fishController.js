@@ -27,7 +27,6 @@ try {
             compressedBuffer = await sharp(file.buffer).resize(800).avif({ quality: 50 }).toBuffer();
             break;
         default:
-            
             outputFormat = "jpeg";
             compressedBuffer = await sharp(file.buffer).resize(800).jpeg({ quality: 70 }).toBuffer();
             break;

@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';//used for toastify messages
 import Review from '../Review/Review';
 import Card from '../Card/Card';
 const ProductDisplay = ({product}) => {
-const {showReviewContainer,setShowReviewContainer,allReview,fishList,addToCart,cartData,addToWish,wishListData}=useContext(ProductContext);
+const {showReviewContainer,setShowReviewContainer,allReview,fishList,addToCart,cartData,addToWish,wishListData,token}=useContext(ProductContext);
 //state for managing styles and googlle description and review
     const[changeDes,setChangeDes]=useState('Description')
   //state for store the current category of the product
@@ -19,7 +19,11 @@ const sliceRelatedProducts=RelatedProducts.slice(0,4);
 
 //function for check cartdata already in cart
 const handleAddToCart=(_id)=>{
-  if(_id in cartData){
+  if(!token){
+  toast.error('please login before adding to cart');
+  return;
+  }
+  if(cartData[_id]>0){
   toast.info("Item Already in the Cart")
   }
   else{
