@@ -6,6 +6,7 @@ import userRouter from "./Routers/userRouter.js";
 import fishRouter from "./Routers/fishRouter.js";
 import adminRouter from "./Routers/adminRoute.js";
 import cartRouter from "./Routers/cartRouter.js";
+import wishListRouter from "./Routers/wishListRouter.js";
 
 const app=express();
 //port
@@ -21,6 +22,8 @@ app.use('/api/fish',fishRouter)
 app.use('/api/admin',adminRouter)
 //end point for cart
 app.use('/api/cart',cartRouter)
+//end point for wishlist
+app.use('/api/wish',wishListRouter)
 app.get('/',(req,res)=>{
     res.send("API WORKING")
     })
