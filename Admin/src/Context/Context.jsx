@@ -11,7 +11,8 @@ const Context = ({children}) => {
     const [showLogin, setShowLogin] = useState(false);
     //store fish details
     const[fishList,setFishList]=useState({});
-
+   //store userdata 
+   const[userData,setUserData]=useState({})
     //function for fetching fish
     const listFish=async()=>{
     const {data}=await axios.get(`${BackendUrl}/api/fish/list-fish`,{})
@@ -43,6 +44,21 @@ toast.error(data.message)
   toast.error(error.response.data.message)
 }
 }
+//function for fetch all users
+const fetchUsers=async(token)=>{
+try {
+  const {data}=await axios.post(`${BackendUrl}/api/admin/users`,{},{headers:{Authorization:`Bearer ${token}`}})
+  if(data.success){
+  setUserData(data.message)
+  }
+  else{
+  console.log(error)
+  }
+} catch (error) {
+  console.log(error)
+}
+}
+
     const requirements={
     BackendUrl,
     token,
@@ -52,7 +68,8 @@ toast.error(data.message)
     fishList,
     setFishList,
     listFish,
-    deleteFish
+    deleteFish,
+    userData
     }
 
     useEffect(()=>{
@@ -60,7 +77,8 @@ toast.error(data.message)
         if(sessionStorage.getItem('token')){
             setShowLogin(true)
             createToken(sessionStorage.getItem('token'))
-            await listFish()
+            await listFish();
+            await fetchUsers(sessionStorage.getItem('token'))
             }
     }
     loadData();

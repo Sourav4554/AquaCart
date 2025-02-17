@@ -20,7 +20,7 @@ const fetchAllUsers=async(req,res)=>{
     return res.status(400).json({success:false,message:"No user will be exists"})
     }
     else{
-    return res.status(200).json({success:false,message:userData})
+    return res.status(200).json({success:true,message:userData})
     }
     } catch (error) {
         console.log(error)
