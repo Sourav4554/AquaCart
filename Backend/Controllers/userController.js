@@ -223,6 +223,4 @@ const resendOtp=async(req,res)=>{
     return res.status(500).json({ message: 'Server error, please try again later....' });
     }
     }
-    
-
 export{Register,verifyEmail,Login,verifyResetPasswordOtp,forgottPassword,resetPassword,getUserData,resendOtp}
