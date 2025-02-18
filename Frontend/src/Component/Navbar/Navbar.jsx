@@ -8,11 +8,15 @@ import { motion, useScroll } from "framer-motion";
 const Navbar = () => {
 const { scrollYProgress } = useScroll();//used for animation on scroll navbar
 const [active,setActive]=useState(true);//state for listing nav details
-const{setShowSearch,token,createToken,userData}=useContext(ProductContext)
+const{setShowSearch,token,createToken,userData,cartData,cartNumbers,setCartNumbers}=useContext(ProductContext)
 const [style,setStyle]=useState('')//state for active state
 const[color,setColor]=useState(true)//state for color in scrolling time
 const location=useLocation();//taking the location
 const navigate=useNavigate()
+useEffect(()=>{
+setCartNumbers((prev)=>Object.keys(cartData).length)
+console.log(cartNumbers)
+},[cartData])
 //function for prevent page refreshing
 const preventRefreshig=(e)=>{
 e.preventDefault();
@@ -59,7 +63,7 @@ setColor(false);
             {/*for icons mid section*/}
             <div className='for-icons'>
             <Link to='/collections'> <img  src={Requirements.searchicon} alt="" onClick={()=>{setStyle('search');setShowSearch(true)}} className={style==='search'?"active":""} /></Link>
-            <Link to='/cart'> <img src={Requirements.carticon} alt="" onClick={()=>setStyle('cart')} className={style==='cart'?"active":""}/></Link>
+            <Link to='/cart'> <img src={Requirements.carticon} alt="" onClick={()=>setStyle('cart')} className={style==='cart'?"active":""}/><span className='number'>{cartNumbers}</span></Link>
             <Link to='/wishlist'> <img src={Requirements.wishlist} alt="" onClick={()=>setStyle('wishlist')}className={style==='wishlist'?"active":""}/></Link>
              {
              active?(

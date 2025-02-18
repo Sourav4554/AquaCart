@@ -149,6 +149,12 @@
      transition: all 0.5 ease;
      cursor: pointer;
     }
+    .number{
+    font-size: 16px;
+    color: orangered;
+    position: absolute;
+    right: 67%;
+    }
     .sub li:hover{
     color: #178ca4;
     }
@@ -168,6 +174,10 @@
     .for-list{
         top: 95%;
         right: 24%;
+    }
+    .number{
+    right: 70%;
+    font-size: 20px;
     }
     .for-list-colorchange{
         top: 95%;
@@ -202,6 +212,10 @@
         .for-logo img{
         height: 50px;
         margin-left: 0px;
+        }
+        .number{
+        right: 71%;
+        position: absolute;
         }
         }
         @media(max-width:564px){

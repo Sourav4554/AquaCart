@@ -185,7 +185,7 @@ const resetPassword=async(req,res)=>{
 const getUserData=async(req,res)=>{
     const userId=req.body.userId;
     try {
-        const user=await userModel.findById(userId).select('name');
+        const user=await userModel.findById(userId)
         if(!user){
         return res.status(400).json({success:false,message:'no user Exist'})
         }

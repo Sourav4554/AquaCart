@@ -25,6 +25,8 @@ const [showOtpContainer, setShowOtpContainer] = useState(false);
 const[userData,setUserData]=useState({})
 //storing fish list
 const[fishList,setFishList]=useState([])
+//state for managing cart item numbers
+const[cartNumbers,setCartNumbers]=useState(Object.keys(cartData).length)
 //add to cart
 const addToCart=async(itemId)=>{
 if(!cartData[itemId]){
@@ -37,17 +39,30 @@ await axios.post(`${backendUrl}/api/cart/addcart`,{productId:itemId},{headers:{A
 }
 
 //remove from cart
-const removeFromCart=async(itemId)=>{
-setCartData((prev)=>({...prev,[itemId]:prev[itemId]-1}))
-await axios.post(`${backendUrl}/api/cart/removecart`,{productId:itemId},{headers:{Authorization: `Bearer ${token}`,}})
-}
+const removeFromCart = async (itemId) => {
+  setCartData((prev) => {
+    const updatedCart = { ...prev };
+    updatedCart[itemId] = updatedCart[itemId] - 1;
+    if (updatedCart[itemId] <= 0) {
+      delete updatedCart[itemId]; 
+    }
+    return updatedCart;
+  });
+  setCartNumbers((prev) => Object.keys(cartData).length);
+  await axios.post(`${backendUrl}/api/cart/removecart`, { productId: itemId }, { headers: { Authorization: `Bearer ${token}` } });
+};
 
 //delete cart data
 const deleteCartData=async(itemId)=>{
-setCartData((prev)=>({...prev,[itemId]:0}))
+setCartData((prev)=>{
+const updatedCart={...prev}
+delete updatedCart[itemId]
+return updatedCart;
+})
+setCartNumbers((prev)=>Object.keys(cartData).length)
 await axios.delete(`${backendUrl}/api/cart/deletecart`,{data:{ productId: itemId },headers:{Authorization: `Bearer ${token}`,}})
-}
 
+}
 //fetch cartdata
 const fetchCartData=async(token)=>{
 try {
@@ -172,7 +187,9 @@ token,
 createToken,
 userData,
 showOtpContainer,
-setShowOtpContainer
+setShowOtpContainer,
+cartNumbers,
+setCartNumbers
 }
   return (
     <div>
