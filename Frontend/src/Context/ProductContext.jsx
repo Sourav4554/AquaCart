@@ -64,16 +64,34 @@ await axios.delete(`${backendUrl}/api/cart/deletecart`,{data:{ productId: itemId
 
 }
 //fetch cartdata
-const fetchCartData=async(token)=>{
-try {
-  const {data}=await axios.get(`${backendUrl}/api/cart/cartdata`,{headers:{Authorization: `Bearer ${token}`,}})
-  if(data.success){
-  setCartData(data.message)
+const fetchCartData = async (token) => {
+  try {
+    const { data } = await axios.get(`${backendUrl}/api/cart/cartdata`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (data.success) {
+      let updatedCart = { ...data.message }; // Get the cart data from API
+      let updatedCartNumbers = 0;
+
+      for (const itemId in updatedCart) {
+        const product = fishList.find((product) => product._id === itemId);
+        if (!product || product.stock <= 0) {
+          delete updatedCart[itemId]; 
+          await deleteCartData(itemId); 
+        } else {
+          updatedCartNumbers++;
+        }
+      }
+
+      setCartData(updatedCart);
+      setCartNumbers(updatedCartNumbers);
+    }
+  } catch (error) {
+    console.log(error);
   }
-} catch (error) {
-  console.log(error)
-}
-}
+};
+
 
 //calculate total amount in cart
  const calculateTotalAmout=()=>{
