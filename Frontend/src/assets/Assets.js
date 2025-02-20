@@ -317,6 +317,7 @@ const ProductLists = [
         description3: `The Veiltail Betta is a timeless freshwater fish, celebrated for its long, ribbon-like fins and vibrant coloration. 
                       Its easy care requirements and mesmerizing appearance make it an ideal choice for both novice and experienced aquarists seeking to add a touch of elegance to their aquariums.`,
       },
+      //goldfish//
       {
         _id: 17,
         name: "Bubble Eye Goldfish",
@@ -510,6 +511,7 @@ const ProductLists = [
             description3: `Snake Skin Guppies feature unique patterns resembling the scales of a snake. Their vibrant colors and unique appearance make them highly desirable for aquarium enthusiasts.
                             These guppies are hardy and easy to care for, thriving in well-maintained tanks with stable conditions.`
         },
+        //molly//
         {
             _id: 33,
             name: "Black Balloon Molly",
@@ -607,6 +609,7 @@ const ProductLists = [
                             Their striking appearance and active nature make them a wonderful addition to any tank.`
         },
 
+        //tetra//
         {
             _id: 41,
             name: "Blackskirt Tetra",
@@ -703,6 +706,7 @@ const ProductLists = [
             description3: `Serpae Tetras are striking with their red bodies and black markings. These fish are social and peaceful, making them a good fit for community aquariums.
                             They are easy to care for and thrive in groups, adding vibrant color to your tank.`
         },
+        //shrimp//
         {
             _id: 49,
             name: "Amano Shrimp",
@@ -799,6 +803,7 @@ const ProductLists = [
             description3: `Yellow Shrimp are a popular choice for freshwater aquariums, known for their bright yellow color. These shrimp are peaceful and easy to care for, thriving in a well-maintained environment.
                             They are also effective at keeping your tank clean by scavenging for leftover food.`
         },
+        //platy
         {
             _id: 57,
             name: "Bumble Bee Platy",

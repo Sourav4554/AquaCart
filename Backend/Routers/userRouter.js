@@ -1,7 +1,6 @@
 import express from 'express'
 import { Register, verifyEmail,Login,forgottPassword,verifyResetPasswordOtp,resetPassword,resendOtp,getUserData} from '../Controllers/userController.js';
 import { authMiddleware } from '../Middlewares/auth.js';
-import { adminAuthMiddleware } from '../Middlewares/adminAuth.js';
 const userRouter=express.Router();
 
 userRouter.post('/register',Register);

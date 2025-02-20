@@ -45,9 +45,9 @@ toast.error(data.message)
 }
 }
 //function for fetch all users
-const fetchUsers=async(token)=>{
+const fetchUsers=async()=>{
 try {
-  const {data}=await axios.post(`${BackendUrl}/api/admin/users`,{},{headers:{Authorization:`Bearer ${token}`}})
+  const {data}=await axios.post(`${BackendUrl}/api/admin/users`,{})
   if(data.success){
   setUserData(data.message)
   }
@@ -58,6 +58,9 @@ try {
   console.log(error)
 }
 }
+useEffect(()=>{
+console.log(userData)
+},[userData])
 
     const requirements={
     BackendUrl,
@@ -69,7 +72,8 @@ try {
     setFishList,
     listFish,
     deleteFish,
-    userData
+    userData,
+    fetchUsers
     }
 
     useEffect(()=>{
@@ -77,8 +81,8 @@ try {
         if(sessionStorage.getItem('token')){
             setShowLogin(true)
             createToken(sessionStorage.getItem('token'))
+            await fetchUsers()
             await listFish();
-            await fetchUsers(sessionStorage.getItem('token'))
             }
     }
     loadData();

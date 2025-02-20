@@ -5,6 +5,6 @@ import { adminAuthMiddleware } from '../Middlewares/adminAuth.js';
 
 const adminRouter=express.Router();
 adminRouter.post('/login',adminLogin);
-adminRouter.post('/users',adminAuthMiddleware,fetchAllUsers)
+adminRouter.post('/users',fetchAllUsers)
 
 export default adminRouter
