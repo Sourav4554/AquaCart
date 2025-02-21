@@ -4,12 +4,14 @@ import { transporter } from "../Configuration/emailConfig.js";
 //function for sending emailVerification otp
 export const otpEmail=async(email,otp)=>{
     try {
-        await transporter.sendMail({
+            await transporter.sendMail({
             from:process.env.SENDER_EMAIL,
             to:email,
             subject:"verify your account",
-            html:EMAIL_VERIFY_TEMPLATE.replace("{{email}}",email).replace("{{otp}}",otp)
+            html:EMAIL_VERIFY_TEMPLATE.replace("{{otp}}",otp)
             })
+           
+
     } catch (error) {
         console.log("Error sending OTP email:", error);
     }
@@ -22,7 +24,7 @@ export const otpEmail=async(email,otp)=>{
                 from:process.env.SENDER_EMAIL,
                 to:email,
                 subject:"Welcome to Aquacart",
-                html:LOGIN_EMAIL_TEMPLATE.replace("[User's Name]",name)
+                html:LOGIN_EMAIL_TEMPLATE.replace("{{name}}",name)
                 })
         } catch (error) {
             console.log("Error sending OTP email:", error);
@@ -36,7 +38,7 @@ export const otpEmail=async(email,otp)=>{
                     from:process.env.SENDER_EMAIL,
                     to:email,
                     subject:"Reset your password",
-                    html:EMAIL_VERIFY_TEMPLATE_2.replace("{{email}}",email).replace("{{otp}}",otp)
+                    html:EMAIL_VERIFY_TEMPLATE_2.replace("{{otp}}",otp)
                     })
             } catch (error) {
                 console.log("Error sending OTP email:", error);
