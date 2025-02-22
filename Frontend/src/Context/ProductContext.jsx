@@ -63,35 +63,34 @@ setCartNumbers((prev)=>Object.keys(cartData).length)
 await axios.delete(`${backendUrl}/api/cart/deletecart`,{data:{ productId: itemId },headers:{Authorization: `Bearer ${token}`,}})
 
 }
-//fetch cartdata
-const fetchCartData = async (token) => {
+
+const fetchCartData=async(token)=>{
   try {
-    const { data } = await axios.get(`${backendUrl}/api/cart/cartdata`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    if (data.success) {
-      let updatedCart = { ...data.message }; // Get the cart data from API
-      let updatedCartNumbers = 0;
-
-      for (const itemId in updatedCart) {
-        const product = fishList.find((product) => product._id === itemId);
-        if (!product || product.stock <= 0) {
+   
+    const {data}=await axios.get(`${backendUrl}/api/cart/cartdata`,{headers:{Authorization: `Bearer ${token}`,}})
+    if(data.success){
+    setCartData(data.message)
+    let updatedCart = { ...data.message };
+  
+    let updatedCartNumbers = 0;
+    for (const itemId in updatedCart) {
+      if(!fishList|| fishList.length===0){
+        console.log('fish list is empty')
+        return ;
+        }
+      const product = fishList.find((product) => product._id === itemId);
+       if (product.stock <= 0) {
           delete updatedCart[itemId]; 
           await deleteCartData(itemId); 
-        } else {
-          updatedCartNumbers++;
-        }
-      }
-
-      setCartData(updatedCart);
-      setCartNumbers(updatedCartNumbers);
-    }
+       } else {
+         updatedCartNumbers++;
+       }
+       setCartNumbers(updatedCartNumbers);
+          }}
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
-
+  }
 
 //calculate total amount in cart
  const calculateTotalAmout=()=>{
@@ -171,15 +170,18 @@ const addToWish=async(itemId)=>{
     if(sessionStorage.getItem("token")){
     createToken(sessionStorage.getItem('token'))
     await fetchUserData(sessionStorage.getItem('token'))
-    await fetchCartData(sessionStorage.getItem('token'))
     await fetchWishList(sessionStorage.getItem('token'))
-    }
     await  FetchFishList();
+    }
   }
     loadData();
     },[])
 
-
+useEffect(()=>{
+if(token&&fishList.length>0){
+fetchCartData(token)
+}
+},[fishList,token])
 const Element={
 fishList,
 showSearch,
