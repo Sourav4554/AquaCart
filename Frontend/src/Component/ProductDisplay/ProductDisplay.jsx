@@ -34,6 +34,10 @@ const handleAddToCart=(_id)=>{
 
   //check for wishlist-data already in wishlist
   const handleAddToWish=(_id)=>{
+    if(!token){
+      toast.error('please login before adding to WishList');
+      return;
+      }
     if(_id in wishListData){
       toast.info("Item Already in the WishList")
     }

@@ -171,8 +171,8 @@ const addToWish=async(itemId)=>{
     createToken(sessionStorage.getItem('token'))
     await fetchUserData(sessionStorage.getItem('token'))
     await fetchWishList(sessionStorage.getItem('token'))
-    await  FetchFishList();
     }
+    await  FetchFishList();
   }
     loadData();
     },[])
