@@ -1,4 +1,5 @@
 import promocodeModel from "../Models/promocodeModel.js";
+import { promocodeEmail } from "../Utilities/email.js";
 
 //controller for add promocode 
 const addPromocode=async(req,res)=>{
@@ -56,4 +57,50 @@ return res.status(200).json({success:true,message:"Promocode will be removed"})
     return res.status(500).json({success:false,message:"Internal Server Error"}) 
 }
 }
-export {addPromocode,promocodeList,deletePromocode}
+//controller for send randomly selected promocode through email
+const sendPromocode=async(req,res)=>{
+const{email}=req.body;
+try {
+    const promocodeDetails= await promocodeModel.aggregate([{$sample:{size:1}}])
+    if(!promocodeDetails.length){
+    return res.status(400).json({success:false,message:"No promocode found"})
+    }
+    promocodeEmail(email,promocodeDetails[0].promocode)
+    return res.status(200).json({success:true, message: 'A promocode is send to your email',});
+} catch (error) {  
+    return res.status(500).json({success:false,message:"Internal Server Error"}) 
+}
+}
+
+//controller for apply promocode 
+const applyPromocode=async(req,res)=>{
+const{promocode}=req.body;
+if(!promocode){
+return res.status(400).json({success:false,message:"promocode not found"})
+}
+try {
+    if (!req.session) {
+        return res.status(500).json({ success: false, message: "Session not initialized" });
+      }
+    if(!req.session.usedPromoCodes){
+    req.session.usedPromoCodes=[];
+    }
+    if(req.session.usedPromoCodes.includes(promocode)){
+         return res.status(400).json({success:false,message:"Promocode already used in this session"})
+        }
+    const promo=await promocodeModel.findOne({promocode});
+
+    if(!promo){
+        return res.status(400).json({success:false,message:"Invalid promocode"})
+          }
+    if (new Date(promo.expiryDate) < new Date()) {
+        return res.status(400).json({ success: false, message: "Promo code has expired" });
+      }
+    req.session.usedPromoCodes.push(promocode)
+    return res.status(200).json({success:true,message:"Succesfully applied promocode",discountPercentage:promo.discountPercentage})
+} catch (error) {
+    console.log(error)
+     return res.status(500).json({success:false,message:"Internal Server Error"}) 
+}
+}
+export {addPromocode,promocodeList,deletePromocode,sendPromocode,applyPromocode}

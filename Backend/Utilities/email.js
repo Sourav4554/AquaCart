@@ -44,3 +44,16 @@ export const otpEmail=async(email,otp)=>{
                 console.log("Error sending OTP email:", error);
             }
             }
+//function for sending promocode
+export const promocodeEmail=async(email,promocode)=>{
+    try {
+        await transporter.sendMail({
+            from:process.env.SENDER_EMAIL,
+            to:email,
+            subject:"Promocode is here",
+            html:`<p>your promocode is </p> <h3>${promocode}</h3>`
+            })
+    } catch (error) {
+        console.log("Error sending promocode:", error);
+    }
+    }
