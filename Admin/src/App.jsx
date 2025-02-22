@@ -13,6 +13,8 @@ import Order from './Pages/Order/Order';
 import Analytic from './Pages/Analytics/Analytic';
 import AddProduct from './Pages/AddProduct/AddProduct';
 import UpdateProduct from './Pages/UpdateProduct/UpdateProduct';
+import Promocode from './Pages/Promcode/Promocode';
+import AddPromocode from './Pages/AddPromocode/AddPromocode';
 
 
 const App = () => {
@@ -37,6 +39,8 @@ const App = () => {
               <Route path="/analytics" element={<Analytic />} />
               <Route path="/productadd" element={<AddProduct />} />
               <Route path='/updateproduct/:id' element={<UpdateProduct/>}/>
+              <Route path='/promocodes' element={<Promocode/>}/>
+              <Route path='/promoadd' element={<AddPromocode/>}/>
             </Routes>
             </Box>
           </Box>

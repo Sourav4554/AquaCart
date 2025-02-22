@@ -7,8 +7,12 @@ if(!promocode || !discountPercentage || !expiryDate || !usageLimit){
 return res.status(400).json({success:false,message:"All fields required"})
 }
 try {
+    const promocodeExist=await promocodeModel.findOne({promocode});
+    if(promocodeExist){
+    return res.status(400).json({success:false,message:"Promocode already exist"})
+    }
     const ExpiryDateFormated=new Date();
-    ExpiryDateFormated.setDate(ExpiryDateFormated.getDate()+expiryDate)
+    ExpiryDateFormated.setDate(ExpiryDateFormated.getDate()+Number(expiryDate))
     const getExpiryDate=ExpiryDateFormated.toISOString();
     const promo=new promocodeModel({
     promocode,
@@ -17,7 +21,7 @@ try {
     usageLimit
     });
     await promo.save();
-    return res.status(200).json({required:true,message:"Promocode will be Added"})
+    return res.status(200).json({success:true,message:"Promocode will be Added"})
 } catch (error) {
     console.log(error)
     return res.status(500).json({success:false,message:"Internal Server Error"})
@@ -27,7 +31,7 @@ try {
 //controller for list promocode
 const promocodeList=async(req,res)=>{
 try {
-    const promocode=await promocodeModel .find({})
+    const promocode=await promocodeModel .find({}).sort({_id:-1})
     if(!promocode){
     return res.status(400).json({success:false,message:"No promocode will exist"})
     }

@@ -4,6 +4,7 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import PeopleIcon from '@mui/icons-material/People';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BarChartIcon from "@mui/icons-material/BarChart";
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import './Sidebar.css'
 import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { NavLink } from 'react-router-dom';
@@ -67,9 +68,20 @@ const Sidebar = () => {
    </ListItemButton>
   </ListItem>
 </NavLink>
+{/*fifth item */}
+<NavLink to='/promocodes' style={{ textDecoration: "none", color: "inherit" }}>
+  <ListItem disablePadding>
 
+   <ListItemButton>
+   <ListItemIcon>
+    <LocalOfferIcon/>
+   </ListItemIcon>
+    <ListItemText  sx={{ display: { xs: "none",md:'block',sm:'block',lg:'block'} }}>Promocodes</ListItemText>
+   </ListItemButton>
+  </ListItem>
+  </NavLink>
 
-     {/*fifth item */}
+     {/*fourth item */}
      <NavLink to='/analytics' style={{ textDecoration: "none", color: "inherit" }}>
      <ListItem disablePadding>
    <ListItemButton>

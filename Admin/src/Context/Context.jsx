@@ -13,6 +13,8 @@ const Context = ({children}) => {
     const[fishList,setFishList]=useState({});
    //store userdata 
    const[userData,setUserData]=useState({})
+   //store promocodes
+   const[promocodes,setPromocodes]=useState({})
     //function for fetching fish
     const listFish=async()=>{
     const {data}=await axios.get(`${BackendUrl}/api/fish/list-fish`,{})
@@ -58,9 +60,20 @@ try {
   console.log(error)
 }
 }
-useEffect(()=>{
-console.log(userData)
-},[userData])
+//function for fetch promocodes
+const fetchPromocodes=async()=>{
+  const {data}=await axios.get(`${BackendUrl}/api/promo/list`,{})
+ try {
+  if(data.success){
+    setPromocodes(data.message)
+    }
+    else{
+    console.log(data.message)
+    }
+ } catch (error) {
+  console.log(error)
+ }
+  }
 
     const requirements={
     BackendUrl,
@@ -73,7 +86,9 @@ console.log(userData)
     listFish,
     deleteFish,
     userData,
-    fetchUsers
+    fetchUsers,
+    promocodes,
+    fetchPromocodes
     }
 
     useEffect(()=>{
@@ -83,6 +98,7 @@ console.log(userData)
             createToken(sessionStorage.getItem('token'))
             await fetchUsers()
             await listFish();
+            await fetchPromocodes()
             }
     }
     loadData();
