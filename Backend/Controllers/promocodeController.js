@@ -74,33 +74,32 @@ try {
 
 //controller for apply promocode 
 const applyPromocode=async(req,res)=>{
-const{promocode}=req.body;
+const{promocode,userId}=req.body;
 if(!promocode){
 return res.status(400).json({success:false,message:"promocode not found"})
 }
 try {
-    if (!req.session) {
-        return res.status(500).json({ success: false, message: "Session not initialized" });
-      }
-    if(!req.session.usedPromoCodes){
-    req.session.usedPromoCodes=[];
-    }
-    if(req.session.usedPromoCodes.includes(promocode)){
-         return res.status(400).json({success:false,message:"Promocode already used in this session"})
-        }
     const promo=await promocodeModel.findOne({promocode});
-
     if(!promo){
         return res.status(400).json({success:false,message:"Invalid promocode"})
-          }
+        }
+    if (promo.usersUsed.includes(userId)) {
+        return res.status(400).json({ success: false, message: 'Promo code already used ' });
+        }
+      
     if (new Date(promo.expiryDate) < new Date()) {
         return res.status(400).json({ success: false, message: "Promo code has expired" });
       }
-    req.session.usedPromoCodes.push(promocode)
+    if (promo.usedLimit && promo.usersUsed.length >= promo.usedLimit) {
+        return res.status(400).json({ success: false, message: "Expired promocode " });
+    }
+    await promocodeModel.updateOne({ promocode }, { $push: { usersUsed: userId } });
     return res.status(200).json({success:true,message:"Succesfully applied promocode",discountPercentage:promo.discountPercentage})
 } catch (error) {
     console.log(error)
      return res.status(500).json({success:false,message:"Internal Server Error"}) 
 }
 }
-export {addPromocode,promocodeList,deletePromocode,sendPromocode,applyPromocode}
+
+
+export {addPromocode,promocodeList,deletePromocode,sendPromocode,applyPromocode,}

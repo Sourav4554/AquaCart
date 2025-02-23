@@ -31,6 +31,7 @@ try {
             <TableCell align='center'>Promocode</TableCell>
             <TableCell align='center'>Discount Percentage</TableCell>
             <TableCell align='center'>Used Limit</TableCell>
+            <TableCell align='center'>used No of users</TableCell>
             <TableCell align='center'>Created Date</TableCell>
             <TableCell align='center'>Expiry Date</TableCell>
             <TableCell align='center'>Remove</TableCell>
@@ -42,6 +43,7 @@ try {
               <TableCell align='center'>{row.promocode}</TableCell>
               <TableCell align='center'>{row.discountPercentage}%</TableCell>
               <TableCell align='center'>{row.usageLimit}</TableCell>
+              <TableCell align='center'>{row.usersUsed.length}</TableCell>
               <TableCell align='center'>{new Date(row.createdAt).toLocaleDateString()}</TableCell>
               <TableCell align='center'>{new Date(row.expiryDate).toLocaleDateString()}</TableCell>
               <TableCell align='center'>

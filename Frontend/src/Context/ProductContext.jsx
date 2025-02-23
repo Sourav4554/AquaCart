@@ -1,6 +1,6 @@
 import React, { createContext, useState,useEffect } from 'react';
 import axios from 'axios';
-import { data } from 'react-router-dom';
+
 export const ProductContext=createContext(null)
 const ProductContextProvider = ({children}) => {
 //backend url
@@ -27,6 +27,8 @@ const[userData,setUserData]=useState({})
 const[fishList,setFishList]=useState([])
 //state for managing cart item numbers
 const[cartNumbers,setCartNumbers]=useState(Object.keys(cartData).length)
+//state for storing promocode discount
+const[promocodeDiscount,setPromocodeDiscount]=useState(0)
 //add to cart
 const addToCart=async(itemId)=>{
 if(!cartData[itemId]){
@@ -106,7 +108,8 @@ const fetchCartData=async(token)=>{
 } 
  }
  }
- return TotalAmount;
+ const discount=(promocodeDiscount/100)*TotalAmount;
+ return TotalAmount-discount;
 }
 
 //add to wishlist
@@ -209,7 +212,9 @@ userData,
 showOtpContainer,
 setShowOtpContainer,
 cartNumbers,
-setCartNumbers
+setCartNumbers,
+promocodeDiscount,
+setPromocodeDiscount
 }
   return (
     <div>

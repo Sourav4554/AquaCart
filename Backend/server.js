@@ -8,7 +8,6 @@ import adminRouter from "./Routers/adminRoute.js";
 import cartRouter from "./Routers/cartRouter.js";
 import wishListRouter from "./Routers/wishListRouter.js";
 import promocodeRouter from "./Routers/promocodeRouter.js";
-import session from "express-session";
 
 const app=express();
 //port
@@ -16,13 +15,6 @@ const PORT=process.env.PORT||4000
 app.use(cors())
 app.use(express.json())
 
-//section configuration
-app.use(session({
-    secret:process.env.SESSION_SECRET,
-    resave:true,
-    saveUninitialized:true,
-    cookie:{secure:false}
-    }))
 //end point for user
 app.use('/api/user',userRouter)
 connectDatabase();
