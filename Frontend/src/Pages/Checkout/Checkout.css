@@ -1,0 +1,119 @@
+.place-order{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    margin-top: 100px;
+    margin-left: 20px;
+    }
+    .place-order-left{
+    width: 100%;
+    max-width: max(30%,500px);
+    }
+ 
+      
+    .place-order-left .title{
+    font-size: max(3vw,20px);
+    font-weight: 600;
+    margin-bottom: 50px;
+    }
+    .place-order-left input{
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 10px;
+    padding: 10px;
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    outline-color: #2c2c51;
+    }
+    .place-order-left .multy-fields{
+    display: flex;
+    gap: 10px;
+    }
+    .place-order-right{
+    width: 100%;
+    /* max-width: max(100%,500px); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+   
+    }
+    .cart-total-1{
+     width: 60%;
+     padding: 20px 20px;
+     display: flex;
+     border:1px solid #2c2c51;
+     flex-direction: column;
+     gap: 10px;
+     justify-content: center;
+     margin-top: 60px;
+    }
+    .cart-total-1 .cart-total-details {
+        display: flex;
+        justify-content: space-between;
+        color: #555;
+      }
+      .payment-options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+      }
+      .main-pay-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        padding: 12px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: bold;
+      }
+      .razorpay {
+        background-color: #007bff;
+        color: white;
+      }
+      
+      .stripe {
+        background-color: #6c5ce7;
+        color: white;
+      }
+      .main-pay-button:hover {
+        opacity: 0.8;
+      }      
+
+    @media (max-width:1034px){
+      
+            .place-order{
+                /* flex-direction: column; */
+                justify-content: start;
+                align-items: center;
+                }
+        .cart-total-1{
+        width: 100%;
+        }
+        .place-order{
+        margin-top: 15%;
+        }
+    }
+    @media(max-width:764px){
+    .multy-fields{
+    flex-direction: column;
+    }
+    .place-order{
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    }
+    .title{
+    font-size: 20px;
+    }
+    .cart-total-1{
+    width: 100%;
+    padding: 5px 10px;
+    }
+    }

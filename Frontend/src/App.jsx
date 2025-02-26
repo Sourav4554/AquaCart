@@ -12,6 +12,7 @@ import { ToastContainer } from 'react-toastify'
 import WishList from './Pages/Wishlist/WishList'
 import Login from './Pages/Login/Login'
 import Email from './Pages/Email/Email'
+import Checkout from './Pages/Checkout/Checkout'
 const App = () => {
   return (
     <div>
@@ -28,6 +29,7 @@ const App = () => {
          <Route path='/wishlist' element={<WishList/>}/>
          <Route path='/login' element={<Login />}/>
          <Route path='/email' element={<Email/>}/>
+         <Route path='/checkout' element={<Checkout/>}/>
       </Routes>
       <Footer/>
       </BrowserRouter>    

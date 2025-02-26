@@ -3,8 +3,10 @@ import './Cart.css'
 import {toast} from 'react-toastify'
 import { ProductContext } from '../../Context/ProductContext'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
+  const navigate=useNavigate();
   const {fishList,cartData,addToCart,removeFromCart,deleteCartData,calculateTotalAmout,token,userData,backendUrl,promocodeDiscount,setPromocodeDiscount}=useContext(ProductContext);
   //state for store promocode
   const[promocode,setPromocode]=useState('')
@@ -127,7 +129,7 @@ setPromocodeDiscount(0)
         </div>
       </div>
  
-      <button >PROCEED TO CHECKOUT</button>
+      <button onClick={()=>{navigate('/checkout')}}>PROCEED TO CHECKOUT</button>
     
     </div> 
     {/*promocode section */}
