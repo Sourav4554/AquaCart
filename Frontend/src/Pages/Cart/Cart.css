@@ -98,8 +98,9 @@
   }
   .cart-promocode .condition{
   color: gray;
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 14px;
+  margin: 5px;
+
   }
   .cart-promocode-input input {
     background: transparent;

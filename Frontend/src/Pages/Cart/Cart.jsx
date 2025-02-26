@@ -133,13 +133,18 @@ setPromocodeDiscount(0)
     {/*promocode section */}
     <div className="cart-promocode">
       <div >
+       
+        <p className='condition'><b>condition1</b>:subtotal greater than 2000</p>
+        <p className='condition'><b>condition2</b>:if you are ready for a purchase only use promocode </p>
+        <p className='condition'><b>condition3</b>:Do not refresh or go to other pages after apply promocodes</p>
+        <p className='condition'><b>condition4</b>:Do not decrease subtotal below 2000 after apply promocode</p>
+
         <p>Enter Your Promocode here</p>
-        <p className='condition'>condition:subtotal greater than 2000</p>
         <div className='cart-promocode-input'>
           <input type="text" placeholder='promocode' name='promocode' value={promocode} onChange={(e)=>setPromocode(e.target.value)}/>
           <button onClick={()=>submitPromoCode()}>Submit</button>
         </div>
-        {token&&<button className='button-send-promocode' onClick={()=>sendPromocode()}>Send Promocode in Mail</button>}
+       <button className='button-send-promocode' onClick={()=>sendPromocode()}>Send Promocode in Mail</button>
       </div>
     </div>
   </div>
