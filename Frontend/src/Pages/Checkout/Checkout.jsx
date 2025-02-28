@@ -3,8 +3,13 @@ import { FaCcStripe, FaCashRegister } from "react-icons/fa";
 import { SiRazorpay } from "react-icons/si";
 import './Checkout.css'
 import { ProductContext } from '../../Context/ProductContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 const Checkout = () => {
-const {calculateTotalAmout}=useContext(ProductContext)
+const {calculateTotalAmout,cartData,fishList,backendUrl,token,setCartData}=useContext(ProductContext);
+
+const[payMethod,setPayMethod]=useState('cod');
     const [data, setData] = useState({
         firstName: "",
         lastName: "",
@@ -13,36 +18,67 @@ const {calculateTotalAmout}=useContext(ProductContext)
         city: "",
         state: "",
         pincode: "",
-        country: "",
+        district: "",
         phone: "",
       });
  //store data from the form
  const onchangeHandler = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
+    const {name,value} = event.target;
     setData(data => ({ ...data, [name]: value }));
-  
   };
-
+//function for order
+const submitHandler=async(e)=>{
+  e.preventDefault();
+  
+try {
+let orderItems=[];
+for(const item in cartData){
+const products=fishList.find((product)=>product._id===item)
+if(products){
+orderItems.push(products)
+}
+}
+const orderData={
+items:orderItems,
+amount:calculateTotalAmout()+50,
+address:data
+}
+switch(payMethod){
+  case 'cod':
+      const {data}=await axios.post(`${backendUrl}/api/order/cod`,orderData,{headers:{Authorization: `Bearer ${token}`,}})
+      if(data.success){
+      toast.success(data.message);
+      setCartData({})
+      }
+      else{
+      toast.error(data.message)
+      }
+      break;
+}
+} catch (error) {
+  toast.error(error.response.data.message)
+  console.log(error)
+}
+}
   return (
-    <form className="place-order" >
+    <form className="place-order" onSubmit={submitHandler}>
       <div className="place-order-left">
         <p className='title'>Delivery Information</p>
         <div className="multy-fields">
           <input type="text" name="firstName" placeholder='First name' value={data.firstName} onChange={onchangeHandler} required />
           <input type="text" name="lastName" placeholder='Last name' value={data.lastName} onChange={onchangeHandler} required />
         </div>
-        <input type="text" placeholder='Email address' name='email' value={data.email} onChange={onchangeHandler} required />
+        <input type="email" placeholder='Email address' name='email' value={data.email} onChange={onchangeHandler} required />
         <input type="text" placeholder='Street' name='street' value={data.street} onChange={onchangeHandler} required />
         <div className="multy-fields">
           <input type="text" name="city" placeholder='City' value={data.city} onChange={onchangeHandler} required />
           <input type="text" name="state" placeholder='State' value={data.state} onChange={onchangeHandler} required />
         </div>
         <div className="multy-fields">
-          <input type="text" name="pincode" placeholder='Pin Code' value={data.pincode} onChange={onchangeHandler} required />
-          <input type="text" name="country" placeholder='Country' value={data.country} onChange={onchangeHandler} required />
+          <input type="number" name="pincode" placeholder='Pin Code' value={data.pincode} onChange={onchangeHandler} required />
+          <input type="text" name="district" placeholder='District' value={data.district} onChange={onchangeHandler} required />
         </div>
-        <input type="text" placeholder='Phone' name='phone' value={data.phone} onChange={onchangeHandler} required />
+        <input type="tel" placeholder='Phone' name='phone' value={data.phone}pattern="(\+91)?[6-9][0-9]{9}" onChange={onchangeHandler} required />
       </div>
       <div className="place-order-right">
         <div className="cart-total-1">
@@ -66,18 +102,18 @@ const {calculateTotalAmout}=useContext(ProductContext)
           
             
           <div className="payment-options">
-          <button type="submit" className="main-pay-button cash">
+          <button type="submit" className="main-pay-button cash" onClick={()=>setPayMethod('cod')}>
             <FaCashRegister size={18} style={{ marginRight: "8px" }} />
             Cash on Delivery
           </button>
 
-          <button type="submit" className="main-pay-button razorpay">
+          <button type="submit" className="main-pay-button razorpay" onClick={()=>setPayMethod('razorpay')}>
             <SiRazorpay size={18} style={{ marginRight: "8px" }} />
             Pay with Razorpay
           </button>
 
 
-          <button type="submit" className="main-pay-button stripe">
+          <button type="submit" className="main-pay-button stripe" onClick={()=>setPayMethod('stripe')}>
             <FaCcStripe size={18} style={{ marginRight: "8px" }} />
             Pay with Stripe
           </button>

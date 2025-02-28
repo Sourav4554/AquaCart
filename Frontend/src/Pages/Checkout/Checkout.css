@@ -108,6 +108,11 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    margin-top: 25%;
+    margin-right: 10%;
+    }
+    .place-order-right{
+    margin-top: 20px;
     }
     .title{
     font-size: 20px;
@@ -116,4 +121,5 @@
     width: 100%;
     padding: 5px 10px;
     }
+ 
     }

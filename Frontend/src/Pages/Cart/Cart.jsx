@@ -57,6 +57,15 @@ try {
 }
 }
 
+const checkOutHandler=()=>{
+
+if(!calculateTotalAmout()){
+toast.info('No cart items');
+}
+else{
+navigate('/checkout')
+}
+}
 
  useEffect(()=>{
 if(calculateTotalAmout()<2000){
@@ -129,7 +138,7 @@ setPromocodeDiscount(0)
         </div>
       </div>
  
-      <button onClick={()=>{navigate('/checkout')}}>PROCEED TO CHECKOUT</button>
+      <button onClick={()=>{checkOutHandler()}}>PROCEED TO CHECKOUT</button>
     
     </div> 
     {/*promocode section */}
