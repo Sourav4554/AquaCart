@@ -8,6 +8,7 @@ import adminRouter from "./Routers/adminRoute.js";
 import cartRouter from "./Routers/cartRouter.js";
 import wishListRouter from "./Routers/wishListRouter.js";
 import promocodeRouter from "./Routers/promocodeRouter.js";
+import orderRouter from "./Routers/orderRouter.js";
 
 const app=express();
 //port
@@ -28,7 +29,8 @@ app.use('/api/cart',cartRouter)
 app.use('/api/wish',wishListRouter)
 //end point for promocode
 app.use('/api/promo',promocodeRouter)
-
+//end point for order
+app.use('/api/order',orderRouter)
 app.get('/',(req,res)=>{
     res.send("API WORKING")
     })
