@@ -7,8 +7,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 const Checkout = () => {
-const {calculateTotalAmout,cartData,fishList,backendUrl,token,setCartData}=useContext(ProductContext);
-
+const {calculateTotalAmout,cartData,fishList,backendUrl,token,setCartData,fetchMyOrders}=useContext(ProductContext);
+const navigate=useNavigate()
 const[payMethod,setPayMethod]=useState('cod');
     const [data, setData] = useState({
         firstName: "",
@@ -35,7 +35,7 @@ let orderItems=[];
 for(const item in cartData){
 const products=fishList.find((product)=>product._id===item)
 if(products){
-orderItems.push(products)
+orderItems.push({...products,quantity:cartData[item]})
 }
 }
 const orderData={
@@ -49,6 +49,8 @@ switch(payMethod){
       if(data.success){
       toast.success(data.message);
       setCartData({})
+      await fetchMyOrders(token);
+      navigate('/myorder')
       }
       else{
       toast.error(data.message)

@@ -1,0 +1,128 @@
+/* Overall Container */
+.orders-container {
+    max-width: 1000px;
+    margin: 5% auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Title & Divider */
+  .orders-title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+  }
+
+  
+  /* Individual Order Card */
+  .order-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  /* Order Header (shared info) */
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Items Container */
+  .order-items {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Each Item Row */
+  .order-item-row {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding: 10px 0;
+  }
+  .order-item-row:first-child {
+    border-top: none;
+  }
+  
+  /* Item Image */
+  .order-item-left {
+    margin-right: 15px;
+  }
+  .order-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  /* Item Text Details */
+  .order-item-middle {
+    flex: 1; /* Take remaining space */
+  }
+  .order-item-middle h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  .order-item-middle p {
+    margin: 4px 0;
+    color: #555;
+  }
+  
+  /* Track Order Button */
+  .order-item-right {
+    margin-left: auto;
+  }
+  .track-order-btn {
+    padding: 6px 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .track-order-btn:hover {
+    background-color: #0056b3;
+  }
+
+
+  
+  .icon-container {
+    font-size: 24px;
+    color: gray;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  /* Responsive Layout */
+  @media (max-width: 768px) {
+    .order-header {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .order-item-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .order-item-left {
+      margin-bottom: 10px;
+    }
+  
+    .order-item-right {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+  }
+  

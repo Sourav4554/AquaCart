@@ -95,7 +95,7 @@ setColor(false);
               <p>{userData && userData.name ? userData.name.charAt(0).toUpperCase():""}</p>
               <div  className={color?"sub":"for-list-sub"}>
               <li onClick={logOut}>logout</li>
-              <li>Orders</li>
+              <li><Link to='/myorder'>Orders</Link></li>
              </div>
              </div>
            

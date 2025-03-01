@@ -13,6 +13,7 @@ import WishList from './Pages/Wishlist/WishList'
 import Login from './Pages/Login/Login'
 import Email from './Pages/Email/Email'
 import Checkout from './Pages/Checkout/Checkout'
+import Order from './Pages/Order/Order'
 const App = () => {
   return (
     <div>
@@ -30,6 +31,7 @@ const App = () => {
          <Route path='/login' element={<Login />}/>
          <Route path='/email' element={<Email/>}/>
          <Route path='/checkout' element={<Checkout/>}/>
+         <Route path='/myorder' element={<Order/>}/>
       </Routes>
       <Footer/>
       </BrowserRouter>    

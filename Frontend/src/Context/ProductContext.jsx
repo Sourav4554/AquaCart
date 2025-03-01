@@ -25,6 +25,8 @@ const [showOtpContainer, setShowOtpContainer] = useState(false);
 const[userData,setUserData]=useState({})
 //storing fish list
 const[fishList,setFishList]=useState([])
+//storing orders
+const[orders,setOrders]=useState([])
 //state for managing cart item numbers
 const[cartNumbers,setCartNumbers]=useState(Object.keys(cartData).length)
 //state for storing promocode discount
@@ -152,8 +154,8 @@ const addToWish=async(itemId)=>{
 
     //fetch fish list from backend
     const FetchFishList=async()=>{
+      try {
       const {data}=await axios.get(`${backendUrl}/api/fish/list-fish`,{})
-     try {
       if(data.succes){
         setFishList(data.message)
         }
@@ -164,7 +166,21 @@ const addToWish=async(itemId)=>{
       console.error("Fetch Error:", error.message || error);
      }
       }
-
+//fetch my orders from backend
+const fetchMyOrders=async(token)=>{
+try {
+  const{data}=await axios.get(`${backendUrl}/api/order/userorder`,{headers:{Authorization: `Bearer ${token}`,}})
+  if(data.success){
+  setOrders(data.message)
+  console.log(data.message)
+  }
+  else{
+  console.log(data.message)
+  }
+} catch (error) {
+  console.error("Fetch Error:", error.message || error);
+}
+}
   
 
 
@@ -174,6 +190,7 @@ const addToWish=async(itemId)=>{
     createToken(sessionStorage.getItem('token'))
     await fetchUserData(sessionStorage.getItem('token'))
     await fetchWishList(sessionStorage.getItem('token'))
+    await fetchMyOrders(sessionStorage.getItem('token'))
     }
     await  FetchFishList();
   }
@@ -214,7 +231,9 @@ setShowOtpContainer,
 cartNumbers,
 setCartNumbers,
 promocodeDiscount,
-setPromocodeDiscount
+setPromocodeDiscount,
+orders,
+fetchMyOrders
 }
   return (
     <div>
