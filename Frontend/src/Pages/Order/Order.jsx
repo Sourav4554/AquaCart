@@ -26,7 +26,8 @@ const Order = () => {
                 </p>
                 <p>
                   <strong>Payment:</strong>{" "}
-                  {order.payment ? "Paid" : order.paymentMethod}
+                  {order.payment ? "Paid" : "Not Paid"}
+                  {`(${order.paymentMethod})`}
                 </p>
                 <p>
                   <strong>Status:</strong> {order.status}

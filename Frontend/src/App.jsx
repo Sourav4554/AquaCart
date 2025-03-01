@@ -14,6 +14,7 @@ import Login from './Pages/Login/Login'
 import Email from './Pages/Email/Email'
 import Checkout from './Pages/Checkout/Checkout'
 import Order from './Pages/Order/Order'
+import Verifyorder from './Pages/VerifyOrder/Verifyorder'
 const App = () => {
   return (
     <div>
@@ -32,6 +33,7 @@ const App = () => {
          <Route path='/email' element={<Email/>}/>
          <Route path='/checkout' element={<Checkout/>}/>
          <Route path='/myorder' element={<Order/>}/>
+         <Route path='/verify' element={<Verifyorder/>}/>
       </Routes>
       <Footer/>
       </BrowserRouter>    

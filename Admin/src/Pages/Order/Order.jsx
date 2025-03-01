@@ -56,7 +56,8 @@ const Order = () => {
                   </Typography>
                   <Typography variant="subtitle1">
                     <strong>Payment:</strong>{" "}
-                    {order.payment ? "Paid" : order.paymentMethod}
+                    {order.payment ? "Paid" : "not paid" }
+                    {` (${order.paymentMethod})`}
                   </Typography>
                   <Typography variant="subtitle1">
                     <strong>Status:</strong> {order.status}

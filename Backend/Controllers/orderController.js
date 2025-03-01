@@ -1,7 +1,88 @@
 import orderModel from "../Models/orderModel.js";
 import userModel from "../Models/userModel.js";
 import { orderEmail, statusEmail } from "../Utilities/email.js";
+import Stripe from 'stripe'
 
+const stripe=new Stripe(process.env.STRIPE_SECRET_KEY)
+let deliveryCharge=50;
+let currency='inr'
+
+//controller for stripepayment 
+const stripePayment=async(req,res)=>{
+const{userId,items,amount,address}=req.body;
+const{origin}=req.headers;
+if(!userId || !items || !amount || !address){
+return res.status(400).json({success:false,message:"All fields required"})
+}
+try {
+   const orders= new orderModel({
+      userId,
+      items,
+      address,
+      amount,
+      paymentMethod:'Stripe',
+      payment:false,
+      })
+   await orders.save();
+   await userModel.findByIdAndUpdate(userId,{cartData:{}});
+   const line_items=items.map((item)=>({
+   price_data:{
+   currency:currency,
+   product_data:{
+   name:item.name
+   },
+   unit_amount:item.price*100
+   },
+   quantity:item.quantity
+   }));
+
+   line_items.push({
+   price_data:{
+   currency:currency,
+   product_data:{
+   name:"Delivery Charges"
+   },
+   unit_amount:deliveryCharge*100
+   },
+   quantity:1
+   })
+
+const session=await stripe.checkout.sessions.create({
+line_items:line_items,
+payment_method_types:['card'],
+payment_method_options:{
+card:{request_three_d_secure:'any'}
+},
+mode:'payment',
+success_url:`${origin}/verify?success=true&orderId=${orders._id}`,
+cancel_url:`${origin}/verify?success=true&orderId=${orders._id}`
+})
+// const itemNames=items.map((item)=>item.name)
+// orderEmail(address.email,itemNames,amount);
+
+return res.status(200).json({success:true,message:session.url})
+} catch (error) {
+   return res.status(500).json({ success: false, message: 'internal server error' });
+}
+}
+
+//verify the order
+const verifyOrder=async(req,res)=>{
+const{orderId,success}=req.body;
+try {
+   if(success==='true'){
+   await orderModel.findByIdAndUpdate(orderId,{payment:true})
+   return res.status(200).json({success:true,message:"payment successfull"})
+   }
+   else{
+   await orderModel.findByIdAndDelete(orderId)
+   return res.status(400).json({success:true,message:"payment failed"})
+   }
+} catch (error) {
+   console.log(error)
+   return res.status(500).json({success:false,message:"Internal server error"})
+}
+}
 //controller for cash on delivery
 const cashOnDelivery=async(req,res)=>{
 const{userId,items,amount,address}=req.body;
@@ -65,7 +146,7 @@ try {
 
    const order=await orderModel.findById(orderId);
    if(order.status==='Delivered'){
-      await orderModel.findByIdAndUpdate(orderId,{paymentMethod:'Paid'})
+      await orderModel.findByIdAndUpdate(orderId,{payment:true})
    }
    const email=order.address.email;
    const items=order.items.map((item)=>item.name);
@@ -76,4 +157,4 @@ try {
    
 }
 }
-export{cashOnDelivery,fetchUserorder,fetchAdminorder,updateStatus}
+export{cashOnDelivery,fetchUserorder,fetchAdminorder,updateStatus,stripePayment,verifyOrder}

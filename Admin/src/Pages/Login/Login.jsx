@@ -13,7 +13,7 @@ const Login = () => {
     password: "",
   });
 
-  const { BackendUrl, createToken, setShowLogin,listFish,fetchUsers,fetchPromocodes} = useContext(Materials);
+  const { BackendUrl, createToken, setShowLogin,listFish,fetchUsers,fetchPromocodes, fetchOrders} = useContext(Materials);
 
   // Function for storing values from frontend
   const takeInput = (e) => {
@@ -33,6 +33,7 @@ const Login = () => {
         await listFish();
         await fetchUsers();
         await fetchPromocodes();
+        await fetchOrders();
         setShowLogin(true);
         navigate('/dashboard')
        

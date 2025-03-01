@@ -56,9 +56,19 @@ switch(payMethod){
       toast.error(data.message)
       }
       break;
-}
+  case 'stripe':
+    const response=await axios.post(`${backendUrl}/api/order/stripe`,orderData,{headers:{Authorization: `Bearer ${token}`,}})
+    if(response.data.success){
+    const session_url=response.data.message;
+    console.log(session_url)
+    window.location.replace(session_url);
+    }else{
+    toast.error(stripedata.message)
+    console.log(stripedata.message)
+    }
+}   
 } catch (error) {
-  toast.error(error.response.data.message)
+  // toast.error(error.response.data.message)
   console.log(error)
 }
 }
