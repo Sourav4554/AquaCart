@@ -68,6 +68,25 @@ export const orderEmail=async(email,item,amount)=>{
             text:`Your order for ${item} has been placed successfully with AquaCart.  
             
             TotalAmount:₹${amount}
+
+            Thank you for choosing AquaCart! 
+            `
+            })
+    } catch (error) {
+        console.log("Error sending promocode:", error);
+    }
+    }
+
+    //function for sending order 
+export const statusEmail=async(email,item,amount,status)=>{
+    try {
+        await transporter.sendMail({
+            from:process.env.SENDER_EMAIL,
+            to:email,
+            subject:"Order Status Update",
+            text:`Your order for ${item} has been [${status}] from AquaCart.  
+            
+            TotalAmount:₹${amount}
             
             Thank you for choosing AquaCart! 
             `

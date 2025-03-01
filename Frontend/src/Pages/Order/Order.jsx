@@ -3,8 +3,11 @@ import "./Order.css";
 import { ProductContext } from "../../Context/ProductContext";
 
 const Order = () => {
-  const { orders } = useContext(ProductContext);
+  const { orders,token,fetchMyOrders } = useContext(ProductContext);
 
+ const fetchOrderStatus=async()=>{
+ await fetchMyOrders(token);
+ }
   return (
     <div className="orders-container">
       <h2 className="orders-title">MY ORDERS</h2>
@@ -55,7 +58,7 @@ const Order = () => {
                     <p>Quantity: {item.quantity || 1}</p>
                   </div>
                   <div className="order-item-right">
-                    <button className="track-order-btn">Track Order</button>
+                    <button className="track-order-btn" onClick={()=>fetchOrderStatus()}>Track Order</button>
                   </div>
                 </div>
               ))}

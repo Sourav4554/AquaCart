@@ -106,7 +106,8 @@ const fetchOrders=async(token)=>{
     fetchUsers,
     promocodes,
     fetchPromocodes,
-    orders
+    orders,
+    fetchOrders
     }
 
     useEffect(()=>{

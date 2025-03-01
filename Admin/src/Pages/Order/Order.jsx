@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import axios from 'axios'
 import {
   Card,
   CardContent,
@@ -19,10 +20,23 @@ import {
   MenuItem,
 } from "@mui/material";
 import { Materials } from "../../Context/Context";
-
+import {toast} from 'react-toastify'
 const Order = () => {
-  const { orders } = useContext(Materials);
-
+  const { orders,BackendUrl ,token,fetchOrders} = useContext(Materials);
+  const onchangeHandler=async(e,orderId)=>{
+  try {
+    let status=e.target.value;
+    const{data}=await axios.post(`${BackendUrl}/api/order/status`,{orderId,status},{headers:{Authorization: `Bearer ${token}`,}});
+    if(data.success){
+    toast.success(data.message)
+    await fetchOrders(token);
+    }else{
+    toast.error(data.message)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+  }
   return (
     <Grid2 container spacing={3} justifyContent="left" sx={{ mt: 4 }}>
       <Grid2 item xs={12} md={10} width={900}>
@@ -53,7 +67,7 @@ const Order = () => {
 
                   <FormControl fullWidth size="small">
                             
-                            <Select >
+                            <Select value={order.status} onChange={(e)=>{onchangeHandler(e,order._id)}}>
                               <MenuItem value="Order Placed">Order Placed</MenuItem>
                               <MenuItem value="Out for Delivery">
                                 Out for Delivery

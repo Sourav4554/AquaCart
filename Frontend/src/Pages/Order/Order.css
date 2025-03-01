@@ -106,6 +106,9 @@
   
   /* Responsive Layout */
   @media (max-width: 768px) {
+    .orders-container{
+    margin-top: 14%;
+    }
     .order-header {
       flex-direction: column;
       gap: 10px;

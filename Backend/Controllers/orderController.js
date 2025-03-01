@@ -1,6 +1,6 @@
 import orderModel from "../Models/orderModel.js";
 import userModel from "../Models/userModel.js";
-import { orderEmail } from "../Utilities/email.js";
+import { orderEmail, statusEmail } from "../Utilities/email.js";
 
 //controller for cash on delivery
 const cashOnDelivery=async(req,res)=>{
@@ -18,7 +18,6 @@ try {
  payment:false,
  })
  const itemNames=items.map((item)=>item.name)
- 
  await orders.save();
  orderEmail(address.email,itemNames,amount)
  await userModel.findByIdAndUpdate(userId,{cartData:{}})
@@ -57,4 +56,24 @@ try {
    return res.status(500).json({ message: 'Server error, please try again later.' });
 }
 }
-export{cashOnDelivery,fetchUserorder,fetchAdminorder}
+
+//controller for status update
+const updateStatus=async(req,res)=>{
+const{orderId,status}=req.body;
+try {
+   await orderModel.findByIdAndUpdate(orderId,{status:status})
+
+   const order=await orderModel.findById(orderId);
+   if(order.status==='Delivered'){
+      await orderModel.findByIdAndUpdate(orderId,{paymentMethod:'Paid'})
+   }
+   const email=order.address.email;
+   const items=order.items.map((item)=>item.name);
+   const amount=order.amount;
+   statusEmail(email,items,amount,status)
+   return res.status(200).json({success:true,message:"status updated"})
+} catch (error) {
+   
+}
+}
+export{cashOnDelivery,fetchUserorder,fetchAdminorder,updateStatus}
