@@ -1,5 +1,6 @@
 import orderModel from "../Models/orderModel.js";
 import userModel from "../Models/userModel.js";
+import { orderEmail } from "../Utilities/email.js";
 
 //controller for cash on delivery
 const cashOnDelivery=async(req,res)=>{
@@ -16,7 +17,10 @@ try {
  paymentMethod:'COD',
  payment:false,
  })
+ const itemNames=items.map((item)=>item.name)
+ 
  await orders.save();
+ orderEmail(address.email,itemNames,amount)
  await userModel.findByIdAndUpdate(userId,{cartData:{}})
  return res.status(200).json({success:true,message:"Order Placed"})
 } catch (error) {
@@ -39,4 +43,18 @@ try {
    return res.status(500).json({ message: 'Server error, please try again later.' });
 }
 }
-export{cashOnDelivery,fetchUserorder}
+
+//controller for fetch admin order
+const fetchAdminorder=async(req,res)=>{
+try {
+   const orderData=await orderModel.find({}).sort({_id:-1});
+   if(!orderData){
+      return res.status(400).json({success:false,message:"no orders"})
+      }else{
+      return res.status(200).json({success:true,message:orderData})
+      }
+} catch (error) {
+   return res.status(500).json({ message: 'Server error, please try again later.' });
+}
+}
+export{cashOnDelivery,fetchUserorder,fetchAdminorder}

@@ -15,7 +15,9 @@ const Context = ({children}) => {
    const[userData,setUserData]=useState({})
    //store promocodes
    const[promocodes,setPromocodes]=useState({})
-    //function for fetching fish
+   //storing orders
+   const[orders,setOrders]=useState([])
+     //function for fetching fish
     const listFish=async()=>{
     const {data}=await axios.get(`${BackendUrl}/api/fish/list-fish`,{})
    try {
@@ -75,6 +77,21 @@ const fetchPromocodes=async()=>{
  }
   }
 
+  //function for fetch  orders from backend
+const fetchOrders=async(token)=>{
+  try {
+    const{data}=await axios.get(`${BackendUrl}/api/order/adminorder`,{headers:{Authorization: `Bearer ${token}`,}})
+    if(data.success){
+    setOrders(data.message)
+    console.log(data.message)
+    }
+    else{
+    console.log(data.message)
+    }
+  } catch (error) {
+    console.error("Fetch Error:", error.message || error);
+  }
+  }
     const requirements={
     BackendUrl,
     token,
@@ -88,7 +105,8 @@ const fetchPromocodes=async()=>{
     userData,
     fetchUsers,
     promocodes,
-    fetchPromocodes
+    fetchPromocodes,
+    orders
     }
 
     useEffect(()=>{
@@ -99,6 +117,7 @@ const fetchPromocodes=async()=>{
             await fetchUsers()
             await listFish();
             await fetchPromocodes()
+            await fetchOrders(sessionStorage.getItem('token'));
             }
     }
     loadData();

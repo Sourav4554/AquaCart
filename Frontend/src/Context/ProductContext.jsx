@@ -172,7 +172,6 @@ try {
   const{data}=await axios.get(`${backendUrl}/api/order/userorder`,{headers:{Authorization: `Bearer ${token}`,}})
   if(data.success){
   setOrders(data.message)
-  console.log(data.message)
   }
   else{
   console.log(data.message)

@@ -1,12 +1,9 @@
 import React, { useContext } from "react";
 import "./Order.css";
 import { ProductContext } from "../../Context/ProductContext";
-import { FaCheckCircle } from "react-icons/fa";
-import { MdLocalShipping, MdOutlineShoppingCart } from "react-icons/md";
 
 const Order = () => {
   const { orders } = useContext(ProductContext);
-
 
   return (
     <div className="orders-container">
