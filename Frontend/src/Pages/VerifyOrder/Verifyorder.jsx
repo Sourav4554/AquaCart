@@ -8,7 +8,7 @@ const {backendUrl}=useContext(ProductContext)
 const navigate=useNavigate()
 const[searchparams,setSearchparams]=useSearchParams();
 const success=searchparams.get('success');
-const orderId=searchparams.get('orderId')
+const orderId=searchparams.get('orderId');
 const verifyPayment=async()=>{
 try {
     const {data}=await axios.post(`${backendUrl}/api/order/verify`,{success,orderId});
@@ -18,7 +18,7 @@ try {
     navigate('/')
     }
 } catch (error) {
-    console.log(error)
+   navigate('/')
 }
 }
 useEffect(()=>{

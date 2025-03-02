@@ -3,10 +3,15 @@ import userModel from "../Models/userModel.js";
 import { orderEmail, statusEmail } from "../Utilities/email.js";
 import Stripe from 'stripe'
 
+//stripe initialization
 const stripe=new Stripe(process.env.STRIPE_SECRET_KEY)
+//global varibles
 let deliveryCharge=50;
 let currency='inr'
-
+//global variables for  email senting after order in stripe and razorpay
+let stripeEmail;
+let stripeAmount;
+let stripeItems
 //controller for stripepayment 
 const stripePayment=async(req,res)=>{
 const{userId,items,amount,address}=req.body;
@@ -23,6 +28,9 @@ try {
       paymentMethod:'Stripe',
       payment:false,
       })
+   stripeEmail=address.email;
+   stripeItems=items.map((item)=>item.name);
+   stripeAmount=amount;
    await orders.save();
    await userModel.findByIdAndUpdate(userId,{cartData:{}});
    const line_items=items.map((item)=>({
@@ -55,11 +63,8 @@ card:{request_three_d_secure:'any'}
 },
 mode:'payment',
 success_url:`${origin}/verify?success=true&orderId=${orders._id}`,
-cancel_url:`${origin}/verify?success=true&orderId=${orders._id}`
+cancel_url:`${origin}/verify?success=false&orderId=${orders._id}`
 })
-// const itemNames=items.map((item)=>item.name)
-// orderEmail(address.email,itemNames,amount);
-
 return res.status(200).json({success:true,message:session.url})
 } catch (error) {
    return res.status(500).json({ success: false, message: 'internal server error' });
@@ -72,11 +77,12 @@ const{orderId,success}=req.body;
 try {
    if(success==='true'){
    await orderModel.findByIdAndUpdate(orderId,{payment:true})
+   orderEmail(stripeEmail,stripeItems,stripeAmount)
    return res.status(200).json({success:true,message:"payment successfull"})
    }
    else{
    await orderModel.findByIdAndDelete(orderId)
-   return res.status(400).json({success:true,message:"payment failed"})
+   return res.status(400).json({success:false,message:"payment failed"})
    }
 } catch (error) {
    console.log(error)
