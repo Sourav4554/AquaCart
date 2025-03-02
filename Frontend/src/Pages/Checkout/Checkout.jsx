@@ -26,6 +26,36 @@ const[payMethod,setPayMethod]=useState('cod');
     const {name,value} = event.target;
     setData(data => ({ ...data, [name]: value }));
   };
+
+//function for razorpay setup
+ const initPay=(order)=>{
+const options={
+key:import.meta.env.VITE_RAZORPAY_KEY_ID,
+amount:order.amount,
+currency:order.currency,
+name:"Order Payment",
+description:"Order Payment",
+order_id:order.id,
+receipt:order.receipt,
+handler:async(response)=>{
+try {
+  const {data}=await axios.post(`${backendUrl}/api/order/verify-razorpay`,response,{headers:{Authorization: `Bearer ${token}`,}})
+  if(data.success){
+  toast.success(data.message)
+  await fetchMyOrders(token);
+  setCartData({})
+  navigate('/myorder')
+  }else{
+  navigate('/')
+  }
+} catch (error) {
+  navigate('/')
+}
+}
+}
+const razorpay=new window.Razorpay(options)
+razorpay.open();
+}
 //function for order
 const submitHandler=async(e)=>{
   e.preventDefault();
@@ -60,12 +90,17 @@ switch(payMethod){
     const response=await axios.post(`${backendUrl}/api/order/stripe`,orderData,{headers:{Authorization: `Bearer ${token}`,}})
     if(response.data.success){
     const session_url=response.data.message;
-    console.log(session_url)
     window.location.replace(session_url);
     }else{
-    toast.error(stripedata.message)
-    console.log(stripedata.message)
+    toast.error(response.data.message)
     }
+    break;
+  case 'razorpay':
+    const razorpayresponce=await axios.post(`${backendUrl}/api/order/razorpay`,orderData,{headers:{Authorization: `Bearer ${token}`,}})
+    if(razorpayresponce.data.success){
+        initPay(razorpayresponce.data.message)
+    }
+    break;
 }   
 } catch (error) {
   // toast.error(error.response.data.message)
