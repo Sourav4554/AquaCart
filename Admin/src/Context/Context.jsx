@@ -17,7 +17,10 @@ const Context = ({children}) => {
    const[promocodes,setPromocodes]=useState({})
    //storing orders
    const[orders,setOrders]=useState([])
-
+  //store sales date and amount
+   const [salesData,setSalesData]=useState({labels:[],revenew:[]})
+   //store category and sales
+   const [categorySalesdata,setCategorySales]=useState({category:[],sales:[]})
      //function for fetching fish
     const listFish=async()=>{
     const {data}=await axios.get(`${BackendUrl}/api/fish/list-fish`,{})
@@ -84,7 +87,12 @@ const fetchOrders=async(token)=>{
     const{data}=await axios.get(`${BackendUrl}/api/order/adminorder`,{headers:{Authorization: `Bearer ${token}`,}})
     if(data.success){
     setOrders(data.message)
-    console.log(data.message)
+    const labels=data.message.map((item)=>{
+      const date=new Date(item.createdAt)
+      return date.toLocaleString('en-US', { weekday: 'short' });
+      })
+      const revenew=data.message.map((item)=>item.amount);
+      setSalesData({labels,revenew})
     }
     else{
     console.log(data.message)
@@ -93,6 +101,8 @@ const fetchOrders=async(token)=>{
     console.error("Fetch Error:", error.message || error);
   }
   }
+
+
     const requirements={
     BackendUrl,
     token,
@@ -108,7 +118,10 @@ const fetchOrders=async(token)=>{
     promocodes,
     fetchPromocodes,
     orders,
-    fetchOrders
+    fetchOrders,
+    salesData,
+    categorySalesdata,
+    setCategorySales
     }
 
     useEffect(()=>{
