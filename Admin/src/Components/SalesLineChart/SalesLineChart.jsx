@@ -19,7 +19,7 @@ const SalesLineChart = () => {
   const { salesData } = useContext(Materials) || {};
 
   const chartData = {
-    labels: salesData?.labels?.length ? salesData.labels : ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    labels: salesData.labels.length ? salesData.labels : ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
     datasets: [
       {
         label: "Total Sales (₹)",
@@ -47,7 +47,7 @@ const SalesLineChart = () => {
         },
       },
       x: {
-        title: { display: true, text: "Time (Months)" },
+        title: { display: true, text: "Time (Days)" },
         ticks: {
           color: "purple", 
         },

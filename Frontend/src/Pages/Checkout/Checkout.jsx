@@ -59,6 +59,11 @@ razorpay.open();
 //function for order
 const submitHandler=async(e)=>{
   e.preventDefault();
+  if( Object.keys(cartData).length === 0){
+  toast.info("No items in Cart");
+  return;
+  }
+
   
 try {
 let orderItems=[];
