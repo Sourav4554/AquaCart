@@ -76,9 +76,8 @@ setColor(false);
             <ul>
            <li  className={`navbar-content-li ${style === 'home' ? 'active' : ''}`} onClick={(e)=>{preventRefreshig(e);setStyle('home')}} ><Link to='/' >Home</Link></li>
                 <li className='navbar-content-li'><a href="#" onClick={(e)=>{preventRefreshig(e);setStyle('about')} }className={style==='about'?"active":""}>About</a></li>
-                {/* <li className='navbar-content-li'><a href="#" onClick={(e)=>{preventRefreshig(e);setStyle('product')}} className={style==='product'?"active":""}>Product</a></li> */}
                 <li  className={`navbar-content-li ${style === 'product' ? 'active' : ''}`} onClick={(e)=>{preventRefreshig(e);setStyle('product')}} ><Link to='/collections' >Product</Link></li>
-                <li className='navbar-content-li'><a href="#" onClick={(e)=>{preventRefreshig(e);setStyle('ai')} }className={style==='ai'?"active":""}>Aqua Ai</a></li>
+                <li  className={`navbar-content-li ${style === 'ai' ? 'active' : ''}`} onClick={(e)=>{preventRefreshig(e);setStyle('ai')}} ><Link to='/aquaai' >Aqua Ai</Link></li>
                 <li className='navbar-content-li'><a href="#" onClick={(e)=>{preventRefreshig(e);setStyle('contact')}} className={style==='contact'?"active":""}>Contact</a></li>
             </ul>
             </div> 

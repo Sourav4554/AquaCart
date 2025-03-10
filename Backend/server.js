@@ -9,6 +9,7 @@ import cartRouter from "./Routers/cartRouter.js";
 import wishListRouter from "./Routers/wishListRouter.js";
 import promocodeRouter from "./Routers/promocodeRouter.js";
 import orderRouter from "./Routers/orderRouter.js";
+import { aquaAIRouter } from "./Routers/aquaAIRouter.js";
 
 const app=express();
 //port
@@ -29,6 +30,8 @@ app.use('/api/cart',cartRouter)
 app.use('/api/wish',wishListRouter)
 //end point for promocode
 app.use('/api/promo',promocodeRouter)
+//end point for aquaai
+app.use('/api/ai',aquaAIRouter)
 //end point for order
 app.use('/api/order',orderRouter)
 app.get('/',(req,res)=>{

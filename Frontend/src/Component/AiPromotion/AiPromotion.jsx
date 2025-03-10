@@ -3,7 +3,10 @@ import './AiPromotion.css'//css file for style the aipromotion component
 import ScrollAnimatiion from 'react-animate-on-scroll' // used for animation at the time of scroll
 import 'animate.css'//css file for animation
 import { Requirements } from '../../assets/Assets'//import images from assets file
+import { useNavigate } from 'react-router-dom'
+
 const AiPromotion = () => {
+  const navigate=useNavigate()
   return (
     <div className='main-container-for-ai'>
       {/*container for image section */}
@@ -49,7 +52,7 @@ const AiPromotion = () => {
 </div>
 
 <div className="button-container-4">
-          <button className="get-started-button-4">AQUA AI</button>
+          <button className="get-started-button-4" onClick={()=>navigate('/aquaai')}>AQUA AI</button>
            </div>
 
 

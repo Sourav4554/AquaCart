@@ -15,12 +15,13 @@ import Email from './Pages/Email/Email'
 import Checkout from './Pages/Checkout/Checkout'
 import Order from './Pages/Order/Order'
 import Verifyorder from './Pages/VerifyOrder/Verifyorder'
+import AquaAi from './Pages/AquaAi/AquaAi'
 const App = () => {
   return (
     <div>
       <BrowserRouter>
       <Navbar/>
-      <ToastContainer/>
+      <ToastContainer autoClose={1000}/>
       <Search/>
       <ScrollToTop/>
       <Routes>
@@ -34,6 +35,7 @@ const App = () => {
          <Route path='/checkout' element={<Checkout/>}/>
          <Route path='/myorder' element={<Order/>}/>
          <Route path='/verify' element={<Verifyorder/>}/>
+         <Route path='/aquaai' element={<AquaAi/>}/>
       </Routes>
       <Footer/>
       </BrowserRouter>    
