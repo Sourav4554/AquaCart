@@ -94,16 +94,13 @@ try {
                 Forgot Password?
               </p>
             )}
-            <div className="login-popup-conditions">
-              <input type="checkbox" required />
-              <p>By Continuing, I agree to the terms of use & Privacy Policy</p>
-            </div>
             {currState === 'Login' ? (
               <p>
                 Create a new Account?{' '}
                 <span onClick={() => setCrrState('Signup')}>Click here</span>
               </p>
             ) : (
+              
               <p>
                 Already have an Account?{' '}
                 <span

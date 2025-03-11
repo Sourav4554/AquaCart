@@ -10,6 +10,7 @@ import wishListRouter from "./Routers/wishListRouter.js";
 import promocodeRouter from "./Routers/promocodeRouter.js";
 import orderRouter from "./Routers/orderRouter.js";
 import { aquaAIRouter } from "./Routers/aquaAIRouter.js";
+import reviewRouter from "./Routers/reviewRouter.js";
 
 const app=express();
 //port
@@ -34,6 +35,8 @@ app.use('/api/promo',promocodeRouter)
 app.use('/api/ai',aquaAIRouter)
 //end point for order
 app.use('/api/order',orderRouter)
+//end point for review 
+app.use('/api/review',reviewRouter)
 app.get('/',(req,res)=>{
     res.send("API WORKING")
     })
