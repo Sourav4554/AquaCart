@@ -4,10 +4,13 @@ import { Rating } from 'react-custom-rating-component'//react star rating
 import { FaTimes } from "react-icons/fa";
 import { ProductContext } from '../../Context/ProductContext';
 import {toast} from 'react-toastify'
+import axios from 'axios'
+
+
 const Review = () => {
-const{setAllReview,setShowReviewContainer}=useContext(ProductContext);
+const{setShowReviewContainer,backendUrl,token,productId}=useContext(ProductContext);
 //default rating values
-const[review,setReview]=useState({name:"",rating:0,comment:""});
+const[review,setReview]=useState({rating:0,comment:""});
 //take values from the review form
 const handleChange=(e)=>{
 e.preventDefault();
@@ -19,11 +22,22 @@ const handleRatingChange=(newRating)=>{
 setReview({...review,rating:newRating})
 }
 //store the values to a review state at the time of submit
-const handleSubmit=(e)=>{
+const handleSubmit=async(e)=>{
 e.preventDefault();
-setAllReview((prev)=>([...prev,review]))
-setReview({...review,name:"",rating:0,comment:""})
-toast.success("Your review is added to the product")
+console.log(review.rating)
+try {
+  console.log(review)
+  const{data}=await axios.post(`${backendUrl}/api/review/add`,{productId,rating:review.rating,comment:review.comment},{headers:{Authorization: `Bearer ${token}`,}})
+  if(data.success){
+    toast.success(data.message)
+    setShowReviewContainer(false)
+  }else{
+  toast.error(data.message)
+  }
+} catch (error) {
+  console.log(error)
+  toast.error(error.response.data.message)
+}
 }
   return (
     <div className='review-main-container'>
@@ -32,7 +46,7 @@ toast.success("Your review is added to the product")
      <div className="review-form">
      <FaTimes size={30} color="black" className='cross-icon' onClick={()=>setShowReviewContainer(false)}/>
      <form  onSubmit={handleSubmit}>
-     <input type="text" placeholder='Enter Your Name' value={review.name} name="name" onChange={handleChange}required autoComplete='name'/>
+     {/* <input type="text" placeholder='Enter Your Name' value={review.name} name="name" onChange={handleChange}required autoComplete='name'/> */}
            <Rating 
           defaultValue={review.rating}
           count={5}

@@ -11,8 +11,6 @@ const[showSearch,setShowSearch]=useState(false);
 const[searchValue,setSearchValue]=useState('')
 //state for managing the visibility of review adding popup
 const[showReviewContainer,setShowReviewContainer]=useState(false)
-//state for store the all reviews
-const[allReview,setAllReview]=useState([]);
 //manage cartdata
 const[cartData,setCartData]=useState({})
 //manage wishlist data
@@ -31,6 +29,8 @@ const[orders,setOrders]=useState([])
 const[cartNumbers,setCartNumbers]=useState(Object.keys(cartData).length)
 //state for storing promocode discount
 const[promocodeDiscount,setPromocodeDiscount]=useState(0)
+//state for storing product id for review
+const[productId,setProducId]=useState('')
 //add to cart
 const addToCart=async(itemId)=>{
 if(!cartData[itemId]){
@@ -67,7 +67,7 @@ setCartNumbers((prev)=>Object.keys(cartData).length)
 await axios.delete(`${backendUrl}/api/cart/deletecart`,{data:{ productId: itemId },headers:{Authorization: `Bearer ${token}`,}})
 
 }
-
+//fetch cartdata
 const fetchCartData=async(token)=>{
   try {
    
@@ -180,7 +180,7 @@ try {
   console.error("Fetch Error:", error.message || error);
 }
 }
-  
+
 
 
     useEffect(()=>{
@@ -209,8 +209,6 @@ searchValue,
 setSearchValue,
 showReviewContainer,
 setShowReviewContainer,
-allReview,
-setAllReview,
 cartData,
 setCartData,
 addToCart,
@@ -232,7 +230,9 @@ setCartNumbers,
 promocodeDiscount,
 setPromocodeDiscount,
 orders,
-fetchMyOrders
+fetchMyOrders,
+productId,
+setProducId
 }
   return (
     <div>
