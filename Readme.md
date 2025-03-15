@@ -142,7 +142,26 @@ npm run dev
 
 ** Total=37
 
-  
+ ## Documentation  
+For more details, check the documentation:  
+1)JWT AUTHENTICATION
+
+*--https://dev.to/jaypmedia/jwt-explained-in-4-minutes-with-visuals-g3n
+
+2)Image uploading multer with cloudinary
+
+*--https://medium.com/@joeeasy_/uploading-images-to-cloudinary-using-multer-and-expressjs-f0b9a4e14c54
+
+3)Razorpay payment
+
+*--https://dev.to/alimalim77/integrating-payment-gateways-in-mern-applications-482k
+
+4)Stripe Payment 
+
+*--https://dev.to/arshan_nawaz/setting-up-stripe-checkout-with-nodejs-and-mongodb-1hk1
+
+
+
 
 
 
