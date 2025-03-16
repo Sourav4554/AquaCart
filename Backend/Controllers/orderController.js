@@ -161,6 +161,20 @@ try {
 }
 }
 
+//order cancellation in razorpay
+const cancelOrder=async(req,res)=>{
+const{orderId}=req.body;
+if(!orderId){
+return res.status(400).json({success:false,message:"Order id needed"})
+}
+try {
+   await orderModel.findByIdAndDelete(orderId)
+   return res.status(200).json({success:true})
+} catch (error) {
+   console.log(error)
+}
+}
+
 //controller for cash on delivery
 const cashOnDelivery=async(req,res)=>{
 const{userId,items,amount,address}=req.body;
@@ -235,4 +249,4 @@ try {
    return res.status(500).json({ message: 'Server error, please try again later.' });
 }
 }
-export{cashOnDelivery,fetchUserorder,fetchAdminorder,updateStatus,stripePayment,verifyOrder,razorpayPayment,verifyRazorpay}
+export{cashOnDelivery,fetchUserorder,fetchAdminorder,updateStatus,stripePayment,verifyOrder,razorpayPayment,verifyRazorpay,cancelOrder}

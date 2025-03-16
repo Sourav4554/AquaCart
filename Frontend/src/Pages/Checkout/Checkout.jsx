@@ -38,6 +38,7 @@ description:"Order Payment",
 order_id:order.id,
 receipt:order.receipt,
 handler:async(response)=>{
+console.log(response)
 try {
   const {data}=await axios.post(`${backendUrl}/api/order/verify-razorpay`,response,{headers:{Authorization: `Bearer ${token}`,}})
   if(data.success){
@@ -51,6 +52,20 @@ try {
 } catch (error) {
   navigate('/')
 }
+},
+modal:{
+ondismiss:async()=>{
+ try {
+  const {data}=await axios.post(`${backendUrl}/api/order/cancel`,{orderId:order.receipt},{headers:{Authorization: `Bearer ${token}`,}})
+  if(data.success){
+  navigate('/')
+  }
+ } catch (error) {
+  console.log(error)
+ }
+ 
+}
+
 }
 }
 const razorpay=new window.Razorpay(options)
