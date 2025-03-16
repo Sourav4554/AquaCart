@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
     },
   password: {
      type: String,
-      required: true 
+  
     },
   resetOtp:{
     type:String,
@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
   resetOtpExpireAt:{
     type:Number,
     default:0
+    },
+  isGoogleUser: { 
+    type: Boolean,
+     default: false 
     },
   cartData:{
      type: Object,

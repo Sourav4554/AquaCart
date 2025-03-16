@@ -4,7 +4,8 @@ import { otpEmail,loginEmail,otpEmailPassword } from "../Utilities/email.js";
 import bcrypt from 'bcrypt'
 import { generateOtp } from "../Utilities/otp.js";
 import { generatejwt } from "../Utilities/jsontoken.js";
-
+import { oauth2Client } from "../Configuration/googleConfig.js";
+import axios from 'axios'
 
 //controller for user registration
 const Register=async(req,res)=>{
@@ -95,6 +96,9 @@ const Login=async(req,res)=>{
     if(!userExist){
     return res.status(404).json({success:false,message:"user didn't exist"})
     }
+    if (userExist.isGoogleUser) {
+        return res.status(400).json({ message: "Please log in using Google" });
+      }
     const checkPassword=await bcrypt.compare(password,userExist.password)
     if(!checkPassword){
     return res.status(401).json({success:false,message:"Invalid Credentials"})
@@ -223,4 +227,35 @@ const resendOtp=async(req,res)=>{
     return res.status(500).json({ message: 'Server error, please try again later....' });
     }
     }
-export{Register,verifyEmail,Login,verifyResetPasswordOtp,forgottPassword,resetPassword,getUserData,resendOtp}
+
+// controller for google authentication
+
+
+const googleLogin=async(req,res)=>{
+    const {code}=req.query;
+
+    try {
+    const googleResponse=await oauth2Client.getToken(code);
+    oauth2Client.setCredentials(googleResponse.tokens);
+    const userResponse=await axios.get( `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${googleResponse.tokens.access_token}`)
+    const {name,email}=userResponse.data;
+    let user=await userModel.findOne({email});
+    if(!user){
+    user=new userModel({
+    name,
+    email,
+    password:null,
+    isGoogleUser: true,
+    })
+    await user.save();
+    }
+    
+    const token=generatejwt(user._id)
+    return res.status(200).json({success:true,token})
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ message: 'Server error, please try again later....' });
+    }
+    }
+
+export{Register,verifyEmail,Login,verifyResetPasswordOtp,forgottPassword,resetPassword,getUserData,resendOtp,googleLogin}

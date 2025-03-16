@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { ProductContext } from '../../Context/ProductContext';
 import {toast} from 'react-toastify'
 import axios from 'axios';
-
+import { FcGoogle } from "react-icons/fc";
+import { useGoogleLogin } from "@react-oauth/google";
+import {googleAuth} from '../../Utilities/api'
 const Login = () => {
 const{createToken,showOtpContainer,setShowOtpContainer,backendUrl}=useContext(ProductContext)
 const navigate = useNavigate();
@@ -18,7 +20,7 @@ email:"",
 password:""
 })
 
-//function for stor the input values
+//function for store the input values
 const inputFormdata=(event)=>{
 const {name,value}=event.target;
 setLoginData((prev)=>({...prev,[name]:value}))
@@ -62,6 +64,30 @@ try {
 }
 }
 
+//google authentication
+const responseGoogle=async (authResult)=>{
+try {
+  if(authResult['code']){
+    const result = await googleAuth(authResult.code);
+    // const{email,password}=result.data.user;
+     const {token}=result.data;
+     if(token){
+      sessionStorage.setItem('token',token)
+      createToken(token);
+      navigate('/');
+      window.location.reload();
+    }
+  }
+} catch (error) {
+  console.log(error)
+}
+}
+
+const googleLogin = useGoogleLogin({
+  onSuccess: responseGoogle,
+  onError: responseGoogle,
+  flow: "auth-code",
+})
   return (
     <div className="login-container">
       <div className="login-popup">
@@ -85,6 +111,14 @@ try {
               {currState === 'Signup' ? 'Create Account' : 'Login'}
             </button>
             {currState === 'Login' && (
+            <>
+            <button className='google-btn' onClick={(e)=>{
+            e.preventDefault();
+            googleLogin();
+            }}>
+            <FcGoogle className="google-icon" />
+            Sign in With Google
+            </button>
               <p
                 className="forgot-password"
                 onClick={() => {
@@ -93,6 +127,7 @@ try {
               >
                 Forgot Password?
               </p>
+              </>
             )}
             {currState === 'Login' ? (
               <p>
@@ -100,7 +135,14 @@ try {
                 <span onClick={() => setCrrState('Signup')}>Click here</span>
               </p>
             ) : (
-              
+              <>
+                <button className='google-btn' onClick={(e)=>{
+                e.preventDefault();
+                 googleLogin();
+                  }}>
+              <FcGoogle className="google-icon" />
+              Sign up With Google
+              </button>
               <p>
                 Already have an Account?{' '}
                 <span
@@ -112,6 +154,7 @@ try {
                   Login here
                 </span>
               </p>
+              </>
             )}
           </form>
         )}

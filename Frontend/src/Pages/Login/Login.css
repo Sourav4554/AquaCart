@@ -95,7 +95,30 @@
     text-decoration: underline;
     color: orangered;
   }
+  .login-popup-container .google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border: 1px solid #dadce0;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #5f6368;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  }
   
+ .login-container .google-btn:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .google-icon {
+    font-size: 20px;
+    margin-right: 10px;
+  }
   @media (max-width: 1050px) {
     .navbar h1 {
       width: 120px;

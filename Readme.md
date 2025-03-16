@@ -139,6 +139,7 @@ npm run dev
 | POST   | `/wishlist/add`             | Add item to wishlist               |
 | DELETE | `/wishlist/remove`          | Remove item from wishlist          |
 | GET    | `/wishlist/fetch`           | Fetch wishlist items               |
+| GET    | `/user/google`              | Google authentication              |
 
 ** Total=37
 
@@ -159,6 +160,10 @@ For more details, check the documentation:
 4)Stripe Payment 
 
 *--https://dev.to/arshan_nawaz/setting-up-stripe-checkout-with-nodejs-and-mongodb-1hk1
+
+5)Google Authentication
+
+*--https://medium.com/@dugar_rishab/how-to-use-google-oauth-with-mern-stack-a988947e64f4
 
 
 
