@@ -6,13 +6,14 @@ import React, { useContext, useState } from "react";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import axios from "axios";
 import {toast} from 'react-toastify'
+import { SyncLoader } from "react-spinners";
 import { Materials } from "../../Context/Context";
 
 const AddProduct = () => {
   const{ BackendUrl,token,listFish}=useContext(Materials)
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
-
+  const[loading,setLoading]=useState(false)
   const [data,setData]=useState({
   name:"",
   category:"",
@@ -36,6 +37,7 @@ setData((prev)=>({...prev,[name]:value}))
   };
 const onSubmitHandler=async(e)=>{
   e.preventDefault();
+  setLoading(true)
   const validFileTypes = ["image/jpeg", "image/png", "image/webp","image/jpg","image/avif"];
   if (image && !validFileTypes.includes(image.type)) {
     toast.error('Please select a valid image file.');
@@ -68,6 +70,7 @@ setData({
   setPreview(null)
   setImage(null)
   toast.success(data.message)
+  setLoading(false)
 }
 else{
 toast.error(data.message)
@@ -181,7 +184,15 @@ toast.error(data.message)
 
           {/* Submit Button */}
           <Button type="submit" variant="contained" color="success">
+            {
+            loading?(
+              <SyncLoader color="#fff" size={12} />
+              ):(
+                <>
             Add Product
+            </>
+            )
+            }
           </Button>
         </form>
       </Container>

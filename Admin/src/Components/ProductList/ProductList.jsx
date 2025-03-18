@@ -12,7 +12,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Materials } from '../../Context/Context';
 import { NavLink } from 'react-router-dom';
-
+import { SyncLoader } from "react-spinners";
 const columns = [
   { id: 'image', label: 'Image', minWidth: 50 },
   { id: 'name', label: 'Name', minWidth: 50 },
@@ -23,7 +23,7 @@ const columns = [
 ];
 
 const ProductList=()=> {
-  const {fishList,deleteFish,token}=React.useContext(Materials)
+  const {fishList,deleteFish,token,loading}=React.useContext(Materials)
   const fishes = Array.isArray(fishList) ? fishList : [];
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -79,13 +79,19 @@ const ProductList=()=> {
                               </span>):column.id === 'actions' ? (
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
                    <NavLink to={`/updateproduct/${row._id}`}>
-                   <IconButton color="primary" >
-                      <EditIcon />
-                    </IconButton>
+               
+                      <EditIcon color='primary' sx={{marginRight:'12px'}}/>
+                   
                    </NavLink>
-                    <IconButton color="error" onClick={() =>{ deleteFish(row._id,token)}}>
-                      <DeleteIcon />
-                    </IconButton>
+               
+                      {
+                      loading?(
+                        <SyncLoader color='#FF0000' size={6}/>
+                        ):(
+                      <DeleteIcon color='error' onClick={() =>{ deleteFish(row._id,token)}} sx={{marginLeft:'12px'}}/>
+                      )
+                      }
+                 
                   </div>):(
                           column.format && typeof value === 'number'
                             ? column.format(value)

@@ -17,6 +17,8 @@ const Context = ({children}) => {
    const[promocodes,setPromocodes]=useState({})
    //storing orders
    const[orders,setOrders]=useState([])
+   //state for delete button loading
+   const[loading,setLoading]=React.useState(false)
   //store sales date and amount
    const [salesData,setSalesData]=useState({labels:[],revenew:[]})
    //store category and sales
@@ -38,10 +40,12 @@ const Context = ({children}) => {
 
  //function for delete fish item
  const deleteFish=async(productId,token)=>{
+  setLoading(true)
 try {
 const {data}=await axios.delete(`${BackendUrl}/api/fish/remove-fish`,{headers:{Authorization:`Bearer ${token}`}, data:{ productId }})
 if(data.succes){
 toast.success(data.message)
+setLoading(false)
 await listFish();
 }
 else{
@@ -121,7 +125,8 @@ const fetchOrders=async(token)=>{
     fetchOrders,
     salesData,
     categorySalesdata,
-    setCategorySales
+    setCategorySales,
+    loading
     }
 
     useEffect(()=>{

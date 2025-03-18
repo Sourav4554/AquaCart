@@ -1,6 +1,7 @@
 import React, { useContext ,useState,useEffect} from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Materials } from '../../Context/Context';
+import { SyncLoader } from "react-spinners";
 import axios from 'axios';
 import { 
     Container, Typography, TextField, Button, 
@@ -12,6 +13,7 @@ import { toast } from 'react-toastify';
 const UpdateProduct = () => {
 const {fishList,BackendUrl,token,listFish}=useContext(Materials)
 const navigate=useNavigate()
+const[loading,setLoading]=useState(false)
 //make the fishlist a array
 const fishes = Array.isArray(fishList) ? fishList : [];
 const {id}=useParams();
@@ -62,6 +64,7 @@ const handleImageChange = (e) => {
   //function for update product
   const updateProduct=async(event)=>{
   event.preventDefault();
+  setLoading(true);
   const validFileTypes = ["image/jpeg", "image/png", "image/webp","image/jpg","image/avif"];
   // Validate only if image is a newly uploaded file
 if (image instanceof File && !validFileTypes.includes(image.type)) {
@@ -82,6 +85,7 @@ if (image instanceof File && !validFileTypes.includes(image.type)) {
     const {data}=await axios.put(`${BackendUrl}/api/fish/update-fish`,formData,{headers:{Authorization:`Bearer ${token}`}});
     if(data.success){
     toast.success(data.message);
+    setLoading(false)
     await listFish();
     navigate('/products');
     }
@@ -197,7 +201,15 @@ if (image instanceof File && !validFileTypes.includes(image.type)) {
 
         {/* Submit Button */}
         <Button type="submit" variant="contained" color="success">
+          {
+          loading?(
+            <SyncLoader size={12} color='#fff'/>
+            ):(
+              <>
           Update Product
+          </>
+          )
+          }
         </Button>
       </form>
     </Container>

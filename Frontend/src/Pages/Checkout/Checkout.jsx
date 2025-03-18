@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { FaCcStripe, FaCashRegister } from "react-icons/fa";
+import { SyncLoader } from "react-spinners";
 import { SiRazorpay } from "react-icons/si";
 import './Checkout.css'
 import { ProductContext } from '../../Context/ProductContext';
@@ -8,7 +9,9 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 const Checkout = () => {
 const {calculateTotalAmout,cartData,fishList,backendUrl,token,setCartData,fetchMyOrders}=useContext(ProductContext);
-const navigate=useNavigate()
+const navigate=useNavigate();
+const[loadingstrpe,setLoadingstripe]=useState(false);
+const[loadingrazorpay,setLoadingrazorpay]=useState(false)
 const[payMethod,setPayMethod]=useState('cod');
     const [data, setData] = useState({
         firstName: "",
@@ -107,6 +110,7 @@ switch(payMethod){
       }
       break;
   case 'stripe':
+    setLoadingstripe(true);
     const response=await axios.post(`${backendUrl}/api/order/stripe`,orderData,{headers:{Authorization: `Bearer ${token}`,}})
     if(response.data.success){
     const session_url=response.data.message;
@@ -116,6 +120,7 @@ switch(payMethod){
     }
     break;
   case 'razorpay':
+    setLoadingrazorpay(true)
     const razorpayresponce=await axios.post(`${backendUrl}/api/order/razorpay`,orderData,{headers:{Authorization: `Bearer ${token}`,}})
     if(razorpayresponce.data.success){
         initPay(razorpayresponce.data.message)
@@ -175,14 +180,30 @@ switch(payMethod){
           </button>
 
           <button type="submit" className="main-pay-button razorpay" onClick={()=>setPayMethod('razorpay')}>
+            {
+            loadingrazorpay?(
+              <SyncLoader color="#fff" size={8} />
+              ):(
+                <>
             <SiRazorpay size={18} style={{ marginRight: "8px" }} />
             Pay with Razorpay
+            </>
+            )
+            }
           </button>
 
 
           <button type="submit" className="main-pay-button stripe" onClick={()=>setPayMethod('stripe')}>
+            {
+            loadingstrpe?(
+              <SyncLoader color='#fff' size={8}/>
+              ):(
+                <>
             <FaCcStripe size={18} style={{ marginRight: "8px" }} />
             Pay with Stripe
+            </>
+            )
+            }
           </button>
           </div>
           
