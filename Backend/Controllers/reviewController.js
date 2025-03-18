@@ -40,7 +40,7 @@ try {
     }
     const reviews=await Promise.all(
         fish.review.map(async (rev)=>{
-        const user=await userModel.findById(rev.user).select("name");
+        const user=await userModel.findById(rev.user).select("name").sort({_id:-1});
         return {...rev._doc,user};
         })
         )

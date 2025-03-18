@@ -8,7 +8,7 @@ import axios from 'axios'
 
 
 const Review = () => {
-const{setShowReviewContainer,backendUrl,token,productId}=useContext(ProductContext);
+const{setShowReviewContainer,backendUrl,token,productId,fetchReview}=useContext(ProductContext);
 //default rating values
 const[review,setReview]=useState({rating:0,comment:""});
 //take values from the review form
@@ -24,12 +24,15 @@ setReview({...review,rating:newRating})
 //store the values to a review state at the time of submit
 const handleSubmit=async(e)=>{
 e.preventDefault();
-console.log(review.rating)
+if(!token){
+toast.info('please login before adding review')
+return;
+}
 try {
-  console.log(review)
   const{data}=await axios.post(`${backendUrl}/api/review/add`,{productId,rating:review.rating,comment:review.comment},{headers:{Authorization: `Bearer ${token}`,}})
   if(data.success){
     toast.success(data.message)
+    fetchReview(productId)
     setShowReviewContainer(false)
   }else{
   toast.error(data.message)

@@ -8,11 +8,9 @@ import Review from '../Review/Review';
 import Card from '../Card/Card';
 import axios from 'axios'
 const ProductDisplay = ({product}) => {
-const {showReviewContainer,backendUrl,setShowReviewContainer,fishList,addToCart,cartData,addToWish,wishListData,token,setProducId}=useContext(ProductContext);
+const {showReviewContainer,backendUrl,setShowReviewContainer,fishList,addToCart,cartData,addToWish,wishListData,token,setProducId,allReview,fetchReview}=useContext(ProductContext);
 //state for managing styles and googlle description and review
     const[changeDes,setChangeDes]=useState('Description')
-    //state for store the all reviews
-const[allReview,setAllReview]=useState([]);
   //state for store the current category of the product
     const[relatedProductCategory,setRelatedProductCategory]=useState(product.category)
   //filter the product based on the category
@@ -50,23 +48,7 @@ const handleAddToCart=(_id)=>{
     }
     }
 
-  //fetch review from backend
-  const fetchReview=async(productId)=>{
-   console.log(productId)
-  try {
-    const{data}=await axios.post(`${backendUrl}/api/review/list`,{productId:productId})
-    if(data.success){
-    setAllReview(data.message)
-    }else{
-    console.log(data.message)
-    }
-  } catch (error) {
-    console.log(error)
-  }
-  }
-  useEffect(()=>{
-  fetchReview(product._id);
-  },[allReview])
+
   return (
     <div className='product-display-main'>
           {showReviewContainer&& <Review/>}
@@ -107,7 +89,7 @@ const handleAddToCart=(_id)=>{
     <div className="for-description-and-review">
 <div className="for-review-and-description-button">
   <li className={changeDes==='Description'?'desc-button-active':"desc-button"} onClick={()=>setChangeDes('Description')}>Description</li>
-  <li className={changeDes==='Reviews'?'review-button-active':'review-button'} onClick={()=>setChangeDes('Reviews')}>Reviews</li>
+  <li className={changeDes==='Reviews'?'review-button-active':'review-button'} onClick={()=>{setChangeDes('Reviews'),fetchReview(product._id)}}>Reviews</li>
   <li className='add-review' onClick={()=>{setShowReviewContainer(true),setProducId(product._id)}}>Add-Review</li>
 </div>
 <div className="fordescription-and-review">
@@ -115,6 +97,7 @@ const handleAddToCart=(_id)=>{
   <p>{product.description3}</p>
   ):(
   allReview.reverse().map((item,index)=>{
+    console.log(item.user.name)
   return(
     <>
     <div className="rating-div">

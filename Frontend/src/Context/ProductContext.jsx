@@ -31,6 +31,8 @@ const[cartNumbers,setCartNumbers]=useState(Object.keys(cartData).length)
 const[promocodeDiscount,setPromocodeDiscount]=useState(0)
 //state for storing product id for review
 const[productId,setProducId]=useState('')
+//state for store the all reviews
+const[allReview,setAllReview]=useState([]);
 //add to cart
 const addToCart=async(itemId)=>{
 if(!cartData[itemId]){
@@ -181,7 +183,31 @@ try {
 }
 }
 
+  //fetch review from backend
+  const fetchReview=async(productId)=>{
+    console.log(productId)
+  try {
+    const{data}=await axios.post(`${backendUrl}/api/review/list`,{productId:productId})
+    if(data.success){
+    setAllReview(data.message)
+    }else{
+    console.log(data.message)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+  }
 
+  
+ useEffect(()=>{
+async function loadReview(){
+  if(productId){
+  await fetchReview();
+  }
+  
+}
+loadReview();
+},[productId])
 
     useEffect(()=>{
     async function loadData(){
@@ -192,7 +218,11 @@ try {
     await fetchMyOrders(sessionStorage.getItem('token'))
     }
     await  FetchFishList();
+    if(productId){
+      await fetchReview(productId)
+      }
   }
+ 
     loadData();
     },[])
 
@@ -232,7 +262,10 @@ setPromocodeDiscount,
 orders,
 fetchMyOrders,
 productId,
-setProducId
+setProducId,
+fetchReview,
+allReview,
+setAllReview
 }
   return (
     <div>
