@@ -1,8 +1,8 @@
-# 🐠 Aqua Market - Ornamental Fish E-commerce Website  
+#🐠 AquaCart - Ornamental Fish E-commerce Website
 
-## 📌 Overview  
-Aqua Market is an e-commerce platform where users can buy and sell ornamental fish. The website provides a seamless shopping experience with features such as user authentication with jwt and otp verification,
-product management, secure payments, Cart, Wishlist, promo codes, and an AI chatbot for fish-related queries.
+##📌 Overview
+
+AquaCart is a full-fledged e-commerce platform for buying and selling ornamental fish. It provides a seamless shopping experience with features like JWT & OTP authentication, product management, secure payments, shopping cart, wishlist, promo codes, and an AI chatbot for fish-related queries.
 
 
 ## 🚀 Features  
