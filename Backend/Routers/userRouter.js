@@ -11,5 +11,5 @@ userRouter.post('/verify-otp',verifyResetPasswordOtp);
 userRouter.post('/reset-password',resetPassword);
 userRouter.post('/resend-otp',resendOtp);
 userRouter.post('/userdata',authMiddleware,getUserData);
-userRouter.get('/google',googleLogin)
+userRouter.post('/google',googleLogin)
 export default userRouter;

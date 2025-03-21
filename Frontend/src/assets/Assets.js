@@ -180,7 +180,7 @@ const ProductLists = [
         price: 180,
         description1: "Intricate marble angelfish with stunning black and white swirls.",
         description2: "Marble Angelfish display a striking marbled pattern of black, white, and silver, making them a standout choice for aquariums. Their elegant swimming style adds charm to any setup.",
-        description3: `The Marble Angelfish showcases a dramatic mix of black, white, and silver swirls, giving it an artistic and captivating appearance. 
+        description3: `Tble Angelhe Marfish showcases a dramatic mix of black, white, and silver swirls, giving it an artistic and captivating appearance. 
                       These angelfish thrive in peaceful tanks with a stable environment and moderate care, making them perfect for enthusiasts seeking a visually stunning addition.`
     },
     {
@@ -386,7 +386,7 @@ const ProductLists = [
         image: Ryukin_Goldfish,
         price: 140,
         description1: "A short-bodied goldfish with a distinctive hump and a lively personality.",
-        description2: "Ryukin Goldfish are known for their compact, rounded bodies and characteristic hump. They are active and can adapt to various water conditions.",
+        description2: "A short-bodied goldfish with a distinctive hump and a lively personality.",
         description3: `Ryukin Goldfish are easily recognizable by their short, stocky bodies and characteristic hump. These fish are energetic and enjoy exploring their environment.
                         They are hardy and adaptable, thriving in well-maintained aquariums and requiring moderate care.`
     },

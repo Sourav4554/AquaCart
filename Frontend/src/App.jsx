@@ -21,7 +21,7 @@ const App = () => {
     <div>
       <BrowserRouter>
       <Navbar/>
-      <ToastContainer autoClose={1000}/>
+      <ToastContainer autoClose={4000} limit={1}/>
       <Search/>
       <ScrollToTop/>
       <Routes>

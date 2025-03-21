@@ -23,7 +23,7 @@ const App = () => {
   return (
     
       <div>
-        <ToastContainer/>
+             <ToastContainer autoClose={3000} />
         {showLogin ? (
         <>
          
