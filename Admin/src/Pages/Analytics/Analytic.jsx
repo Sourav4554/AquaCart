@@ -2,7 +2,7 @@ import React from 'react'
 import SalesLineChart from '../../Components/SalesLineChart/SalesLineChart'
 import { Box, Typography } from '@mui/material'
 import CategorySales from '../../Components/CategorySales/CategorySales'
-
+import PaymentAnalyze from '../../Components/PaymentAnalyze/PaymentAnalyze'
 const Analytic = () => {
   return (
     <>
@@ -23,9 +23,9 @@ const Analytic = () => {
   </Box>
   <Box sx={{width:{xs: "100%", sm: "80%", md: "60%", lg: "45%"}}}>
   <Typography variant='h6' mt={2} ml={8}>
-  Total Sales Over Time
+  Payment Methods Usage
 </Typography>
-    <SalesLineChart sx={{ width: "100%", height: "100%" }} />
+   <PaymentAnalyze  sx={{ width: "50%", height: "50%" }}/>
   </Box>
   <Box sx={{width:{xs: "100%", sm: "80%", md: "60%", lg: "45%"}}}>
   <Typography variant='h6' mt={2} ml={8}>

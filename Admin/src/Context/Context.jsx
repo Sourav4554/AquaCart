@@ -23,6 +23,7 @@ const Context = ({children}) => {
    const [salesData,setSalesData]=useState({labels:[],revenew:[]})
    //store category and sales
    const [categorySalesdata,setCategorySales]=useState({category:[],sales:[]})
+   const[paymentMethodData,setPaymentMethodData]=useState(null)
      //function for fetching fish
     const listFish=async()=>{
     const {data}=await axios.get(`${BackendUrl}/api/fish/list-fish`,{})
@@ -85,18 +86,31 @@ const fetchPromocodes=async()=>{
  }
   }
 
-  //function for fetch  orders from backend
+//function for fetch  orders from backend
 const fetchOrders=async(token)=>{
   try {
     const{data}=await axios.get(`${BackendUrl}/api/order/adminorder`,{headers:{Authorization: `Bearer ${token}`,}})
     if(data.success){
     setOrders(data.message)
+    const orders=data.message;
     const labels=data.message.map((item)=>{
       const date=new Date(item.createdAt)
       return date.toLocaleString('en-US', { weekday: 'short' });
       })
       const revenew=data.message.map((item)=>item.amount);
       setSalesData({labels,revenew})
+
+    //payment method data
+    const paymentCount={Razorpay: 0, Stripe: 0, COD: 0}
+    orders.forEach((order)=>{
+      if (order.paymentMethod === "Razorpay") paymentCount.Razorpay++;
+      else if (order.paymentMethod === "Stripe") paymentCount.Stripe++;
+      else if (order.paymentMethod === "COD") paymentCount.COD++;
+    })
+    setPaymentMethodData({
+    labels: ["Razorpay", "Stripe", "COD"],
+    data: [paymentCount.Razorpay, paymentCount.Stripe, paymentCount.COD],
+    })
     }
     else{
     console.log(data.message)
@@ -126,9 +140,12 @@ const fetchOrders=async(token)=>{
     salesData,
     categorySalesdata,
     setCategorySales,
-    loading
+    loading,
+   paymentMethodData
     }
-
+    useEffect(()=>{
+      fetchOrders(token);
+    },[token])
     useEffect(()=>{
     const loadData=async()=>{
         if(sessionStorage.getItem('token')){
@@ -137,7 +154,7 @@ const fetchOrders=async(token)=>{
             await fetchUsers()
             await listFish();
             await fetchPromocodes()
-            await fetchOrders(sessionStorage.getItem('token'));
+            
             }
     }
     loadData();
