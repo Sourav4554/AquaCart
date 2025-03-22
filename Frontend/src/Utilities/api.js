@@ -4,4 +4,4 @@ const api=axios.create({
 baseURL:` http://localhost:4000/api/user/`
 })
 
-export const googleAuth=(code)=>api.post(`/google?code=${code}`)
+export const googleAuth=(code)=>api.get(`/google?code=${code}`)

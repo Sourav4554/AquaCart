@@ -5,7 +5,7 @@ import ProductContextProvider from './Context/ProductContext.jsx'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 createRoot(document.getElementById('root')).render(
-<GoogleOAuthProvider clientId='799707691832-uipui27nnu0a349uiuh6skffrrgotib0.apps.googleusercontent.com'>
+<GoogleOAuthProvider clientId='10857224968-q4evs0gsr4p2h2qf2luodb541n2sgm9p.apps.googleusercontent.com'>
 <ProductContextProvider>
 <App />
 </ProductContextProvider>
