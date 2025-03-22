@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const About = () => {
 const Navigate=useNavigate();
   return (
-    <div className="main-container">
+    <div className="main-container" id='about'>
       <div className="container-for-content">
         {/*scroll animation with fade up */}
         <ScrollAnimation animateIn="animate__fadeInUp" animateOnce>

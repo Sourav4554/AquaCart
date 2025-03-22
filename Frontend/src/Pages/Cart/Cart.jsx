@@ -17,7 +17,7 @@ const[display,setDisplay]=useState(false)
 try {
   const email=userData&&userData.email?userData.email:'';
   if(calculateTotalAmout()<2000){
-  toast.error('subtotal is less than 2000');
+  toast.info('subtotal is less than 2000');
   return;
   }
   else{
@@ -91,7 +91,9 @@ setPromocodeDiscount(0)
   
      </div>
  
-     {
+     {Object.keys(cartData).length === 0 ?(
+     
+     <h1 className='empty-cart'>No items in the cart</h1>):(
      fishList.map((item,index)=>{
       if(cartData[item._id]>0){
     return(
@@ -111,7 +113,7 @@ setPromocodeDiscount(0)
       )
     }
     })
-     
+     )
      }
      </div>
      {/*cart total section */}

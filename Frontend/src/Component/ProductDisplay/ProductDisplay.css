@@ -200,6 +200,9 @@
   .product-display-main{
   margin-top: 20%;
   }
+  .for-description-and-review li{
+  padding: 4px 3px;
+  }
   .for-product-display{
   flex-direction: column;
   }

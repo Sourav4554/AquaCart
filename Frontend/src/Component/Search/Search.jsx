@@ -19,7 +19,7 @@ location.pathname==='/collections'?setVisible(true):setVisible(false)
         <div className="for-search">
             <input type="text" placeholder='search' onChange={(e)=>setSearchValue(e.target.value)} value={searchValue}/>
             <IoIosSearch className='search-icon'/>
-            <RxCross1 className='cross-icon-search' onClick={()=>{setVisible(false);setShowSearch(false)}}/>
+            <RxCross1 className='cross-icon-search' onClick={()=>{setVisible(false);setShowSearch(false);setSearchValue('')}}/>
         </div>
         
     </div>

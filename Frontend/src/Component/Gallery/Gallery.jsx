@@ -19,7 +19,7 @@ const [allProducts,setAllProducts]=useState(fishList);
     <div className="maindiv-for-gallery">
       <ScrollAnimation animateIn='animate__fadeInUp' animateOnce>
         <div className="heading-div">
-          <h2 className="head-1">AQATIC BEAUTY</h2>
+          <h2 className="head-1">AQUATIC BEAUTY</h2>
           <p className="para-1">
           Dive into the enchanting world of vibrant marine life. Explore a stunning array of aquatic wonders and colorful underwater beauty.
           </p>

@@ -25,10 +25,12 @@
     .footer-content-left img{
     width: 350px;
     }
-    .footer-content-left li,.footer-content-center li,.footer-content-right li{
+    .footer-content-left li,.footer-content-center .a,.footer-content-right li{
     list-style: none;
     margin-bottom: 10px;
+    color: #d9d9d9;
     cursor: pointer;
+    display: block;
     transition: all 0.3s ease;
     }
     .footer-content li:hover{
@@ -64,9 +66,6 @@
     @media(max-width:900px){
     .footer-content{
     grid-template-columns: 1fr;
-    }
-    .footer{
-    margin-top: 60px;
     }
     .footer-content-right{
     margin-left: 25%;

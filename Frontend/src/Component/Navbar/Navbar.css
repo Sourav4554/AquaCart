@@ -139,28 +139,47 @@
     transition: all 0.3s ease;
     font-weight: bold;
     }
-    .sub li{
+    .sub .list{
     margin-top: 10px;
-    transition: all 0.5 ease;
+    transition: all 0.5s ease;
     cursor: pointer;
     }
-    .for-list-sub li{
+    .sub .list a{
+        margin-top: 10px;
+        transition: all 0.5 ease;
+        cursor: pointer;
+        color: #fff;
+        }
+    .for-list-sub .list{
      margin-top: 10px;
      transition: all 0.5 ease;
      cursor: pointer;
+     
     }
+    .for-list-sub .list a{
+        margin-top: 10px;
+        transition: all 0.5 ease;
+        cursor: pointer;
+        color: #fff;
+       }
     .number{
     font-size: 16px;
     color: orangered;
     position: absolute;
     right: 67%;
     }
-    .sub li:hover{
+    .sub .list:hover{
     color: #178ca4;
     }
-    .for-list-sub li:hover{
+    .sub .list:hover a{
+        color: #178ca4;
+        }
+    .for-list-sub .list:hover{
     color: #178ca4;
     }
+    .for-list-sub .list:hover a{
+        color: #178ca4;
+        }
     .after-login-div:hover .for-list-sub{
     display: block;
     }
@@ -178,6 +197,7 @@
     .number{
     right: 70%;
     font-size: 20px;
+  
     }
     .for-list-colorchange{
         top: 95%;
@@ -214,8 +234,10 @@
         margin-left: 0px;
         }
         .number{
-        right: 71%;
+        right: 70%;
         position: absolute;
+        top: -11%;
+        font-size: 16px;
         }
         }
         @media(max-width:564px){

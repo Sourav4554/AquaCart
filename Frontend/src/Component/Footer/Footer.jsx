@@ -2,7 +2,9 @@ import React from 'react'
 import { Requirements } from '../../assets/Assets'
 import { FaFacebook, FaInstagram} from 'react-icons/fa'; //react icons
 import { FaXTwitter } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 import './Footer.css'
+
 const Footer = () => {
   return (
     <div className='footer' id='footer'>
@@ -19,10 +21,10 @@ const Footer = () => {
             <div className="footer-content-center">
                 <h2>AQUA CART</h2>
                 <ul>
-                    <li>Home</li>
-                    <li>About us</li>
-                    <li>Products</li>
-                    <li>Contact US</li>
+                <Link className='a' to='/'>Home</Link>
+                <Link className='a' to='/'>About Us</Link>
+                <Link className='a' to='/collections'>Collections</Link>
+                <Link className='a'>Contact US</Link>
                 </ul>
             </div>
             <div className="footer-content-right">

@@ -13,7 +13,11 @@ const Order = () => {
       <h2 className="orders-title">MY ORDERS</h2>
 
       {/* Map through all orders */}
-      {orders.map((order) => {
+      {
+      orders.length===0?(
+        <h1 className='empty-cart'>No Order Placed</h1>
+        ):(
+      orders.map((order) => {
 
         return (
           <div className="order-card" key={order._id}>
@@ -66,7 +70,7 @@ const Order = () => {
             </div>
           </div>
         );
-      })}
+      }))}
     </div>
   );
 };

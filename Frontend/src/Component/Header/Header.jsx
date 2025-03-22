@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 const Header = () => {
 const Navigate=useNavigate();//navigation 
   return (
-    <div className='main-header-division'>
+    <div className='main-header-division' id='home'>
       <Swiper {...swiperConfig} className='mySwiper'>
         <SwiperSlide>
           <img src={Requirements.Homepage2} alt="Homepage Image 1" />
@@ -43,7 +43,11 @@ const Navigate=useNavigate();//navigation
             <div className="for-socialmedia-icons">
                 <FaFacebook  className='socialmedia-icons'/>
                 <FaInstagram className='socialmedia-icons' />
-                <FaXTwitter   className='socialmedia-icons' title="X (formerly Twitter)"/>
+                <div>
+                   <a href="https://x.com/aquacartonline" target="_blank" rel="noopener noreferrer">
+                   <FaXTwitter className="socialmedia-icons" />
+                  </a>
+                </div>
             </div>
            </Fade>
           </div>
@@ -69,7 +73,11 @@ const Navigate=useNavigate();//navigation
             <div className="for-socialmedia-icons">
                 <FaFacebook  className='socialmedia-icons'/>
                 <FaInstagram className='socialmedia-icons' />
-                <FaXTwitter   className='socialmedia-icons' />
+                <div>
+                   <a href="https://x.com/aquacartonline" target="_blank" rel="noopener noreferrer">
+                   <FaXTwitter className="socialmedia-icons" />
+                  </a>
+                </div>
             </div>
            </Fade>
           </div>
@@ -94,8 +102,12 @@ const Navigate=useNavigate();//navigation
             </div>
             <div className="for-socialmedia-icons">
                 <FaFacebook  className='socialmedia-icons'/>
-                <FaInstagram className='socialmedia-icons' />
-                <FaXTwitter   className='socialmedia-icons' />
+                <div>
+                   <a href="https://x.com/aquacartonline" target="_blank" rel="noopener noreferrer">
+                   <FaXTwitter className="socialmedia-icons" />
+                  </a>
+                </div>
+                <FaInstagram  className='socialmedia-icons' />
             </div>
            </Fade>
           </div>

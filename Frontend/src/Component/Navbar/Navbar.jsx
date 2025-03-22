@@ -18,8 +18,13 @@ setCartNumbers((prev)=>Object.keys(cartData).length)
 console.log(cartNumbers)
 },[cartData])
 //function for prevent page refreshing
-const preventRefreshig=(e)=>{
+const preventRefreshig=(e,sectionId)=>{
 e.preventDefault();
+console.log(sectionId)
+const section = document.getElementById(sectionId);
+if (section) {
+  section.scrollIntoView({ behavior: "smooth" }); // Scroll smoothly
+}
 }
 //function for changing the color change on scrolling
 const colorChange=()=>{
@@ -74,11 +79,11 @@ setColor(false);
             {/*for list navbar details */}
              <div className={color?"for-list":"for-list-colorchange"}>
             <ul>
-           <li  className={`navbar-content-li ${style === 'home' ? 'active' : ''}`} onClick={(e)=>{preventRefreshig(e);setStyle('home')}} ><Link to='/' >Home</Link></li>
-                <li className='navbar-content-li'><a href="#" onClick={(e)=>{preventRefreshig(e);setStyle('about')} }className={style==='about'?"active":""}>About</a></li>
+                <li  className={`navbar-content-li ${style === 'home' ? 'active' : ''}`} onClick={(e)=>{preventRefreshig(e,'home');setStyle('home')}} ><Link to='/' >Home</Link></li>
+                <li className={`navbar-content-li ${style=='about'?'active':''}`} onClick={(e)=>{preventRefreshig(e,'about');setStyle('about')}} ><Link to='/' >About</Link> </li>
                 <li  className={`navbar-content-li ${style === 'product' ? 'active' : ''}`} onClick={(e)=>{preventRefreshig(e);setStyle('product')}} ><Link to='/collections' >Product</Link></li>
                 <li  className={`navbar-content-li ${style === 'ai' ? 'active' : ''}`} onClick={(e)=>{preventRefreshig(e);setStyle('ai')}} ><Link to='/aquaai' >Aqua Ai</Link></li>
-                <li className='navbar-content-li'><a href="#" onClick={(e)=>{preventRefreshig(e);setStyle('contact')}} className={style==='contact'?"active":""}>Contact</a></li>
+                <li className='navbar-content-li'><a href="#footer" onClick={(e)=>{preventRefreshig(e,'footer');setStyle('contact')}} className={style==='contact'?"active":""}>Contact</a></li>
             </ul>
             </div> 
             </>
@@ -93,8 +98,8 @@ setColor(false);
              <div className='after-login-div'>
               <p>{userData && userData.name ? userData.name.charAt(0).toUpperCase():""}</p>
               <div  className={color?"sub":"for-list-sub"}>
-              <li onClick={logOut}>logout</li>
-              <li><Link to='/myorder'>Orders</Link></li>
+              <li onClick={logOut} className='list'>logout</li>
+              <li className='list'><Link to='/myorder'>Orders</Link></li>
              </div>
              </div>
            

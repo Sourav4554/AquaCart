@@ -9,6 +9,14 @@
     font-weight: bold;
     text-align: center;
   }
+  .empty-cart {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+    padding: 30px;
+    color: gray;
+    margin: 20px 0;
+  }
   
   .cart-items-list-1 {
     display: grid;

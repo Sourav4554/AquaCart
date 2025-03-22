@@ -28,6 +28,9 @@ toast.success("Added to Cart")
    
      <div className="for-wish-items">
         {
+        Object.keys(wishListData).length===0?(
+          <h1 className='empty-cart'>No items in the WishList</h1>
+          ):(
         fishList.map((item,index)=>{
             if(wishListData[item._id]){
         return(
@@ -44,6 +47,7 @@ toast.success("Added to Cart")
             </div>
             )}
         })
+        )
         }
      </div>
     </div>

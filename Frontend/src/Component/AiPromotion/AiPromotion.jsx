@@ -35,16 +35,16 @@ const AiPromotion = () => {
        </div>
        </ScrollAnimatiion>
     <div className="description-box">
- <ScrollAnimatiion animateIn='animate__fadeInRight' delay={500} animateOnce>
+ <ScrollAnimatiion animateIn='animate__fadeInRight' delay={100} animateOnce>
  <h3>INSTANCE ASSISTANT</h3>
   <p>Get instant guidance on maintaining a healthy aquatic environment. Your reliable companion for every step of fish care.</p>
  </ScrollAnimatiion>
-<ScrollAnimatiion animateIn='animate__fadeInRight' delay={600} animateOnce>
+<ScrollAnimatiion animateIn='animate__fadeInRight' delay={150} animateOnce>
 
   <h3>SMART FISH CARE SUPPORT</h3>
   <p>Access tailored advice for feeding, water quality, and tank setup, ensuring your aquatic pets thrive effortlessly.</p>
 </ScrollAnimatiion>
-<ScrollAnimatiion animateIn='animate__fadeInRight' delay={700} animateOnce>
+<ScrollAnimatiion animateIn='animate__fadeInRight' delay={200} animateOnce>
 
   <h3>SMART TROUBLE SHOOTING</h3>
   <p>Effortlessly handle user queries with real-time solutions, from product recommendations to technical support, ensuring a seamless experience</p>

@@ -10,9 +10,9 @@ AquaCart is a full-fledged e-commerce platform for buying and selling ornamental
 - 🔍 **Search & Filtering**: Find fish based on species, price, and size.  
 - 🗮 **Admin Registration**: Secure admin access for managing the platform.  
 - 🏢 **User Registration with JWT & OTP Verification**: Secure signup process with OTP authentication.  
+- 🔒 **Google Authentication**: Signup/Login using Oath 2.0  
 - 🛕 **Shopping Cart & Checkout**: Add items to the cart and checkout.  
 - 💳 **Payment Integration**: cahn on delivery and Secure online payments via **Stripe / Razorpay**.  
-- 🔒 **User Authentication**: Signup/Login using JWT authentication.  
 - 🤖 **AI Chatbot**: Get real-time fish care tips and product recommendations.  
 - 🏰 **Promocode System**: Apply discount codes at checkout.  
 - 🌐 **Order Management**: Users can track their orders.  
