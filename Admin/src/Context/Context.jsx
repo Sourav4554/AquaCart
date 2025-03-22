@@ -23,7 +23,10 @@ const Context = ({children}) => {
    const [salesData,setSalesData]=useState({labels:[],revenew:[]})
    //store category and sales
    const [categorySalesdata,setCategorySales]=useState({category:[],sales:[]})
+   //store paymentmethod data
    const[paymentMethodData,setPaymentMethodData]=useState(null)
+  //store orderstatus data
+  const [orderStatusData, setOrderStatusData] = useState(null);
      //function for fetching fish
     const listFish=async()=>{
     const {data}=await axios.get(`${BackendUrl}/api/fish/list-fish`,{})
@@ -102,7 +105,13 @@ const fetchOrders=async(token)=>{
 
     //payment method data
     const paymentCount={Razorpay: 0, Stripe: 0, COD: 0}
+    const statusCount={pending:0,completed:0,outForDelivery:0}
     orders.forEach((order)=>{
+      if (order.status === "Order Placed") statusCount.pending++;
+      else if (order.status === "Delivered") statusCount.completed++;
+      else if (order.status === "Out for Delivery") statusCount.outForDelivery++;
+
+
       if (order.paymentMethod === "Razorpay") paymentCount.Razorpay++;
       else if (order.paymentMethod === "Stripe") paymentCount.Stripe++;
       else if (order.paymentMethod === "COD") paymentCount.COD++;
@@ -111,6 +120,15 @@ const fetchOrders=async(token)=>{
     labels: ["Razorpay", "Stripe", "COD"],
     data: [paymentCount.Razorpay, paymentCount.Stripe, paymentCount.COD],
     })
+
+    setOrderStatusData({
+      labels: ["Pending", "Completed", "Out for Delivery"],
+      data: [
+        statusCount.pending,
+        statusCount.completed,
+        statusCount.outForDelivery,
+      ],
+    });
     }
     else{
     console.log(data.message)
@@ -141,7 +159,8 @@ const fetchOrders=async(token)=>{
     categorySalesdata,
     setCategorySales,
     loading,
-   paymentMethodData
+   paymentMethodData,
+   orderStatusData
     }
     useEffect(()=>{
       fetchOrders(token);
