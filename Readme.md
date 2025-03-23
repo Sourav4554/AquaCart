@@ -57,7 +57,7 @@ AquaCart is a full-fledged e-commerce platform for buying and selling ornamental
 - Crypto (Random number generation for otp)  
 - Dotenv (Environment Variables)  
 - Sharp (Image Processing)  
-
+- googleapis (Google Authentication (Login with Google))
 ## 🛠 Installation & Setup  
 
 ### **1️⃣ Clone the Repository**  
@@ -88,6 +88,8 @@ npm start
   RAZORPAY_KEY_ID=your_razorpay_key_id
   RAZORPAY_KEY_SECRET=your_razorpay_key_secret
   GEMINI_API=your_gemini_api_key
+  GOOGLE_CLIENT_ID=google_clientId
+  GOOGLE_CLIENT_SECRET=google_Client_secret
   ```
 
 ### **3️⃣ Frontend Setup**  
