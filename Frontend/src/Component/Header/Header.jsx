@@ -18,7 +18,7 @@ const Navigate=useNavigate();//navigation
     <div className='main-header-division' id='home'>
       <Swiper {...swiperConfig} className='mySwiper'>
         <SwiperSlide>
-          <img src={Requirements.Homepage2} alt="Homepage Image 1" />
+          <img src={Requirements.Homepage2} alt="Homepage Image 1" loading='lazy'/>
           <div className="for-details">
             <div className="for-heading">
               {/* Animations for heading text */}
@@ -53,7 +53,7 @@ const Navigate=useNavigate();//navigation
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={Requirements.Homepage1} alt="Homepage Image 2" />
+          <img src={Requirements.Homepage1} alt="Homepage Image 2" loading='lazy'/>
           <div className="for-details-1">
           <div className="for-heading">
             <Slide direction='right' delay={500}  triggerOnce>
@@ -83,7 +83,7 @@ const Navigate=useNavigate();//navigation
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={Requirements.Homepage3} alt="Homepage Image 3" />
+          <img src={Requirements.Homepage3} alt="Homepage Image 3" loading='lazy'/>
           <div className="for-details-2">
           <div className="for-heading">
             <Slide direction='right' delay={500} triggerOnce>

@@ -79,9 +79,9 @@ import TUXEDO_PLATY from './TUXEDO-PLATY.jpg';
 import REDWAGTAIL_PLATY from './RED-WAGTAIL-PLATY.jpg';
 
 //Requirements
-import Homepage1 from './homepage1.avif';
-import Homepage2 from './homepage2.jpeg';
-import Homepage3 from './homepage3.jpg';
+import Homepage1 from './homepage1 .webp';
+import Homepage2 from './homepage2.webp';
+import Homepage3 from './homepage3 .webp';
 import searchicon from './searchicon.png';
 import carticon from './carticon.jpg';
 import wishlist from './wishlist.png';

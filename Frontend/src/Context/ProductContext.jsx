@@ -5,7 +5,7 @@ export const ProductContext=createContext(null)
 const ProductContextProvider = ({children}) => {
 //backend url
  const backendUrl='https://aquacart-backend.vercel.app'
-// const backendUrl='http://localhost:4000'
+//  const backendUrl='http://localhost:4000'
 //state for managing search bar visibility
 const[showSearch,setShowSearch]=useState(false);
 //state for managing values in a search bar
